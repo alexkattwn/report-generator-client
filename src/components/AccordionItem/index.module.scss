@@ -1,0 +1,20 @@
+.item {
+    height: 40px;
+    padding: 6px;
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 18px;
+
+    color: var(--dark-blue);
+
+    &.dark_mode {
+        color: var(--color-white);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,42 @@
+.block {
+    position: relative;
+
+    &__input {
+        width: 100%;
+        outline: none;
+        border: none;
+        appearance: none;
+        border-radius: 6px;
+        padding: 0 24px;
+        padding-top: 24px;
+        padding-bottom: 4px;
+        background-color: var(--color-white);
+        font-size: 16px;
+        color: var(--color-black);
+
+        &.dark_mode {
+            background-color: var(--bg-input);
+            color: var(--color-white);
+        }
+    }
+
+    &__label {
+        position: absolute;
+        padding: 0 24px;
+        color: rgb(164, 164, 168);
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        font-size: 16px;
+        color: #7b7979;
+        z-index: 10;
+        transition: font-size 0.3s, transform 0.3s;
+    }
+
+    &__input:focus + &__label,
+    &__input:not(:placeholder-shown) + &__label {
+        font-size: 12px;
+        transform: translate(0, -100%);
+        color: #999;
+    }
+}

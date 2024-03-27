@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Epilogue';
+    src: local('Epilogue'), url('./fonts/Epilogue-Regular.ttf') format(truetype);
+}
+
+:root {
+    /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+    font-family: 'Epilogue', Inter, system-ui, Avenir, Helvetica, Arial,
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --dark-blue: rgb(0, 50, 116);
+    --blue: rgb(2, 94, 161);
+    --light-blue: rgb(108, 172, 228);
+    --light-blue-translucent: rgba(108, 172, 228, 0.6);
+    --color-white: #ffff;
+
+    --bg-dark: rgb(52, 52, 55);
+    --color-black: #000;
+    --color-gray: #a4a2a2;
+    --bg-input: rgb(64 64 64);
+
+    --color-hover-icon: #696969;
+
+    --main-bg-dark: rgb(42, 42, 46);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: var(--color-white);
+    overflow-x: hidden;
+
+    &.dark_mode {
+        background-color: var(--main-bg-dark);
+    }
+}
+
+#root {
+    height: 100%;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdf {
+    width: 100%;
+    height: 100vh;
+}
