@@ -11,7 +11,7 @@ interface AuthProviderProps {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [isAppReady, setIsAppReady] = useState(false)
-    const { setIsAuthorized, checkToken } = useAuth()
+    const { setIsAuthorized } = useAuth()
 
     useEffect(() => {
         const handleCheckToken = async () => {

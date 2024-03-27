@@ -10,7 +10,7 @@ const AuthPage: React.FC = () => {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
 
-    const { signIn, setIsAuthorized } = useAuth()
+    const { setIsAuthorized } = useAuth()
 
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
