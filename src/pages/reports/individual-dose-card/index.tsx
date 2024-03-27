@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion'
 
 import cls from '@/pages/reports/individual-dose-card/index.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 const IndividualDoseCardReportPage: React.FC = () => {
+    const navigate = useNavigate()
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -12,7 +15,8 @@ const IndividualDoseCardReportPage: React.FC = () => {
         >
             <button
                 onClick={() =>
-                    window.open('/test', '_blank', 'rel=noopener noreferrer')
+                    //window.open('/test', '_blank', 'rel=noopener noreferrer')
+                    navigate('/test', { replace: true })
                 }
             >
                 Посмотреть отчет
