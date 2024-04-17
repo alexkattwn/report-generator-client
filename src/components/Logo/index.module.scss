@@ -1,0 +1,52 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    & > img {
+        width: 42px;
+    }
+
+    &__line {
+        height: 40px;
+        width: 1px;
+        background-color: var(--blue);
+
+        &.dark_mode {
+            background-color: var(--color-hover-icon);
+        }
+    }
+
+    &__name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__org {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-hover-icon);
+        }
+
+        & > div > span {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        &__first {
+            color: var(--blue);
+
+            &.dark_mode {
+                color: var(--color-white);
+            }
+        }
+
+        &__second {
+            color: var(--light-blue);
+
+            &.dark_mode {
+                color: var(--color-gray);
+            }
+        }
+    }
+}

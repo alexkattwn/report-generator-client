@@ -11,6 +11,8 @@ const Layout: React.FC = () => {
             <Header />
 
             <Outlet />
+
+            <div className='overlay' />
         </>
     )
 }

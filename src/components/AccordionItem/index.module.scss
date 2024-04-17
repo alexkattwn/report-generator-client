@@ -2,6 +2,7 @@
     height: 40px;
     padding: 6px;
     font-size: 14px;
+    font-weight: 300;
 
     display: flex;
     align-items: center;
@@ -9,6 +10,9 @@
     padding-left: 18px;
 
     color: var(--dark-blue);
+
+    position: relative;
+    z-index: 1;
 
     &.dark_mode {
         color: var(--color-white);

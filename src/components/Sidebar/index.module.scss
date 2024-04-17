@@ -9,6 +9,7 @@
     transition: 0.3s;
 
     position: absolute;
+    z-index: 10;
 
     &.dark_mode {
         color: var(--color-white);
@@ -33,11 +34,11 @@
     bottom: 0;
 
     background-color: var(--color-white);
-    border-right: 2px solid var(--light-blue);
+    box-shadow: 1px 1px 2px var(--light-blue);
 
     &.dark_mode {
         background-color: var(--main-bg-dark);
-        border-right: 2px solid gray;
+        box-shadow: 1px 1px 2px gray;
     }
 
     &.active {
@@ -45,6 +46,17 @@
         height: 100%;
         top: 0;
         left: 0;
+
+        @media screen and (max-width: 700px) {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            max-width: none;
+            min-width: none;
+            height: 100%;
+            z-index: 1;
+        }
     }
 
     &__header {
@@ -108,7 +120,7 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: var(--blue);
+            background-color: var(--color-light-gray);
             border-radius: 3px;
         }
 

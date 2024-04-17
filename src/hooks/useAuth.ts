@@ -1,20 +1,22 @@
 import { create } from 'zustand'
 
 import { AuthClient, ResourceClient } from '@/api/axiosClient'
-import { SignInResponse } from '@/types/auth'
-import { showErrorMesssage, showSuccessMessage } from '@/utils/notifications'
+import { ICurrentUser, SignInResponse } from '@/types/auth'
+import { showErrorMessage, showSuccessMessage } from '@/utils/notifications'
 import inMemoryJWT from '@/services/inMemoryJWT'
 import { errorException } from '@/utils/errors'
 
 interface AuthStore {
     isAuthorized: boolean
     setIsAuthorized: (state: boolean) => void
+    currentUser: ICurrentUser | undefined
     signIn: (login: string, identifier: string) => void
     checkToken: () => void
 }
 
 const useAuth = create<AuthStore>((set) => ({
     isAuthorized: false,
+    currentUser: undefined,
     setIsAuthorized: (state) => set({ isAuthorized: state }),
     signIn: async (login, identifier) => {
         try {
@@ -22,12 +24,12 @@ const useAuth = create<AuthStore>((set) => ({
                 login,
                 identifier,
             })
-            const { token } = response.data
+            const { token, showname, id } = response.data
             inMemoryJWT.setToken(token)
-            set({ isAuthorized: true })
+            set({ isAuthorized: true, currentUser: { showname, id } })
             showSuccessMessage('Вход выполнен')
         } catch (error) {
-            showErrorMesssage(error)
+            showErrorMessage(error)
         }
     },
     checkToken: async () => {
@@ -35,9 +37,9 @@ const useAuth = create<AuthStore>((set) => ({
             const response = await ResourceClient.get<SignInResponse>(
                 '/auth/check-token'
             )
-            const { token } = response.data
+            const { token, showname, id } = response.data
             inMemoryJWT.setToken(token)
-            set({ isAuthorized: true })
+            set({ isAuthorized: true, currentUser: { showname, id } })
         } catch (error) {
             errorException(error)
         }

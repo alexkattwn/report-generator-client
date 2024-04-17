@@ -7,53 +7,50 @@ import { useMode } from '@/hooks/useMode'
 import cls from '@/pages/auth/index.module.scss'
 
 const AuthPage: React.FC = () => {
-    const [name, setName] = useState('')
-    const [password, setPassword] = useState('')
+    const [name, setName] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
-    const { setIsAuthorized } = useAuth()
+    const { signIn } = useAuth()
 
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
-    const handleSignIn = async () => {
-        //await signIn(name, password)
-        setIsAuthorized(true)
+    const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        await signIn(name, password)
     }
 
     return (
         <div className={cls.auth}>
             <div className={cls.auth__container}>
-                <div
+                <form
+                    onSubmit={handleSignIn}
                     className={`${cls.auth__container__form} ${darkModeClass}`}
                 >
                     <h2 className={cls.auth__container__form__header}>Вход</h2>
                     <div className={cls.auth__container__form__inputs}>
                         <Input
                             label='Логин'
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                             id='name'
                             type='text'
                             value={name}
                         />
                         <Input
                             label='Пароль'
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                             id='password'
                             type='password'
                             value={password}
                         />
                     </div>
                     <button
-                        onClick={handleSignIn}
+                        type='submit'
                         className={cls.auth__container__form__btn}
                     >
                         Войти
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     )

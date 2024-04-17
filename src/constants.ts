@@ -1,8 +1,18 @@
+import { IParametersIDC } from '@/types/common'
+
 export const AUTH_ROUTE = '/auth'
 export const REPORTS_ROUTE = '/reports'
 export const INDIVIDUAL_DOSE_CARD_REPORT_ROUTE = '/reports/individual-dose-card'
+export const INDIVIDUAL_DOSES_REPORT_ROUTE = '/reports/individual-doses'
+export const COLLECTIVE_DOSES_REPORT_ROUTE = '/reports/collective-doses'
 export const HOME_ROUTE = '/'
 export const NOT_FOUND_ROUTE = '*'
+
+export const REPORT_IDC_ROUTE = '/report-idc'
+export const REPORT_CD_ROUTE = '/report-cd'
+export const REPORT_ID_ROUTE = '/report-id'
+
+export const delayValue = 500
 
 export const dataAccordion = [
     {
@@ -31,15 +41,15 @@ export const dataAccordion = [
             },
             {
                 title: 'Индивидуальные дозы',
-                path: REPORTS_ROUTE,
+                path: INDIVIDUAL_DOSES_REPORT_ROUTE,
             },
             {
-                title: 'Карта учета индивидуальных доз',
+                title: 'Карты учета индивидуальных доз',
                 path: INDIVIDUAL_DOSE_CARD_REPORT_ROUTE,
             },
             {
                 title: 'Коллективные дозы',
-                path: REPORTS_ROUTE,
+                path: COLLECTIVE_DOSES_REPORT_ROUTE,
             },
         ],
     },
@@ -92,3 +102,17 @@ export const dataAccordion = [
         ],
     },
 ]
+
+export const initialStateParametersIDC: IParametersIDC = {
+    struct: '',
+    post: '',
+    pass_sfz: '',
+    personal_number: '',
+    physical_person: '',
+    doc_number: '',
+    contacts: '',
+    id_personal: '',
+    post_approver: '',
+    post_responsible_person: '',
+    filter: '',
+}

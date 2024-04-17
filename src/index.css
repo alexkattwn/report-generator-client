@@ -1,11 +1,35 @@
 @font-face {
-    font-family: 'Epilogue';
-    src: local('Epilogue'), url('./fonts/Epilogue-Regular.ttf') format(truetype);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Inter'),
+        url('./assets/fonts/Inter-Regular.otf') format(truetype);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: bold;
+    font-weight: 700;
+    src: local('Inter'), url('./assets/fonts/Inter-Bold.otf') format(truetype);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Inter'), url('./assets/fonts/Inter-Italic.otf') format(truetype);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Inter'), url('./assets/fonts/Inter-Light.otf') format(truetype);
 }
 
 :root {
     /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-    font-family: 'Epilogue', Inter, system-ui, Avenir, Helvetica, Arial,
+    font-family: 'Nunito', Inter, system-ui, Avenir, Helvetica, Arial,
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -21,8 +45,16 @@
     --bg-input: rgb(64 64 64);
 
     --color-hover-icon: #696969;
+    --color-light-gray: #d2cfcf;
+    --color-light-light-gray: #f6f2f2;
 
     --main-bg-dark: rgb(42, 42, 46);
+
+    --orange: #f69d38;
+    --light-orange: #ffa970;
+
+    --green: rgb(139, 245, 153);
+    --red: rgb(255, 67, 67);
 }
 
 * {
@@ -60,4 +92,22 @@ body {
 .pdf {
     width: 100%;
     height: 100vh;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: -1;
+}
+
+.overlay.open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 10;
 }

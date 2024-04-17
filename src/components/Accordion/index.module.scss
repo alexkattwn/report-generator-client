@@ -8,11 +8,15 @@
         padding: 6px;
         box-shadow: 2px 2px 2px gray;
 
+        position: relative;
+        z-index: 2;
+
         display: grid;
         grid-template-columns: auto 30px;
 
         &__title {
             margin: auto 0;
+            font-weight: 300;
             font-size: 15px;
             color: var(--dark-blue);
 

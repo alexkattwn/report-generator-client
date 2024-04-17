@@ -1,0 +1,114 @@
+.block {
+    width: auto;
+    height: auto;
+    position: relative;
+
+    &__btn {
+        color: var(--blue);
+        height: fit-content;
+        width: fit-content;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        transition: all 0.5s ease;
+
+        &.dark_mode {
+            color: var(--color-gray);
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: var(--green);
+        }
+    }
+
+    &__field {
+        position: absolute;
+        right: 10px;
+        bottom: 32px;
+        width: 240px;
+        height: 44px;
+        background-color: var(--light-blue);
+        display: flex;
+        align-items: center;
+        padding: 6px 6px;
+        border-radius: 4px;
+
+        @media (max-width: 400px) {
+            right: -70px;
+        }
+
+        &.dark_mode {
+            background-color: var(--color-gray);
+        }
+
+        &__input {
+            width: 100%;
+            background-color: var(--color-white);
+            padding: 8px;
+            border-radius: 4px;
+            border-color: var(--blue);
+            color: var(--blue);
+            font-size: 14px;
+            outline: none;
+            border: 1px solid;
+            transition: all 0.2s ease;
+            padding-right: 50px;
+
+            &.dark_mode {
+                background-color: var(--bg-input);
+                color: var(--color-white);
+            }
+        }
+
+        &__add {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: var(--blue);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.5s ease;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.dark_mode {
+                color: var(--color-gray);
+            }
+
+            &:hover {
+                color: var(--green);
+            }
+        }
+
+        &__close {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: var(--blue);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.5s ease;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.dark_mode {
+                color: var(--color-gray);
+            }
+
+            &:hover {
+                color: var(--orange);
+            }
+        }
+    }
+}

@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
     MdOutlineKeyboardDoubleArrowRight,
     MdOutlineKeyboardDoubleArrowLeft,
@@ -8,21 +7,22 @@ import {
 import { useMode } from '@/hooks/useMode'
 import Accordion from '@components/Accordion'
 import { dataAccordion } from '@/constants'
+import useSidebar from '@/hooks/useSidebar'
 
 import cls from '@components/Sidebar/index.module.scss'
 
 const Sidebar: React.FC = () => {
-    const [isActive, setIsActive] = useState<boolean>(false)
+    const { isOpen, setIsOpen } = useSidebar()
 
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     return (
         <>
-            {!isActive && (
+            {!isOpen && (
                 <button
                     className={`${cls.btnOpen} ${darkModeClass}`}
-                    onClick={() => setIsActive(!isActive)}
+                    onClick={() => setIsOpen(!isOpen)}
                 >
                     <MdOutlineKeyboardDoubleArrowRight
                         data-tooltip-id='tooltip'
@@ -36,10 +36,10 @@ const Sidebar: React.FC = () => {
             )}
             <div
                 className={`${cls.sidebar} ${
-                    isActive ? cls.active : ''
+                    isOpen ? cls.active : ''
                 } ${darkModeClass}`}
             >
-                {isActive && (
+                {isOpen && (
                     <>
                         <div className={cls.sidebar__header}>
                             <h2
@@ -47,9 +47,12 @@ const Sidebar: React.FC = () => {
                             >
                                 Отчеты
                             </h2>
-                            <button
+                            <motion.button
                                 className={`${cls.sidebar__header__back} ${darkModeClass}`}
-                                onClick={() => setIsActive(!isActive)}
+                                onClick={() => setIsOpen(!isOpen)}
+                                initial={{ x: -200, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 0.05 }}
                             >
                                 <MdOutlineKeyboardDoubleArrowLeft
                                     data-tooltip-id='tooltip'
@@ -59,7 +62,7 @@ const Sidebar: React.FC = () => {
                                     data-tooltip-variant='info'
                                     size={36}
                                 />
-                            </button>
+                            </motion.button>
                         </div>
                         <div className={cls.sidebar__content}>
                             <AnimatePresence>

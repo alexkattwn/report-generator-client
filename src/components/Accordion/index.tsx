@@ -22,12 +22,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, fields }) => {
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     return (
-        <motion.div
-            className={cls.accordion}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-        >
+        <div className={cls.accordion}>
             <motion.div
                 initial={false}
                 animate={{
@@ -38,8 +33,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, fields }) => {
                         : mode === 'dark'
                         ? 'var(--bg-input)'
                         : 'var(--color-white)',
-                }} // '#FF0088' : '#0055FF'
-                className={cls.accordion__header}
+                }}
+                className={`${cls.accordion__header} ${darkModeClass}`}
                 onClick={() => setIsActive(!isActive)}
                 onTap={() => cycle()}
             >
@@ -66,7 +61,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, fields }) => {
                             collapsed: { opacity: 0, height: 0 },
                         }}
                         transition={{
-                            duration: 0.8,
+                            duration: 0.2,
                             ease: [0.04, 0.62, 0.23, 0.98],
                         }}
                     >
@@ -76,7 +71,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, fields }) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.div>
+        </div>
     )
 }
 

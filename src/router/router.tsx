@@ -5,6 +5,11 @@ import {
     INDIVIDUAL_DOSE_CARD_REPORT_ROUTE,
     HOME_ROUTE,
     REPORTS_ROUTE,
+    REPORT_IDC_ROUTE,
+    INDIVIDUAL_DOSES_REPORT_ROUTE,
+    COLLECTIVE_DOSES_REPORT_ROUTE,
+    REPORT_CD_ROUTE,
+    REPORT_ID_ROUTE,
 } from '@/constants'
 import AuthPage from '@/pages/auth'
 import Layout from '@/components/Layout'
@@ -13,7 +18,11 @@ import AuthRoute from '@/components/AuthRoute'
 import IndividualDoseCardReportPage from '@/pages/reports/individual-dose-card'
 import EmptyReportPage from '@/pages/reports/empty'
 import ReportsLayout from '@/components/ReportsLayout'
-import TestReport from '@/pages/reports/test-report'
+import ReportIDC from '@/pages/reports/individual-dose-card/Report'
+import IndividualDosesPage from '@/pages/reports/individual-doses'
+import CollectiveDosesPage from '@/pages/reports/collective-doses'
+import ReportCD from '@/pages/reports/collective-doses/Report'
+import ReportID from '@/pages/reports/individual-doses/Report'
 
 const router = createBrowserRouter([
     {
@@ -48,13 +57,29 @@ const router = createBrowserRouter([
                         path: INDIVIDUAL_DOSE_CARD_REPORT_ROUTE,
                         element: <IndividualDoseCardReportPage />,
                     },
+                    {
+                        path: INDIVIDUAL_DOSES_REPORT_ROUTE,
+                        element: <IndividualDosesPage />,
+                    },
+                    {
+                        path: COLLECTIVE_DOSES_REPORT_ROUTE,
+                        element: <CollectiveDosesPage />,
+                    },
                 ],
             },
         ],
     },
     {
-        path: '/test',
-        element: <TestReport />,
+        path: REPORT_IDC_ROUTE,
+        element: <ReportIDC />,
+    },
+    {
+        path: REPORT_CD_ROUTE,
+        element: <ReportCD />,
+    },
+    {
+        path: REPORT_ID_ROUTE,
+        element: <ReportID />,
     },
 ])
 
