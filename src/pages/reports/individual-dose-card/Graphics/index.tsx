@@ -28,14 +28,13 @@ const GraphicsIDC: React.FC<GraphicsIDCProps> = ({ parameters }) => {
     const [isReady, setIsReady] = useState<boolean>(false)
 
     useEffect(() => {
-        const fetch = async () => {
+        ;(async () => {
             if (parameters.id_personal) {
                 await getReport(parameters.id_personal)
                 await getGraphics(parameters.id_personal)
                 setIsReady(true)
             }
-        }
-        fetch()
+        })()
     }, [parameters.id_personal])
 
     return (
