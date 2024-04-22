@@ -43,52 +43,49 @@ const pageStyles = StyleSheet.create({
 
 const ReportCD: React.FC = () => {
     return (
-        <>
-            <AnimatePresence>
-                {true ? (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className={cls.page}
-                    >
-                        <PDFViewer className='pdf'>
-                            <Document>
-                                <Page
-                                    size='A4'
-                                    orientation='landscape'
-                                    style={pageStyles.page}
-                                >
-                                    <HeaderReportCD />
-                                    <BodyReportCD />
-                                    <FooterReportCD />
-                                    <Text style={pageStyles.bottomText} fixed>
-                                        23.03.2022 - 27.03.2024 Прочие
-                                        организации
-                                    </Text>
-                                    <Text
-                                        style={pageStyles.pageNumber}
-                                        render={({ pageNumber, totalPages }) =>
-                                            `${pageNumber} / ${totalPages}`
-                                        }
-                                        fixed
-                                    />
-                                </Page>
-                            </Document>
-                        </PDFViewer>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className='loader'
-                    >
-                        <RingLoader color='#36d7b7' />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
+        <AnimatePresence>
+            {true ? (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cls.page}
+                >
+                    <PDFViewer className='pdf'>
+                        <Document>
+                            <Page
+                                size='A4'
+                                orientation='landscape'
+                                style={pageStyles.page}
+                            >
+                                <HeaderReportCD />
+                                <BodyReportCD />
+                                <FooterReportCD />
+                                <Text style={pageStyles.bottomText} fixed>
+                                    23.03.2022 - 27.03.2024 Прочие организации
+                                </Text>
+                                <Text
+                                    style={pageStyles.pageNumber}
+                                    render={({ pageNumber, totalPages }) =>
+                                        `${pageNumber} / ${totalPages}`
+                                    }
+                                    fixed
+                                />
+                            </Page>
+                        </Document>
+                    </PDFViewer>
+                </motion.div>
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='loader'
+                >
+                    <RingLoader color='#36d7b7' />
+                </motion.div>
+            )}
+        </AnimatePresence>
     )
 }
 

@@ -24,8 +24,6 @@ ChartJS.register(
     Legend
 )
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
-
 const options = {
     responsive: true,
     plugins: {
@@ -34,28 +32,53 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Chart.js Line Chart',
+            text: 'Облучение за последний год по месяцам, мЗв',
+        },
+        tooltip: {
+            callbacks: {
+                label: function (context: any) {
+                    let label = context.dataset.label || ''
+
+                    if (label) {
+                        label += ': '
+                    }
+
+                    if (context.parsed.y !== null) {
+                        label +=
+                            context.parsed.y !== 0
+                                ? Number(context.parsed.y).toFixed(6) + ' мЗв'
+                                : 0
+                    }
+
+                    return label
+                },
+            },
         },
     },
 }
 
-const data = {
-    labels,
-    datasets: [
-        {
-            fill: true,
-            label: 'Dataset 2',
-            data: [12, 45, 132, 455, 34, 120, 400, 600, 256, 999],
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
+interface IGraphic {
+    id_uuid: string
+    info: {
+        labels: string[]
+        datasets: {
+            fill: boolean
+            label: string
+            data: number[]
+            borderColor: string
+            backgroundColor: string
+        }[]
+    }
 }
 
-const AreaChartIDC = () => {
+interface IAreaChartIDCProps {
+    graphic: IGraphic
+}
+
+const AreaChartIDC: React.FC<IAreaChartIDCProps> = ({ graphic }) => {
     return (
         <div className={cls.area}>
-            <Line options={options} data={data} />
+            <Line options={options} data={graphic.info} />
         </div>
     )
 }

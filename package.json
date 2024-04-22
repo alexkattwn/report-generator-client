@@ -1,7 +1,8 @@
 {
-    "name": "client",
+    "name": "report-generator-client",
     "private": true,
     "version": "0.0.0",
+    "description": "Client application of the Web-based report generation module for the NuclearIDM individual dosimetric monitoring platform",
     "type": "module",
     "scripts": {
         "dev": "vite --host",

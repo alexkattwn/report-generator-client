@@ -1,10 +1,17 @@
+import { motion } from 'framer-motion'
+
 import { REPORT_ID_ROUTE } from '@/constants'
 
 import cls from '@/pages/reports/individual-doses/index.module.scss'
 
 const IndividualDosesPage: React.FC = () => {
     return (
-        <div className={cls.page}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={cls.page}
+        >
             IndividualDosesPage
             <button
                 onClick={() =>
@@ -17,7 +24,7 @@ const IndividualDosesPage: React.FC = () => {
             >
                 view
             </button>
-        </div>
+        </motion.div>
     )
 }
 

@@ -28,9 +28,7 @@
 }
 
 :root {
-    /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-    font-family: 'Nunito', Inter, system-ui, Avenir, Helvetica, Arial,
-        sans-serif;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     --dark-blue: rgb(0, 50, 116);
@@ -48,7 +46,7 @@
     --color-light-gray: #d2cfcf;
     --color-light-light-gray: #f6f2f2;
 
-    --main-bg-dark: rgb(42, 42, 46);
+    --main-bg-dark: rgb(59, 59, 60);
 
     --orange: #f69d38;
     --light-orange: #ffa970;

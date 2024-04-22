@@ -73,44 +73,42 @@ const ReportIDC: React.FC = () => {
     }, [])
 
     return (
-        <>
-            <AnimatePresence>
-                {!isLoading ? (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className={cls.page}
-                    >
-                        <PDFViewer className='pdf'>
-                            <Document>
-                                <Page size='A4' style={pageStyles.page}>
-                                    <HeaderReportIDC report={report} />
-                                    <BodyReportIDC report={report} />
-                                    <FooterReportIDC />
-                                    <Text
-                                        style={pageStyles.pageNumber}
-                                        render={({ pageNumber, totalPages }) =>
-                                            `${pageNumber} / ${totalPages}`
-                                        }
-                                        fixed
-                                    />
-                                </Page>
-                            </Document>
-                        </PDFViewer>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className='loader'
-                    >
-                        <RingLoader color='#36d7b7' />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
+        <AnimatePresence>
+            {!isLoading ? (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cls.page}
+                >
+                    <PDFViewer className='pdf'>
+                        <Document>
+                            <Page size='A4' style={pageStyles.page}>
+                                <HeaderReportIDC report={report} />
+                                <BodyReportIDC report={report} />
+                                <FooterReportIDC />
+                                <Text
+                                    style={pageStyles.pageNumber}
+                                    render={({ pageNumber, totalPages }) =>
+                                        `${pageNumber} / ${totalPages}`
+                                    }
+                                    fixed
+                                />
+                            </Page>
+                        </Document>
+                    </PDFViewer>
+                </motion.div>
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='loader'
+                >
+                    <RingLoader color='#36d7b7' />
+                </motion.div>
+            )}
+        </AnimatePresence>
     )
 }
 

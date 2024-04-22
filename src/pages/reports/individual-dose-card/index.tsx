@@ -66,9 +66,14 @@ const IndividualDoseCardReportPage: React.FC = () => {
                     setParameters={setParameters}
                 />
             </AnimatePresence>
-            {parameters.id_personal && (
-                <AnimatePresence>
-                    <div className={cls.page__infographic}>
+            <AnimatePresence>
+                {parameters.id_personal && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className={cls.page__infographic}
+                    >
                         <div className={cls.page__infographic__head}>
                             <h3
                                 className={`${cls.page__infographic__head__title} ${darkModeClass}`}
@@ -90,9 +95,9 @@ const IndividualDoseCardReportPage: React.FC = () => {
                             </button>
                         </div>
                         <GraphicsIDC parameters={parameters} />
-                    </div>
-                </AnimatePresence>
-            )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     )
 }

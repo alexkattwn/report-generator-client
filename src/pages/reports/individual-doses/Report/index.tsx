@@ -28,33 +28,31 @@ const pageStyles = StyleSheet.create({
 
 const ReportID = () => {
     return (
-        <>
-            <AnimatePresence>
-                {true ? (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className={cls.page}
-                    >
-                        <PDFViewer className='pdf'>
-                            <Document>
-                                <Page size='A4' style={pageStyles.page}></Page>
-                            </Document>
-                        </PDFViewer>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className='loader'
-                    >
-                        <RingLoader color='#36d7b7' />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
+        <AnimatePresence>
+            {true ? (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cls.page}
+                >
+                    <PDFViewer className='pdf'>
+                        <Document>
+                            <Page size='A4' style={pageStyles.page}></Page>
+                        </Document>
+                    </PDFViewer>
+                </motion.div>
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='loader'
+                >
+                    <RingLoader color='#36d7b7' />
+                </motion.div>
+            )}
+        </AnimatePresence>
     )
 }
 

@@ -65,6 +65,7 @@ const SelectParameter: React.FC<SelectParameterProps> = ({
                     value={selected}
                     onChange={handleChange}
                     type='text'
+                    title={selected}
                 />
                 {!!selected && (
                     <button

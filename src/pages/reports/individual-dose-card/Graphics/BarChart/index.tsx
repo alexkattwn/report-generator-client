@@ -21,33 +21,58 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Chart.js Bar Chart',
+            text: 'Облучение за последние 5 лет, мЗв',
+        },
+        tooltip: {
+            callbacks: {
+                label: function (context: any) {
+                    let label = context.dataset.label || ''
+
+                    if (label) {
+                        label += ': '
+                    }
+
+                    if (context.parsed.y !== null) {
+                        label +=
+                            context.parsed.y !== 0
+                                ? Number(context.parsed.y).toFixed(6) + ' мЗв'
+                                : 0
+                    }
+
+                    return label
+                },
+            },
         },
     },
 }
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
-
-const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [32, 45, 103, 500, 78, 890, 999],
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-            label: 'Dataset 2',
-            data: [30, 35, 99, 280, 34, 124, 567],
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
+interface IGraphic {
+    id_uuid: string
+    info: {
+        labels: number[]
+        datasets: {
+            label: string
+            data: number[]
+            backgroundColor: string
+        }[]
+    }
 }
 
-const BarChartIDC: React.FC = () => {
+interface IBarChartIDCProps {
+    graphic: IGraphic
+}
+
+const BarChartIDC: React.FC<IBarChartIDCProps> = ({ graphic }) => {
     return (
         <div className={cls.bar}>
-            <Bar options={options} data={data} />
+            {/* <button
+                onClick={() =>
+                    navigator.clipboard.writeText(JSON.stringify(test))
+                }
+            >
+                sfsf
+            </button> */}
+            <Bar options={options} data={graphic.info} />
         </div>
     )
 }
