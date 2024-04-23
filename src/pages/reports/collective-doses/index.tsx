@@ -13,15 +13,7 @@ const CollectiveDosesPage: React.FC = () => {
             className={cls.page}
         >
             CollectiveDosesPage
-            <button
-                onClick={() =>
-                    window.open(
-                        REPORT_CD_ROUTE,
-                        '_blank'
-                        //'rel=noopener noreferrer'
-                    )
-                }
-            >
+            <button onClick={() => window.open(REPORT_CD_ROUTE, '_blank')}>
                 view
             </button>
         </motion.div>

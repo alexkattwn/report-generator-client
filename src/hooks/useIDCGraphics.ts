@@ -28,6 +28,19 @@ interface IGraphicIDC {
             }[]
         }
     }
+    pie: {
+        id_uuid: string
+        info: {
+            labels: string[]
+            datasets: {
+                label: string
+                data: number[]
+                backgroundColor: string[]
+                borderColor: string[]
+                borderWidth: number
+            }[]
+        }
+    }
 }
 
 interface IDCGraphicStore {
@@ -47,7 +60,6 @@ const useIDCGraphic = create<IDCGraphicStore>((set) => ({
                 url = `${url}?id_personal=${idPersonal}`
             }
             const { data } = await ResourceClient.get<IGraphicIDC>(url)
-            console.log(data)
             set({ graphics: data })
         } catch (error) {
             showErrorMessage(error)

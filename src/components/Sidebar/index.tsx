@@ -29,7 +29,6 @@ const Sidebar: React.FC = () => {
                         data-tooltip-content='Развернуть'
                         data-tooltip-delay-hide={100}
                         data-tooltip-place='right'
-                        data-tooltip-variant='info'
                         size={36}
                     />
                 </button>
@@ -59,7 +58,6 @@ const Sidebar: React.FC = () => {
                                     data-tooltip-content='Свернуть'
                                     data-tooltip-delay-hide={100}
                                     data-tooltip-place='right'
-                                    data-tooltip-variant='info'
                                     size={36}
                                 />
                             </motion.button>

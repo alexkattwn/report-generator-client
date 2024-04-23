@@ -17,32 +17,90 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 
-    &__pie {
-        background-color: #ebebeb;
-        overflow: hidden !important;
-        padding: 0;
-        border-radius: 50%;
-        width: 360px;
-        height: 360px;
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-        &.dark_mode {
-            background-color: var(--bg-dark);
+        &__hor {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+
+            &__right {
+                background-color: #ebebeb;
+                overflow: hidden !important;
+                padding: 0;
+                border-radius: 4px;
+                width: 60px;
+                height: 280px;
+
+                &.dark_mode {
+                    background-color: var(--bg-dark);
+                }
+            }
+
+            &__left {
+                background-color: #ebebeb;
+                overflow: hidden !important;
+                padding: 0;
+                border-radius: 4px;
+                width: 630px;
+                height: 280px;
+
+                &.dark_mode {
+                    background-color: var(--bg-dark);
+                }
+            }
+        }
+
+        &__ver {
+            background-color: #ebebeb;
+            overflow: hidden !important;
+            padding: 0;
+            border-radius: 4px;
+            width: 700px;
+            height: 30px;
+
+            &.dark_mode {
+                background-color: var(--bg-dark);
+            }
         }
     }
 
-    &__area,
-    &__bar {
-        background-color: #ebebeb;
-        overflow: hidden !important;
-        padding: 0;
-        height: 340px;
-        width: 700px;
-        border-radius: 4px;
+    &__circle {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
 
-        &.dark_mode {
-            background-color: var(--bg-dark);
+        &__block {
+            background-color: #ebebeb;
+            overflow: hidden !important;
+            padding: 0;
+            border-radius: 4px;
+            width: 400px;
+            height: 140px;
+
+            &.dark_mode {
+                background-color: var(--bg-dark);
+            }
+        }
+
+        &__obj {
+            background-color: #ebebeb;
+            overflow: hidden !important;
+            padding: 0;
+            width: 320px;
+            height: 320px;
+
+            border-radius: 50%;
+
+            &.dark_mode {
+                background-color: var(--bg-dark);
+            }
         }
     }
 }

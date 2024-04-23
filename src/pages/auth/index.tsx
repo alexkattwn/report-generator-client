@@ -15,7 +15,9 @@ const AuthPage: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
-    const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSignIn = async (
+        e: React.FormEvent<HTMLFormElement>
+    ): Promise<void> => {
         e.preventDefault()
         await signIn(name, password)
     }

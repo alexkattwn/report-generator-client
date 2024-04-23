@@ -285,8 +285,7 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
                     }
                     placeholder=''
                     label='Должность утверждающего'
-                    value={'Начальник ОРБ'}
-                    disabled
+                    value={parameters.post_approver}
                 />
                 <InputParameter
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -303,8 +302,7 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
                     }
                     placeholder=''
                     label='Должность ответственного'
-                    value={'Руководитель группы ИДК'}
-                    disabled
+                    value={parameters.post_responsible_person}
                 />
             </div>
             <div className={`${cls.parameters__actions} ${darkModeClass}`}>

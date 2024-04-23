@@ -117,14 +117,15 @@ const FiltersIDC: React.FC<FiltersIDCProps> = ({
                                     <span>{filter.name_filter}</span>
                                     <button
                                         className={`${cls.block__filter__option__btn} ${darkModeClass}`}
+                                        data-tooltip-id='tooltip'
+                                        data-tooltip-content='Удалить фильтр'
+                                        data-tooltip-place='right'
+                                        data-tooltip-offset={20}
                                         onClick={(event) =>
                                             handleRemoveFilter(event, filter)
                                         }
                                     >
-                                        <RiDeleteBin5Line
-                                            title='Удалить фильтр'
-                                            size={16}
-                                        />
+                                        <RiDeleteBin5Line size={16} />
                                     </button>
                                 </motion.li>
                             ))}

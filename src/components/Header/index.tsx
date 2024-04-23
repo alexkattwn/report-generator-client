@@ -79,7 +79,6 @@ const Header: React.FC = () => {
                                 data-tooltip-content='Выйти'
                                 data-tooltip-delay-hide={100}
                                 data-tooltip-place='left'
-                                data-tooltip-variant='info'
                                 size={32}
                             />
                         </button>

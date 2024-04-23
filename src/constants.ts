@@ -112,7 +112,7 @@ export const initialStateParametersIDC: IParametersIDC = {
     doc_number: '',
     contacts: '',
     id_personal: '',
-    post_approver: '',
-    post_responsible_person: '',
+    post_approver: 'Начальник ОРБ',
+    post_responsible_person: 'Руководитель группы ИДК',
     filter: '',
 }

@@ -65,13 +65,6 @@ interface IBarChartIDCProps {
 const BarChartIDC: React.FC<IBarChartIDCProps> = ({ graphic }) => {
     return (
         <div className={cls.bar}>
-            {/* <button
-                onClick={() =>
-                    navigator.clipboard.writeText(JSON.stringify(test))
-                }
-            >
-                sfsf
-            </button> */}
             <Bar options={options} data={graphic.info} />
         </div>
     )

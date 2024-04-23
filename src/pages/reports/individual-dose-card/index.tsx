@@ -26,9 +26,10 @@ const IndividualDoseCardReportPage: React.FC = () => {
         doc_number: searchParams.get('doc_number') || '',
         contacts: searchParams.get('contacts') || '',
         id_personal: searchParams.get('id_personal') || '',
-        post_approver: searchParams.get('post_approver') || '',
+        post_approver: searchParams.get('post_approver') || 'Начальник ОРБ',
         post_responsible_person:
-            searchParams.get('post_responsible_person') || '',
+            searchParams.get('post_responsible_person') ||
+            'Руководитель группы ИДК',
         filter: searchParams.get('filter') || '',
     }
 
@@ -83,11 +84,7 @@ const IndividualDoseCardReportPage: React.FC = () => {
                             <button
                                 className={`${cls.page__infographic__head__btn} ${darkModeClass}`}
                                 onClick={() =>
-                                    window.open(
-                                        REPORT_IDC_ROUTE,
-                                        '_blank'
-                                        //'rel=noopener noreferrer'
-                                    )
+                                    window.open(REPORT_IDC_ROUTE, '_blank')
                                 }
                             >
                                 <span>Посмотреть отчет</span>

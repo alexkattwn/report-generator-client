@@ -5,37 +5,55 @@ import cls from '@/pages/reports/individual-dose-card/Graphics/PieChart/index.mo
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
+const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top' as const,
         },
-    ],
+        title: {
+            display: true,
+            text: 'Облучение за последний год по типам, мЗв',
+        },
+        tooltip: {
+            callbacks: {
+                label: function (context: any) {
+                    let label = context.dataset.label || ''
+
+                    if (context.parsed !== null) {
+                        label +=
+                            ': ' + Number(context.parsed).toFixed(6) + ' мЗв'
+                    }
+
+                    return label
+                },
+            },
+        },
+    },
 }
 
-const PieChartIDC: React.FC = () => {
+interface IGraphic {
+    id_uuid: string
+    info: {
+        labels: string[]
+        datasets: {
+            label: string
+            data: number[]
+            backgroundColor: string[]
+            borderColor: string[]
+            borderWidth: number
+        }[]
+    }
+}
+
+interface PieChartIDCProps {
+    graphic: IGraphic
+}
+
+const PieChartIDC: React.FC<PieChartIDCProps> = ({ graphic }) => {
     return (
         <div className={cls.pie}>
-            <Pie data={data} />
+            <Pie options={options} data={graphic.info} />
         </div>
     )
 }

@@ -48,30 +48,80 @@ const GraphicsIDC: React.FC<GraphicsIDCProps> = ({ parameters }) => {
                 >
                     <AreaChartIDC graphic={graphics.area} />
                     <BarChartIDC graphic={graphics.bar} />
-                    <PieChartIDC />
+                    <PieChartIDC graphic={graphics.pie} />
                 </motion.div>
             ) : (
                 <ul className={cls.skeleton}>
-                    <li
-                        className={`${cls.skeleton__area} ${
-                            mode === 'dark' ? `${cls.dark_mode}` : ''
-                        }`}
-                    >
-                        <div className={cls.skeleton__item__light} />
+                    <li className={cls.skeleton__main}>
+                        <div className={cls.skeleton__main__hor}>
+                            <div
+                                className={`${cls.skeleton__main__hor__right} ${
+                                    mode === 'dark' ? `${cls.dark_mode}` : ''
+                                }`}
+                            >
+                                <div className={cls.skeleton__item__light} />
+                            </div>
+                            <div
+                                className={`${cls.skeleton__main__hor__left} ${
+                                    mode === 'dark' ? `${cls.dark_mode}` : ''
+                                }`}
+                            >
+                                <div className={cls.skeleton__item__light} />
+                            </div>
+                        </div>
+                        <div
+                            className={`${cls.skeleton__main__ver} ${
+                                mode === 'dark' ? `${cls.dark_mode}` : ''
+                            }`}
+                        >
+                            <div className={cls.skeleton__item__light} />
+                        </div>
+                    </li>
+
+                    <li className={cls.skeleton__main}>
+                        <div className={cls.skeleton__main__hor}>
+                            <div
+                                className={`${cls.skeleton__main__hor__right} ${
+                                    mode === 'dark' ? `${cls.dark_mode}` : ''
+                                }`}
+                            >
+                                <div className={cls.skeleton__item__light} />
+                            </div>
+                            <div
+                                className={`${cls.skeleton__main__hor__left} ${
+                                    mode === 'dark' ? `${cls.dark_mode}` : ''
+                                }`}
+                            >
+                                <div className={cls.skeleton__item__light} />
+                            </div>
+                        </div>
+                        <div
+                            className={`${cls.skeleton__main__ver} ${
+                                mode === 'dark' ? `${cls.dark_mode}` : ''
+                            }`}
+                        >
+                            <div className={cls.skeleton__item__light} />
+                        </div>
                     </li>
                     <li
-                        className={`${cls.skeleton__bar} ${
+                        className={`${cls.skeleton__circle} ${
                             mode === 'dark' ? `${cls.dark_mode}` : ''
                         }`}
                     >
-                        <div className={cls.skeleton__item__light} />
-                    </li>
-                    <li
-                        className={`${cls.skeleton__pie} ${
-                            mode === 'dark' ? `${cls.dark_mode}` : ''
-                        }`}
-                    >
-                        <div className={cls.skeleton__item__light} />
+                        <div
+                            className={`${cls.skeleton__circle__block} ${
+                                mode === 'dark' ? `${cls.dark_mode}` : ''
+                            }`}
+                        >
+                            <div className={cls.skeleton__item__light} />
+                        </div>
+                        <div
+                            className={`${cls.skeleton__circle__obj} ${
+                                mode === 'dark' ? `${cls.dark_mode}` : ''
+                            }`}
+                        >
+                            <div className={cls.skeleton__item__light} />
+                        </div>
                     </li>
                 </ul>
             )}
