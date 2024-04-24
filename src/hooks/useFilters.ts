@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import { ResourceClient } from '@/api/axiosClient'
 import { showErrorMessage, showSuccessMessage } from '@/utils/notifications'
-import { IFilter, IParametersIDC } from '@/types/common'
+import { IFilter, IParametersCD, IParametersIDC } from '@/types/common'
 
 interface FiltersStore {
     isLoading: boolean
@@ -11,7 +11,7 @@ interface FiltersStore {
     createFilter: (
         nameReport: string,
         name: string,
-        parameters: IParametersIDC
+        parameters: IParametersIDC | IParametersCD
     ) => void
     removeFilter: (nameReport: string, idFilter: string) => void
 }

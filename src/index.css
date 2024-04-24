@@ -53,6 +53,9 @@
 
     --green: rgb(139, 245, 153);
     --red: rgb(255, 67, 67);
+
+    --bg-guide: aliceblue;
+    --bg-dark-guide: #494949;
 }
 
 * {

@@ -33,6 +33,24 @@ export interface IParametersIDC {
     filter: string
 }
 
+export interface IParametersCD {
+    on_business_trips: string
+    by_surveys: string
+    by_receipts: string
+    main_tdk: string
+    additional_tdk: string
+    odk: string
+    date_start: string
+    date_end: string
+    struct: string
+    age_from: string
+    age_to: string
+    sex: string
+    chief_orb: string
+    chief_lprk_orb: string
+    filter: string
+}
+
 export interface IPersonalData {
     count: number
     data: IPersonal[]

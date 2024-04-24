@@ -27,7 +27,6 @@ const Sidebar: React.FC = () => {
                     <MdOutlineKeyboardDoubleArrowRight
                         data-tooltip-id='tooltip'
                         data-tooltip-content='Развернуть'
-                        data-tooltip-delay-hide={100}
                         data-tooltip-place='right'
                         size={36}
                     />
@@ -56,7 +55,6 @@ const Sidebar: React.FC = () => {
                                 <MdOutlineKeyboardDoubleArrowLeft
                                     data-tooltip-id='tooltip'
                                     data-tooltip-content='Свернуть'
-                                    data-tooltip-delay-hide={100}
                                     data-tooltip-place='right'
                                     size={36}
                                 />

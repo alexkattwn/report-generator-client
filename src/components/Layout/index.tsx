@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 
 import Header from '@components/Header'
 import PageLoader from '@components/PageLoader'
@@ -10,7 +11,9 @@ const Layout: React.FC = () => {
 
             <Header />
 
-            <Outlet />
+            <AnimatePresence>
+                <Outlet />
+            </AnimatePresence>
 
             <div className='overlay' />
         </>

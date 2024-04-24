@@ -115,9 +115,7 @@ const ButtonAddField: React.FC<ButtonAddFieldProps> = ({
                 <IoAddOutline
                     data-tooltip-id='tooltip'
                     data-tooltip-content='Добавить'
-                    data-tooltip-delay-hide={100}
                     data-tooltip-place='top'
-                    data-tooltip-variant='info'
                     size={26}
                 />
             </button>

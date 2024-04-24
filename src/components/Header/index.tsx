@@ -1,5 +1,6 @@
 import { IoLogOutOutline } from 'react-icons/io5'
 import { PiUserCircleLight } from 'react-icons/pi'
+import { useNavigate } from 'react-router-dom'
 
 import ModeToggler from '@components/ModeToggler'
 import { useMode } from '@/hooks/useMode'
@@ -8,12 +9,15 @@ import inMemoryJWT from '@/services/inMemoryJWT'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { usePopup } from '@/hooks/usePopup'
 import Logo from '@components/Logo'
+import { USERS_GUIDE_ROUTE } from '@/constants'
 
 import cls from '@components/Header/index.module.scss'
 
 const Header: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
+
+    const navigate = useNavigate()
 
     const { isAuthorized, setIsAuthorized, currentUser } = useAuth()
 
@@ -71,14 +75,20 @@ const Header: React.FC = () => {
                 {isAuthorized && (
                     <div className={cls.header__nav__block}>
                         <button
+                            onClick={() =>
+                                navigate(USERS_GUIDE_ROUTE, { replace: true })
+                            }
+                        >
+                            Инструкция
+                        </button>
+                        <button
                             onClick={handleLogout}
                             className={`${cls.header__nav__block__btn} ${darkModeClass}`}
                         >
                             <IoLogOutOutline
                                 data-tooltip-id='tooltip'
                                 data-tooltip-content='Выйти'
-                                data-tooltip-delay-hide={100}
-                                data-tooltip-place='left'
+                                data-tooltip-place='bottom'
                                 size={32}
                             />
                         </button>

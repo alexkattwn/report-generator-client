@@ -10,6 +10,7 @@ import {
     COLLECTIVE_DOSES_REPORT_ROUTE,
     REPORT_CD_ROUTE,
     REPORT_ID_ROUTE,
+    USERS_GUIDE_ROUTE,
 } from '@/constants'
 import AuthPage from '@/pages/auth'
 import Layout from '@/components/Layout'
@@ -23,6 +24,7 @@ import IndividualDosesPage from '@/pages/reports/individual-doses'
 import CollectiveDosesPage from '@/pages/reports/collective-doses'
 import ReportCD from '@/pages/reports/collective-doses/Report'
 import ReportID from '@/pages/reports/individual-doses/Report'
+import GuidePage from '@/pages/guide'
 
 const router = createBrowserRouter([
     {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
                     <AuthRoute>
                         <AuthPage />
                     </AuthRoute>
+                ),
+            },
+            {
+                path: USERS_GUIDE_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                        <GuidePage />
+                    </ProtectedRoute>
                 ),
             },
             {

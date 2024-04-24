@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 import useAuth from '@/hooks/useAuth'
 import Input from '@/components/Input'
@@ -23,7 +24,12 @@ const AuthPage: React.FC = () => {
     }
 
     return (
-        <div className={cls.auth}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={cls.auth}
+        >
             <div className={cls.auth__container}>
                 <form
                     onSubmit={handleSignIn}
@@ -54,7 +60,7 @@ const AuthPage: React.FC = () => {
                     </button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

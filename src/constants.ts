@@ -1,7 +1,8 @@
-import { IParametersIDC } from '@/types/common'
+import { IParametersCD, IParametersIDC } from '@/types/common'
 
 export const AUTH_ROUTE = '/auth'
 export const REPORTS_ROUTE = '/reports'
+export const USERS_GUIDE_ROUTE = '/users-guide'
 export const INDIVIDUAL_DOSE_CARD_REPORT_ROUTE = '/reports/individual-dose-card'
 export const INDIVIDUAL_DOSES_REPORT_ROUTE = '/reports/individual-doses'
 export const COLLECTIVE_DOSES_REPORT_ROUTE = '/reports/collective-doses'
@@ -114,5 +115,23 @@ export const initialStateParametersIDC: IParametersIDC = {
     id_personal: '',
     post_approver: 'Начальник ОРБ',
     post_responsible_person: 'Руководитель группы ИДК',
+    filter: '',
+}
+
+export const initialStateParametersCD: IParametersCD = {
+    on_business_trips: '',
+    by_surveys: '',
+    by_receipts: '',
+    main_tdk: '',
+    additional_tdk: '',
+    odk: '',
+    date_start: '',
+    date_end: '',
+    struct: '',
+    age_from: '0',
+    age_to: '100',
+    sex: '',
+    chief_orb: 'М.Ю. Лузин',
+    chief_lprk_orb: 'А.А. Воробьев',
     filter: '',
 }
