@@ -22,11 +22,10 @@ const GuidePage: React.FC = () => {
         setIsVisibleButton(!inView)
     }, [inView])
 
-    const scrollToTop = () => {
+    const scrollToTop = () =>
         document
             .getElementById('guide')
             ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
-    }
 
     return (
         <motion.div
@@ -35,9 +34,14 @@ const GuidePage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
-            <div className={`${cls.page__main} ${darkModeClass}`} id='guide'>
+            <div className={cls.page__main} id='guide'>
                 <div ref={ref} />
-                asfsafsdf
+                <div className={`${cls.page__main__header} ${darkModeClass}`}>
+                    <h3>Руководство пользователя</h3>
+                </div>
+                <div className={`${cls.page__main__content} ${darkModeClass}`}>
+                    Здесь будет текст
+                </div>
             </div>
             <AnimatePresence>
                 {isVisibleButton && (

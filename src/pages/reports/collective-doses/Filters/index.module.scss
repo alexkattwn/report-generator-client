@@ -42,13 +42,14 @@
             font-size: 14px;
             font-weight: 300;
             color: var(--blue);
-            padding: 4px;
+            padding: 6px;
 
             display: grid;
             grid-template-columns: auto 20px;
             align-items: center;
 
             width: 200px;
+            border-top: 1px solid var(--blue);
 
             & > span {
                 width: 140px;
@@ -60,6 +61,7 @@
             }
 
             &.dark_mode {
+                border-top: 1px solid gray;
                 color: var(--color-white);
             }
 

@@ -1,8 +1,9 @@
 import { IParametersCD, IParametersIDC } from '@/types/common'
+import { dateToString } from '@/utils/common'
 
 export const AUTH_ROUTE = '/auth'
 export const REPORTS_ROUTE = '/reports'
-export const USERS_GUIDE_ROUTE = '/users-guide'
+export const USERS_GUIDE_ROUTE = '/reports/users-guide'
 export const INDIVIDUAL_DOSE_CARD_REPORT_ROUTE = '/reports/individual-dose-card'
 export const INDIVIDUAL_DOSES_REPORT_ROUTE = '/reports/individual-doses'
 export const COLLECTIVE_DOSES_REPORT_ROUTE = '/reports/collective-doses'
@@ -126,11 +127,13 @@ export const initialStateParametersCD: IParametersCD = {
     additional_tdk: '',
     odk: '',
     date_start: '',
-    date_end: '',
+    date_end: dateToString(new Date()),
     struct: '',
     age_from: '0',
     age_to: '100',
-    sex: '',
+    sex_man: '',
+    sex_woman: '',
+    all_child_structures: 'true',
     chief_orb: 'М.Ю. Лузин',
     chief_lprk_orb: 'А.А. Воробьев',
     filter: '',

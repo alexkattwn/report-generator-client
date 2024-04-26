@@ -9,9 +9,9 @@ const Logo: React.FC = () => {
     return (
         <div className={cls.logo}>
             {mode === 'dark' ? (
-                <img src='/images/logo-dark.png' alt='Logo' />
+                <img src='/logo-dark.png' alt='Logo' />
             ) : (
-                <img src='/images/logo.png' alt='Logo' />
+                <img src='/logo.png' alt='Logo' />
             )}
             <div className={`${cls.logo__line} ${darkModeClass}`} />
             <div className={cls.logo__name}>

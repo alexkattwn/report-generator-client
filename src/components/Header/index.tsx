@@ -23,7 +23,7 @@ const Header: React.FC = () => {
 
     const { toggleOpen, open, closePopup } = usePopup()
 
-    const isMedia540 = useMediaQuery(540)
+    const isMedia620 = useMediaQuery(620)
 
     const handleLogout = () => {
         inMemoryJWT.deleteToken()
@@ -36,9 +36,14 @@ const Header: React.FC = () => {
         return toggleOpen()
     }
 
+    const navigateToInstructions = () => {
+        navigate(USERS_GUIDE_ROUTE, { replace: true })
+        if (isMedia620) closePopup()
+    }
+
     return (
         <header className={`${cls.header} ${darkModeClass}`}>
-            {isMedia540 && (
+            {isMedia620 && (
                 <>
                     {isAuthorized && (
                         <button
@@ -64,7 +69,7 @@ const Header: React.FC = () => {
                     open ? cls.open : ''
                 } ${darkModeClass}`}
             >
-                {!isMedia540 && (
+                {!isMedia620 && (
                     <>
                         <Logo />
                         <div className={cls.header__nav__toggle}>
@@ -75,9 +80,11 @@ const Header: React.FC = () => {
                 {isAuthorized && (
                     <div className={cls.header__nav__block}>
                         <button
-                            onClick={() =>
-                                navigate(USERS_GUIDE_ROUTE, { replace: true })
-                            }
+                            onClick={navigateToInstructions}
+                            className={`${cls.header__nav__block__instructions} ${darkModeClass}`}
+                            data-tooltip-id='tooltip'
+                            data-tooltip-content='Руководство пользователя'
+                            data-tooltip-place='bottom'
                         >
                             Инструкция
                         </button>

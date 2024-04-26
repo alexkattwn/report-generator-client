@@ -5,6 +5,8 @@ import cls from '@/pages/reports/individual-dose-card/Graphics/PieChart/index.mo
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+ChartJS.defaults.font.size = 14
+
 const options = {
     responsive: true,
     plugins: {

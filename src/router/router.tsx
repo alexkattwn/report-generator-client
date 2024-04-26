@@ -11,6 +11,7 @@ import {
     REPORT_CD_ROUTE,
     REPORT_ID_ROUTE,
     USERS_GUIDE_ROUTE,
+    NOT_FOUND_ROUTE,
 } from '@/constants'
 import AuthPage from '@/pages/auth'
 import Layout from '@/components/Layout'
@@ -25,6 +26,7 @@ import CollectiveDosesPage from '@/pages/reports/collective-doses'
 import ReportCD from '@/pages/reports/collective-doses/Report'
 import ReportID from '@/pages/reports/individual-doses/Report'
 import GuidePage from '@/pages/guide'
+import ErrorPage from '@/pages/error'
 
 const router = createBrowserRouter([
     {
@@ -41,14 +43,6 @@ const router = createBrowserRouter([
                     <AuthRoute>
                         <AuthPage />
                     </AuthRoute>
-                ),
-            },
-            {
-                path: USERS_GUIDE_ROUTE,
-                element: (
-                    <ProtectedRoute>
-                        <GuidePage />
-                    </ProtectedRoute>
                 ),
             },
             {
@@ -75,7 +69,15 @@ const router = createBrowserRouter([
                         path: COLLECTIVE_DOSES_REPORT_ROUTE,
                         element: <CollectiveDosesPage />,
                     },
+                    {
+                        path: USERS_GUIDE_ROUTE,
+                        element: <GuidePage />,
+                    },
                 ],
+            },
+            {
+                path: NOT_FOUND_ROUTE,
+                element: <ErrorPage />,
             },
         ],
     },

@@ -1,5 +1,5 @@
 .parameters {
-    padding: 35px 25px 45px 25px;
+    padding: 35px 25px 50px 25px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -87,14 +87,17 @@
 .option_physic {
     color: var(--blue);
     font-size: 12px;
-    padding: 4px 6px;
+    padding: 6px;
     height: auto;
     display: flex;
     align-items: center;
 
+    border-top: 1px solid var(--blue);
+
     transition: all 0.3s ease;
 
     &.dark_mode {
+        border-top: 1px solid gray;
         color: var(--color-white);
     }
 

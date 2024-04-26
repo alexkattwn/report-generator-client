@@ -45,7 +45,9 @@ export interface IParametersCD {
     struct: string
     age_from: string
     age_to: string
-    sex: string
+    sex_man: string
+    sex_woman: string
+    all_child_structures: string
     chief_orb: string
     chief_lprk_orb: string
     filter: string

@@ -1,14 +1,17 @@
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { TbReportSearch } from 'react-icons/tb'
 
 import { REPORT_CD_ROUTE } from '@/constants'
-import FiltersCD from '@/pages/reports/collective-doses/Filters'
 import { IParametersCD } from '@/types/common'
+import { dateToString } from '@/utils/common'
 import { useMode } from '@/hooks/useMode'
+import FiltersCD from '@/pages/reports/collective-doses/Filters'
+import ParametersCD from '@/pages/reports/collective-doses/Parameters'
+import GraphicsCD from '@/pages/reports/collective-doses/Graphics'
 
 import cls from '@/pages/reports/collective-doses/index.module.scss'
-import ParametersCD from './Parameters'
 
 const CollectiveDosesPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -21,11 +24,13 @@ const CollectiveDosesPage: React.FC = () => {
         additional_tdk: searchParams.get('additional_tdk') || '',
         odk: searchParams.get('odk') || '',
         date_start: searchParams.get('date_start') || '',
-        date_end: searchParams.get('date_end') || '',
+        date_end: searchParams.get('date_end') || dateToString(new Date()),
         struct: searchParams.get('struct') || '',
         age_from: searchParams.get('age_from') || '0',
         age_to: searchParams.get('age_to') || '100',
-        sex: searchParams.get('sex') || '',
+        sex_man: searchParams.get('sex_man') || '',
+        sex_woman: searchParams.get('sex_woman') || '',
+        all_child_structures: searchParams.get('all_child_structures') || '',
         chief_orb: searchParams.get('chief_orb') || 'М.Ю. Лузин',
         chief_lprk_orb: searchParams.get('chief_lprk_orb') || 'А.А. Воробьев',
         filter: searchParams.get('filter') || '',
@@ -56,9 +61,29 @@ const CollectiveDosesPage: React.FC = () => {
                 parameters={parameters}
                 setParameters={setParameters}
             />
-            <button onClick={() => window.open(REPORT_CD_ROUTE, '_blank')}>
-                view
-            </button>
+            <AnimatePresence>
+                {true && (
+                    <>
+                        <div className={cls.page__infographic__head}>
+                            <h3
+                                className={`${cls.page__infographic__head__title} ${darkModeClass}`}
+                            >
+                                {`Отчет за промежуток:`}
+                            </h3>
+                            <button
+                                className={`${cls.page__infographic__head__btn} ${darkModeClass}`}
+                                onClick={() =>
+                                    window.open(REPORT_CD_ROUTE, '_blank')
+                                }
+                            >
+                                <span>Посмотреть отчет</span>
+                                <TbReportSearch size={26} />
+                            </button>
+                        </div>
+                        <GraphicsCD />
+                    </>
+                )}
+            </AnimatePresence>
         </motion.div>
     )
 }

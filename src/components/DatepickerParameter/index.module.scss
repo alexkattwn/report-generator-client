@@ -1,0 +1,76 @@
+$primary-color: #007bff;
+$hover-color: #666;
+
+.block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__label {
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 300;
+
+        width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: right;
+
+        @media (max-width: 380px) {
+            width: 120px;
+        }
+
+        &.dark_mode {
+            color: var(--color-white);
+        }
+    }
+
+    &__input {
+        &::-webkit-calendar-picker-indicator {
+            display: block;
+        }
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        width: 200px;
+        background-color: transparent;
+        padding: 5px;
+        border-radius: 6px;
+        border-color: var(--blue);
+        color: var(--blue);
+        font-size: 14px;
+        outline: none;
+        border: 1px solid;
+        transition: all 0.2s ease;
+
+        @media (max-width: 400px) {
+            width: 140px;
+        }
+
+        &:focus {
+            box-shadow: 0px 0px 3px 0px var(--blue);
+        }
+
+        &:hover {
+            border-color: $hover-color;
+            cursor: pointer;
+        }
+
+        &.dark_mode {
+            border-color: var(--color-gray);
+            color: var(--color-white);
+
+            &:focus {
+                box-shadow: 0px 0px 3px 0px var(--color-gray);
+            }
+
+            &::placeholder {
+                color: var(--color-gray);
+                opacity: 0.6;
+            }
+        }
+    }
+}

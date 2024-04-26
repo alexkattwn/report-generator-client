@@ -42,7 +42,9 @@
             font-size: 14px;
             font-weight: 300;
             color: var(--blue);
-            padding: 4px;
+            padding: 6px;
+
+            border-top: 1px solid var(--blue);
 
             display: grid;
             grid-template-columns: auto 20px;
@@ -60,6 +62,7 @@
             }
 
             &.dark_mode {
+                border-top: 1px solid gray;
                 color: var(--color-white);
             }
 

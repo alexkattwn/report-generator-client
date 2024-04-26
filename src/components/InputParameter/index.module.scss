@@ -33,7 +33,7 @@
             border-radius: 6px;
             border-color: var(--blue);
             color: var(--blue);
-            font-size: 12px;
+            font-size: 14px;
             outline: none;
             border: 1px solid;
             transition: all 0.2s ease;
@@ -46,10 +46,6 @@
             &.dark_mode {
                 border-color: var(--color-gray);
                 color: var(--color-white);
-
-                &::placeholder {
-                    color: var(--blue);
-                }
 
                 &:focus {
                     box-shadow: 0px 0px 3px 0px var(--color-gray);

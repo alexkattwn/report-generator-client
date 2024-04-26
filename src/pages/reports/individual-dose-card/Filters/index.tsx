@@ -114,7 +114,9 @@ const FiltersIDC: React.FC<FiltersIDCProps> = ({
                                         selectFilter(filter.name_filter)
                                     }
                                 >
-                                    <span>{filter.name_filter}</span>
+                                    <span title={filter.name_filter}>
+                                        {filter.name_filter}
+                                    </span>
                                     <button
                                         className={`${cls.block__filter__option__btn} ${darkModeClass}`}
                                         data-tooltip-id='tooltip'

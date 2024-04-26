@@ -13,6 +13,8 @@ import cls from '@/pages/reports/individual-dose-card/Graphics/BarChart/index.mo
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
+ChartJS.defaults.font.size = 14
+
 const options = {
     responsive: true,
     plugins: {
