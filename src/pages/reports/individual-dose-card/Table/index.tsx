@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { SetURLSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { RingLoader } from 'react-spinners'
 import ReactPaginate from 'react-paginate'
 
 import { useMode } from '@/hooks/useMode'
@@ -185,22 +184,22 @@ const TableIDC: React.FC<TableIDCProps> = ({
                                                 <span>{index + 1}</span>
                                             </td>
                                             <td
-                                                className={`${cls.main__table__body} ${darkModeClass}`}
+                                                className={`${cls.main__table__body} ${cls.fio} ${darkModeClass}`}
                                             >
                                                 <span>{person.surname}</span>
                                             </td>
                                             <td
-                                                className={`${cls.main__table__body} ${darkModeClass}`}
+                                                className={`${cls.main__table__body} ${cls.fio} ${darkModeClass}`}
                                             >
                                                 <span>{person.name}</span>
                                             </td>
                                             <td
-                                                className={`${cls.main__table__body} ${darkModeClass}`}
+                                                className={`${cls.main__table__body} ${cls.fio} ${darkModeClass}`}
                                             >
                                                 <span>{person.patronymic}</span>
                                             </td>
                                             <td
-                                                className={`${cls.main__table__body} ${darkModeClass}`}
+                                                className={`${cls.main__table__body} ${cls.post} ${darkModeClass}`}
                                             >
                                                 <span>{person.name_post}</span>
                                             </td>
@@ -237,14 +236,30 @@ const TableIDC: React.FC<TableIDCProps> = ({
                     )}
                 </>
             ) : (
-                <motion.div
+                <motion.table
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='loader'
+                    className={`${cls.skeleton} `}
                 >
-                    <RingLoader color='#36d7b7' />
-                </motion.div>
+                    <tbody>
+                        {[...Array(5)].map((_, i) => (
+                            <tr
+                                className={`${cls.skeleton__item} ${
+                                    mode === 'dark' ? `${cls.dark_mode}` : ''
+                                }`}
+                                key={i}
+                            >
+                                {[...Array(8)].map((_, i) => (
+                                    <td
+                                        key={i}
+                                        className={cls.skeleton__item__light}
+                                    />
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </motion.table>
             )}
             {personal?.length > 0 ? (
                 <ReactPaginate

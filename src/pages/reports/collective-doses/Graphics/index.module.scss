@@ -7,3 +7,128 @@
     justify-content: center;
     gap: 10px;
 }
+
+.skeleton {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px;
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        &__hor {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+
+            &__right {
+                background-color: #ebebeb;
+                overflow: hidden !important;
+                padding: 0;
+                border-radius: 4px;
+                width: 100px;
+                height: 300px;
+
+                &.dark_mode {
+                    background-color: var(--bg-dark);
+                }
+            }
+
+            &__left {
+                background-color: #ebebeb;
+                overflow: hidden !important;
+                padding: 0;
+                border-radius: 4px;
+                width: 590px;
+                height: 300px;
+
+                &.dark_mode {
+                    background-color: var(--bg-dark);
+                }
+            }
+        }
+
+        &__ver {
+            background-color: #ebebeb;
+            overflow: hidden !important;
+            padding: 0;
+            border-radius: 4px;
+            width: 700px;
+            height: 40px;
+
+            &.dark_mode {
+                background-color: var(--bg-dark);
+            }
+        }
+    }
+
+    &__circle {
+        display: flex;
+        flex-direction: column;
+        width: 700px;
+        gap: 10px;
+        align-items: center;
+
+        &__block {
+            background-color: #ebebeb;
+            overflow: hidden !important;
+            padding: 0;
+            border-radius: 4px;
+            width: 400px;
+            height: 60px;
+
+            &.dark_mode {
+                background-color: var(--bg-dark);
+            }
+        }
+
+        &__obj {
+            background-color: #ebebeb;
+            overflow: hidden !important;
+            padding: 0;
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            &.dark_mode {
+                background-color: var(--bg-dark);
+            }
+        }
+    }
+}
+
+.skeleton__item__light {
+    height: 100%;
+    animation-duration: 1.6s;
+    background: linear-gradient(
+        270deg,
+        #ffffff0c 34.78%,
+        #ffffffc2 60.33%,
+        #ffffff0c 84.84%
+    );
+    animation-name: skeleton;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes skeleton {
+    0% {
+        transform: translateX(-600px);
+    }
+
+    100% {
+        transform: translateX(700px);
+    }
+}

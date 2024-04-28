@@ -63,3 +63,8 @@ export const dateToString = (date: Date): string => {
 
     return `${year}-${month}-${day}`
 }
+
+export function reverseDate(dateString: string): string {
+    const [year, month, day] = dateString.split('-')
+    return `${day}.${month}.${year}`
+}

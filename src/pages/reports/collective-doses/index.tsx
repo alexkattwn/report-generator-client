@@ -5,11 +5,12 @@ import { TbReportSearch } from 'react-icons/tb'
 
 import { REPORT_CD_ROUTE } from '@/constants'
 import { IParametersCD } from '@/types/common'
-import { dateToString } from '@/utils/common'
+import { dateToString, reverseDate } from '@/utils/common'
 import { useMode } from '@/hooks/useMode'
 import FiltersCD from '@/pages/reports/collective-doses/Filters'
 import ParametersCD from '@/pages/reports/collective-doses/Parameters'
 import GraphicsCD from '@/pages/reports/collective-doses/Graphics'
+import useCDGraphic from '@/hooks/useCDGraphics'
 
 import cls from '@/pages/reports/collective-doses/index.module.scss'
 
@@ -41,6 +42,8 @@ const CollectiveDosesPage: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
+    const { isLoading, graphics } = useCDGraphic()
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -62,25 +65,34 @@ const CollectiveDosesPage: React.FC = () => {
                 setParameters={setParameters}
             />
             <AnimatePresence>
-                {true && (
+                {!isLoading && graphics === 'test' && (
                     <>
                         <div className={cls.page__infographic__head}>
+                            <div className={cls.page__infographic__head__block}>
+                                <h3
+                                    className={`${cls.page__infographic__head__block__title} ${darkModeClass}`}
+                                >
+                                    {`${reverseDate(
+                                        parameters.date_start
+                                    )} - ${reverseDate(parameters.date_end)}`}
+                                </h3>
+                                <button
+                                    className={`${cls.page__infographic__head__block__btn} ${darkModeClass}`}
+                                    onClick={() =>
+                                        window.open(REPORT_CD_ROUTE, '_blank')
+                                    }
+                                >
+                                    <span>Посмотреть отчет</span>
+                                    <TbReportSearch size={26} />
+                                </button>
+                            </div>
                             <h3
-                                className={`${cls.page__infographic__head__title} ${darkModeClass}`}
+                                className={`${cls.page__infographic__head__struct} ${darkModeClass}`}
                             >
-                                {`Отчет за промежуток:`}
+                                {parameters.struct}
                             </h3>
-                            <button
-                                className={`${cls.page__infographic__head__btn} ${darkModeClass}`}
-                                onClick={() =>
-                                    window.open(REPORT_CD_ROUTE, '_blank')
-                                }
-                            >
-                                <span>Посмотреть отчет</span>
-                                <TbReportSearch size={26} />
-                            </button>
                         </div>
-                        <GraphicsCD />
+                        <GraphicsCD parameters={parameters} />
                     </>
                 )}
             </AnimatePresence>

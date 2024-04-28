@@ -24,8 +24,6 @@ ChartJS.register(
     Legend
 )
 
-ChartJS.defaults.font.size = 14
-
 const options = {
     responsive: true,
     plugins: {

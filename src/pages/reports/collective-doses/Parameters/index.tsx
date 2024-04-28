@@ -13,7 +13,9 @@ import { delayValue, initialStateParametersCD } from '@/constants'
 import useDebounce from '@/hooks/useDebounce'
 import CheckboxParameter from '@/components/CheckboxParameter'
 import useCompanyStructure from '@/hooks/useCompanyStructure'
+import useCDGraphic from '@/hooks/useCDGraphics'
 import { useMode } from '@/hooks/useMode'
+import { showSimpleErrorMessage } from '@/utils/notifications'
 
 import cls from '@/pages/reports/collective-doses/Parameters/index.module.scss'
 
@@ -34,6 +36,8 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
     const debouncedStruct = useDebounce<string>(parameters.struct, delayValue)
 
     const { companyStructures, getCompanyStructures } = useCompanyStructure()
+
+    const { getGraphics } = useCDGraphic()
 
     const isMedia746 = useMediaQuery(746)
 
@@ -82,6 +86,12 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
 
     const handleSearch = () => {
         changeParameters()
+        if (parameters.struct && parameters.date_start && parameters.date_end) {
+            return getGraphics()
+        }
+        return showSimpleErrorMessage(
+            'Обязательно нужно заполнить: дату начала, дату окончания и выбрать структуру'
+        )
     }
 
     return (
