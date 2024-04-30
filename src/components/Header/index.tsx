@@ -10,6 +10,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { usePopup } from '@/hooks/usePopup'
 import Logo from '@components/Logo'
 import { USERS_GUIDE_ROUTE } from '@/constants'
+import useSidebar from '@/hooks/useSidebar'
 
 import cls from '@components/Header/index.module.scss'
 
@@ -20,6 +21,7 @@ const Header: React.FC = () => {
     const navigate = useNavigate()
 
     const { isAuthorized, setIsAuthorized, currentUser } = useAuth()
+    const { setSelectedReport } = useSidebar()
 
     const { toggleOpen, open, closePopup } = usePopup()
 
@@ -38,6 +40,7 @@ const Header: React.FC = () => {
 
     const navigateToInstructions = () => {
         navigate(USERS_GUIDE_ROUTE, { replace: true })
+        setSelectedReport('')
         if (isMedia620) closePopup()
     }
 

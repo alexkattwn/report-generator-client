@@ -62,12 +62,10 @@ interface IBarChartIDCProps {
     graphic: IGraphic
 }
 
-const BarChartIDC: React.FC<IBarChartIDCProps> = ({ graphic }) => {
-    return (
-        <div className={cls.bar}>
-            <Bar options={options} data={graphic.info} />
-        </div>
-    )
-}
+const BarChartIDC: React.FC<IBarChartIDCProps> = ({ graphic }) => (
+    <div className={cls.bar}>
+        <Bar options={options} data={graphic.info} />
+    </div>
+)
 
 export default BarChartIDC

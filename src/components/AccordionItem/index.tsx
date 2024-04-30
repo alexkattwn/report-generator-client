@@ -20,7 +20,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ field }) => {
 
     const isMedia700 = useMediaQuery(700)
 
-    const { setSelectedReport, setIsOpen } = useSidebar()
+    const { setSelectedReport, setIsOpen, selectedReport } = useSidebar()
 
     const handleClick = () => {
         setSelectedReport(field.title)
@@ -36,6 +36,16 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ field }) => {
             transition={{ duration: 0.2 }}
             className={`${cls.item} ${darkModeClass}`}
             onClick={handleClick}
+            animate={{
+                backgroundColor:
+                    selectedReport === field.title
+                        ? mode === 'dark'
+                            ? 'var(--bg-input)'
+                            : 'var(--light-blue-translucent-light)'
+                        : mode === 'dark'
+                        ? 'var(--bg-input)'
+                        : 'var(--color-white)',
+            }}
         >
             <motion.span whileHover={{ scale: 1.05 }}>
                 {field.title}

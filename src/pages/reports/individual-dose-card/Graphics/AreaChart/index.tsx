@@ -75,12 +75,10 @@ interface IAreaChartIDCProps {
     graphic: IGraphic
 }
 
-const AreaChartIDC: React.FC<IAreaChartIDCProps> = ({ graphic }) => {
-    return (
-        <div className={cls.area}>
-            <Line options={options} data={graphic.info} />
-        </div>
-    )
-}
+const AreaChartIDC: React.FC<IAreaChartIDCProps> = ({ graphic }) => (
+    <div className={cls.area}>
+        <Line options={options} data={graphic.info} />
+    </div>
+)
 
 export default AreaChartIDC

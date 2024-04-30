@@ -137,4 +137,5 @@ export const initialStateParametersCD: IParametersCD = {
     chief_orb: 'М.Ю. Лузин',
     chief_lprk_orb: 'А.А. Воробьев',
     filter: '',
+    go: '',
 }

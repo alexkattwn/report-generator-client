@@ -5,6 +5,7 @@ import { useMode } from '@/hooks/useMode'
 import { IParametersCD } from '@/types/common'
 import DoughnutChartCD from '@/pages/reports/collective-doses/Graphics/DoughnutChart'
 import BarChartCD from '@/pages/reports/collective-doses/Graphics/BarChart'
+import useCDGraphic from '@/hooks/useCDGraphics'
 
 import cls from '@/pages/reports/collective-doses/Graphics/index.module.scss'
 
@@ -12,26 +13,31 @@ interface GraphicsCDProps {
     parameters: IParametersCD
 }
 
-const GraphicsCD: React.FC<GraphicsCDProps> = () => {
+const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
     const { mode } = useMode()
 
     const [isReady, setIsReady] = useState<boolean>(false)
 
+    const { graphics, getGraphics, isLoading } = useCDGraphic()
+
     useEffect(() => {
-        setTimeout(() => setIsReady(true), 2000)
+        ;(async () => {
+            getGraphics(parameters)
+            setIsReady(true)
+        })()
     }, [])
 
     return (
         <>
-            {isReady ? (
+            {isReady && !isLoading ? (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className={cls.graphics}
                 >
-                    <DoughnutChartCD />
-                    <BarChartCD />
+                    <BarChartCD graphic={graphics.bar} />
+                    <DoughnutChartCD graphic={graphics.doughnut} />
                 </motion.div>
             ) : (
                 <ul className={cls.skeleton}>

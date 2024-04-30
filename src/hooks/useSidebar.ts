@@ -4,6 +4,10 @@ import {
     getCurrentReportFromSessionStorage,
     setCurrentReportToSessionStorage,
 } from '@/helpers/sessionStorage.helper'
+import {
+    getSidebarFromLocalStorage,
+    setSidebarToLocalStorage,
+} from '@/helpers/localStorage.helper'
 
 interface SidebarStore {
     isOpen: boolean
@@ -13,9 +17,12 @@ interface SidebarStore {
 }
 
 const useSidebar = create<SidebarStore>((set) => ({
-    isOpen: false,
+    isOpen: getSidebarFromLocalStorage(),
     selectedReport: getCurrentReportFromSessionStorage(),
-    setIsOpen: (state) => set({ isOpen: state }),
+    setIsOpen: (state) => {
+        setSidebarToLocalStorage(state)
+        set({ isOpen: state })
+    },
     setSelectedReport: (report) => {
         set({ selectedReport: report })
         setCurrentReportToSessionStorage(report)

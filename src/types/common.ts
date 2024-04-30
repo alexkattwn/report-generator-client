@@ -51,6 +51,7 @@ export interface IParametersCD {
     chief_orb: string
     chief_lprk_orb: string
     filter: string
+    go: string
 }
 
 export interface IPersonalData {

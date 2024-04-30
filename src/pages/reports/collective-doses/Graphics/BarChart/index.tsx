@@ -14,42 +14,66 @@ import cls from '@/pages/reports/collective-doses/Graphics/BarChart/index.module
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const options = {
+    maintainAspectRatio: false,
     indexAxis: 'y' as const,
     elements: {
         bar: {
-            borderWidth: 2,
+            borderWidth: 1,
+            borderRadius: 4,
         },
     },
     responsive: true,
     plugins: {
         legend: {
-            position: 'right' as const,
+            position: 'top' as const,
         },
         title: {
             display: true,
-            text: 'Chart.js Horizontal Bar Chart',
+            text: 'Суммарные дозы персонала, входящего в структуру',
+        },
+        tooltip: {
+            callbacks: {
+                label: function (context: any) {
+                    let label = context.dataset.label || ''
+                    if (context.parsed !== null) {
+                        label +=
+                            ': ' + Number(context.parsed.x).toFixed(5) + ' мЗв'
+                    }
+                    return label
+                },
+            },
         },
     },
 }
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
-
-const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset',
-            data: [9324, 4524, 5324, 5246, 8834, 1245, 43524],
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-    ],
+interface IGraphic {
+    labels: string[]
+    datasets: {
+        label: string
+        data: number[]
+        borderColor: string[]
+        backgroundColor: string[]
+    }[]
 }
 
-const BarChartCD = () => {
+interface BarChartCDProps {
+    graphic: IGraphic
+}
+
+const BarChartCD: React.FC<BarChartCDProps> = ({ graphic }) => {
+    const minChartHeight = 200
+    const chartHeight = Math.max(graphic.labels.length * 30, minChartHeight)
+
     return (
         <div className={cls.bar}>
-            <Bar options={options} data={data} />
+            <Bar
+                options={{
+                    ...options,
+                    aspectRatio: graphic.labels.length > 5 ? 2 : 1,
+                }}
+                data={graphic}
+                height={chartHeight}
+            />
         </div>
     )
 }

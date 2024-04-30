@@ -10,7 +10,6 @@ import { useMode } from '@/hooks/useMode'
 import FiltersCD from '@/pages/reports/collective-doses/Filters'
 import ParametersCD from '@/pages/reports/collective-doses/Parameters'
 import GraphicsCD from '@/pages/reports/collective-doses/Graphics'
-import useCDGraphic from '@/hooks/useCDGraphics'
 
 import cls from '@/pages/reports/collective-doses/index.module.scss'
 
@@ -35,14 +34,13 @@ const CollectiveDosesPage: React.FC = () => {
         chief_orb: searchParams.get('chief_orb') || 'М.Ю. Лузин',
         chief_lprk_orb: searchParams.get('chief_lprk_orb') || 'А.А. Воробьев',
         filter: searchParams.get('filter') || '',
+        go: searchParams.get('go') || '',
     }
 
     const [parameters, setParameters] = useState<IParametersCD>(params)
 
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
-
-    const { isLoading, graphics } = useCDGraphic()
 
     return (
         <motion.div
@@ -65,7 +63,7 @@ const CollectiveDosesPage: React.FC = () => {
                 setParameters={setParameters}
             />
             <AnimatePresence>
-                {!isLoading && graphics === 'test' && (
+                {parameters.go === '1' && (
                     <>
                         <div className={cls.page__infographic__head}>
                             <div className={cls.page__infographic__head__block}>

@@ -52,12 +52,10 @@ interface PieChartIDCProps {
     graphic: IGraphic
 }
 
-const PieChartIDC: React.FC<PieChartIDCProps> = ({ graphic }) => {
-    return (
-        <div className={cls.pie}>
-            <Pie options={options} data={graphic.info} />
-        </div>
-    )
-}
+const PieChartIDC: React.FC<PieChartIDCProps> = ({ graphic }) => (
+    <div className={cls.pie}>
+        <Pie options={options} data={graphic.info} />
+    </div>
+)
 
 export default PieChartIDC

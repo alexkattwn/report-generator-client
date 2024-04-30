@@ -81,13 +81,16 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
         if (parameters.chief_lprk_orb)
             newParams.chief_lprk_orb = parameters.chief_lprk_orb
         if (parameters.filter) newParams.filter = parameters.filter
+        newParams.go = '1'
         setSearchParams({ ...newParams }, { replace: true })
     }
 
     const handleSearch = () => {
         changeParameters()
         if (parameters.struct && parameters.date_start && parameters.date_end) {
-            return getGraphics()
+            setParameters({ ...parameters, go: '1' })
+            getGraphics(parameters)
+            return
         }
         return showSimpleErrorMessage(
             'Обязательно нужно заполнить: дату начала, дату окончания и выбрать структуру'
