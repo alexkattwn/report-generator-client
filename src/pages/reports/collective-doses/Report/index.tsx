@@ -7,10 +7,13 @@ import {
 } from '@react-pdf/renderer'
 import { AnimatePresence, motion } from 'framer-motion'
 import { RingLoader } from 'react-spinners'
+import { useState } from 'react'
 
 import HeaderReportCD from '@/pages/reports/collective-doses/Report/HeaderReport'
 import BodyReportCD from '@/pages/reports/collective-doses/Report/BodyReport'
 import FooterReportCD from '@/pages/reports/collective-doses/Report/FooterReport'
+import { getParametersCDFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import { IParametersCD } from '@/types/common'
 
 import cls from '@/pages/reports/collective-doses/Report/index.module.scss'
 
@@ -42,9 +45,13 @@ const pageStyles = StyleSheet.create({
 })
 
 const ReportCD: React.FC = () => {
+    const [state, _] = useState<IParametersCD | undefined>(
+        getParametersCDFromSessionStorage()
+    )
+
     return (
         <AnimatePresence>
-            {true ? (
+            {state ? (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -58,11 +65,11 @@ const ReportCD: React.FC = () => {
                                 orientation='landscape'
                                 style={pageStyles.page}
                             >
-                                <HeaderReportCD />
+                                <HeaderReportCD state={state} />
                                 <BodyReportCD />
                                 <FooterReportCD />
                                 <Text style={pageStyles.bottomText} fixed>
-                                    23.03.2022 - 27.03.2024 Прочие организации
+                                    23.03.2022 - 27.03.2024 {state.struct}
                                 </Text>
                                 <Text
                                     style={pageStyles.pageNumber}

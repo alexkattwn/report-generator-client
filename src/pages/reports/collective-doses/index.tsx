@@ -42,6 +42,9 @@ const CollectiveDosesPage: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
+    const [paramsForInfographics, setParamsForInfographics] =
+        useState<IParametersCD>(params)
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -61,6 +64,7 @@ const CollectiveDosesPage: React.FC = () => {
                 setSearchParams={setSearchParams}
                 parameters={parameters}
                 setParameters={setParameters}
+                setParamsForInfographics={setParamsForInfographics}
             />
             <AnimatePresence>
                 {parameters.go === '1' && (
@@ -71,8 +75,10 @@ const CollectiveDosesPage: React.FC = () => {
                                     className={`${cls.page__infographic__head__block__title} ${darkModeClass}`}
                                 >
                                     {`${reverseDate(
-                                        parameters.date_start
-                                    )} - ${reverseDate(parameters.date_end)}`}
+                                        paramsForInfographics.date_start
+                                    )} - ${reverseDate(
+                                        paramsForInfographics.date_end
+                                    )}`}
                                 </h3>
                                 <button
                                     className={`${cls.page__infographic__head__block__btn} ${darkModeClass}`}
@@ -87,10 +93,10 @@ const CollectiveDosesPage: React.FC = () => {
                             <h3
                                 className={`${cls.page__infographic__head__struct} ${darkModeClass}`}
                             >
-                                {parameters.struct}
+                                {paramsForInfographics.struct}
                             </h3>
                         </div>
-                        <GraphicsCD parameters={parameters} />
+                        <GraphicsCD parameters={paramsForInfographics} />
                     </>
                 )}
             </AnimatePresence>

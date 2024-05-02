@@ -51,7 +51,12 @@ const GraphicsIDC: React.FC<GraphicsIDCProps> = ({ parameters }) => {
                     <PieChartIDC graphic={graphics.pie} />
                 </motion.div>
             ) : (
-                <ul className={cls.skeleton}>
+                <motion.ul
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cls.skeleton}
+                >
                     <li className={cls.skeleton__main}>
                         <div className={cls.skeleton__main__hor}>
                             <div
@@ -123,7 +128,7 @@ const GraphicsIDC: React.FC<GraphicsIDCProps> = ({ parameters }) => {
                             <div className={cls.skeleton__item__light} />
                         </div>
                     </li>
-                </ul>
+                </motion.ul>
             )}
         </>
     )

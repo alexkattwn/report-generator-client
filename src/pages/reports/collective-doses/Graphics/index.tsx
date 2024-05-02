@@ -40,28 +40,12 @@ const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
                     <DoughnutChartCD graphic={graphics.doughnut} />
                 </motion.div>
             ) : (
-                <ul className={cls.skeleton}>
-                    <li
-                        className={`${cls.skeleton__circle} ${
-                            mode === 'dark' ? `${cls.dark_mode}` : ''
-                        }`}
-                    >
-                        <div
-                            className={`${cls.skeleton__circle__block} ${
-                                mode === 'dark' ? `${cls.dark_mode}` : ''
-                            }`}
-                        >
-                            <div className={cls.skeleton__item__light} />
-                        </div>
-                        <div
-                            className={`${cls.skeleton__circle__obj} ${
-                                mode === 'dark' ? `${cls.dark_mode}` : ''
-                            }`}
-                        >
-                            <div className={cls.skeleton__item__light} />
-                        </div>
-                    </li>
-
+                <motion.ul
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cls.skeleton}
+                >
                     <li className={cls.skeleton__main}>
                         <div className={cls.skeleton__main__hor}>
                             <div
@@ -87,7 +71,27 @@ const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
                             <div className={cls.skeleton__item__light} />
                         </div>
                     </li>
-                </ul>
+                    <li
+                        className={`${cls.skeleton__circle} ${
+                            mode === 'dark' ? `${cls.dark_mode}` : ''
+                        }`}
+                    >
+                        <div
+                            className={`${cls.skeleton__circle__block} ${
+                                mode === 'dark' ? `${cls.dark_mode}` : ''
+                            }`}
+                        >
+                            <div className={cls.skeleton__item__light} />
+                        </div>
+                        <div
+                            className={`${cls.skeleton__circle__obj} ${
+                                mode === 'dark' ? `${cls.dark_mode}` : ''
+                            }`}
+                        >
+                            <div className={cls.skeleton__item__light} />
+                        </div>
+                    </li>
+                </motion.ul>
             )}
         </>
     )

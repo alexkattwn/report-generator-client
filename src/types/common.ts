@@ -81,3 +81,13 @@ export interface IFilter {
     parameters: string
     id_filter: string
 }
+
+export interface IGuide {
+    id_uuid: string
+    title: string
+    description: string
+    image_light: string
+    sequence_number: string
+    report_id_uuid: string
+    image_dark: string
+}

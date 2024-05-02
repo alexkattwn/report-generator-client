@@ -43,6 +43,8 @@
             color: var(--blue);
             text-align: center;
 
+            box-shadow: 2px 2px 4px var(--color-light-gray);
+
             & > h3 {
                 font-size: 18px;
                 font-weight: 600;
@@ -62,6 +64,8 @@
             color: var(--blue);
             height: 100%;
             margin-bottom: 30px;
+
+            box-shadow: 2px 2px 4px var(--color-light-gray);
 
             &.dark_mode {
                 color: var(--color-white);

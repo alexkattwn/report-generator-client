@@ -45,10 +45,15 @@ interface DoughnutChartCDProps {
     graphic: IGraphic
 }
 
-const DoughnutChartCD: React.FC<DoughnutChartCDProps> = ({ graphic }) => (
-    <div className={cls.doughnut}>
-        <Doughnut options={options} data={graphic} />
-    </div>
-)
+const DoughnutChartCD: React.FC<DoughnutChartCDProps> = ({ graphic }) => {
+    if (graphic.datasets[0].data.length === 0) {
+        return
+    }
 
+    return (
+        <div className={cls.doughnut}>
+            <Doughnut options={options} data={graphic} />
+        </div>
+    )
+}
 export default DoughnutChartCD

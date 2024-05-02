@@ -16,6 +16,10 @@ import useCompanyStructure from '@/hooks/useCompanyStructure'
 import useCDGraphic from '@/hooks/useCDGraphics'
 import { useMode } from '@/hooks/useMode'
 import { showSimpleErrorMessage } from '@/utils/notifications'
+import {
+    removeParametersCDFromSessionStorage,
+    setParametersCDToSessionStorage,
+} from '@/helpers/sessionStorage.helper'
 
 import cls from '@/pages/reports/collective-doses/Parameters/index.module.scss'
 
@@ -23,12 +27,14 @@ interface ParametersCDProps {
     setSearchParams: SetURLSearchParams
     parameters: IParametersCD
     setParameters: (obj: IParametersCD) => void
+    setParamsForInfographics: (obj: IParametersCD) => void
 }
 
 const ParametersCD: React.FC<ParametersCDProps> = ({
     setSearchParams,
     parameters,
     setParameters,
+    setParamsForInfographics,
 }) => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
@@ -48,6 +54,7 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
     const handleClear = () => {
         setParameters(initialStateParametersCD)
         setSearchParams({}, { replace: true })
+        removeParametersCDFromSessionStorage()
     }
 
     const structSearch = (value: string) =>
@@ -87,11 +94,20 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
 
     const handleSearch = () => {
         changeParameters()
+        if (parameters.date_start > parameters.date_end) {
+            return showSimpleErrorMessage(
+                'Дата начала не может быть позже даты окончания'
+            )
+        }
+
         if (parameters.struct && parameters.date_start && parameters.date_end) {
+            setParametersCDToSessionStorage(parameters)
             setParameters({ ...parameters, go: '1' })
+            setParamsForInfographics({ ...parameters })
             getGraphics(parameters)
             return
         }
+
         return showSimpleErrorMessage(
             'Обязательно нужно заполнить: дату начала, дату окончания и выбрать структуру'
         )

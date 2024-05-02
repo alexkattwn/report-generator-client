@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
+import { IParametersCD } from '@/types/common'
+import { formatDateAndTime, reverseDate } from '@/utils/common'
+
 const styles = StyleSheet.create({
     title: {
         fontSize: 16,
@@ -28,7 +31,11 @@ const styles = StyleSheet.create({
     },
 })
 
-const HeaderReportCD: React.FC = () => {
+interface HeaderReportCDProps {
+    state: IParametersCD
+}
+
+const HeaderReportCD: React.FC<HeaderReportCDProps> = ({ state }) => {
     return (
         <>
             <View style={styles.block}>
@@ -37,17 +44,21 @@ const HeaderReportCD: React.FC = () => {
                 </Text>
                 <View style={styles.row}>
                     <Text style={styles.nameRow}>Дата составления отчета</Text>
-                    <Text style={styles.contentRow}>27.03.2024 10:09:38</Text>
+                    <Text style={styles.contentRow}>
+                        {formatDateAndTime(`${new Date()}`)}
+                    </Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.nameRow}>Отчетный период</Text>
                     <Text style={styles.contentRow}>
-                        23.03.2022 - 27.03.2024
+                        {`${reverseDate(state.date_start)} - ${reverseDate(
+                            state.date_end
+                        )}`}
                     </Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.nameRow}>Структура</Text>
-                    <Text style={styles.contentRow}>Прочие организации</Text>
+                    <Text style={styles.contentRow}>{state.struct}</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.nameRow}>
