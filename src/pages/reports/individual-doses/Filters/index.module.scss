@@ -1,0 +1,109 @@
+.block {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 35px 15px 15px 15px;
+    position: relative;
+    box-shadow: 2px 2px 4px var(--blue);
+    flex-wrap: wrap;
+    border-radius: 12px;
+    justify-content: flex-start;
+    align-items: center;
+
+    border: 2px solid var(--light-blue);
+
+    &.dark_mode {
+        box-shadow: 2px 2px 4px gray;
+        border: 2px solid gray;
+    }
+
+    &__header {
+        font-size: 16px;
+        font-weight: 300;
+        padding: 0 20px;
+        text-align: center;
+        color: var(--blue);
+
+        position: absolute;
+        left: 0;
+        top: 4px;
+
+        &.dark_mode {
+            color: var(--color-white);
+        }
+    }
+
+    &__filter {
+        display: flex;
+        gap: 6px;
+        padding: 0px 20px;
+
+        &__option {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--blue);
+            padding: 6px;
+
+            display: grid;
+            grid-template-columns: auto 20px;
+            align-items: center;
+
+            width: 200px;
+            border-top: 1px solid var(--blue);
+
+            & > span {
+                width: 140px;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+            }
+
+            &.dark_mode {
+                border-top: 1px solid gray;
+                color: var(--color-white);
+            }
+
+            &:hover {
+                cursor: pointer;
+                color: var(--color-white);
+                background-color: var(--color-gray);
+            }
+
+            &__btn {
+                color: var(--blue);
+                height: fit-content;
+                width: fit-content;
+                border-radius: 50%;
+                border: none;
+                background: transparent;
+                transition: all 0.5s ease;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.dark_mode {
+                    color: var(--color-gray);
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    color: var(--red);
+                }
+            }
+        }
+    }
+}
+
+.empty {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 300;
+    padding: 4px;
+
+    &.dark_mode {
+        color: var(--color-white);
+    }
+}

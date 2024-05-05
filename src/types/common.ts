@@ -54,6 +54,27 @@ export interface IParametersCD {
     go: string
 }
 
+export interface IParametersID {
+    on_business_trips: string
+    by_surveys: string
+    by_receipts: string
+    main_tdk: string
+    additional_tdk: string
+    odk: string
+    date_start: string
+    date_end: string
+    struct: string
+    age_from: string
+    age_to: string
+    sex_man: string
+    sex_woman: string
+    all_child_structures: string
+    chief_orb: string
+    chief_group_idc: string
+    filter: string
+    go: string
+}
+
 export interface IPersonalData {
     count: number
     data: IPersonal[]

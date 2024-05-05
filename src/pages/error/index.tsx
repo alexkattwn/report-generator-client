@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { HOME_ROUTE } from '@/constants'
 import { useMode } from '@/hooks/useMode'
+import useAuth from '@/hooks/useAuth'
 
 import cls from '@/pages/error/index.module.scss'
 
@@ -12,6 +13,8 @@ import imgDark from '@assets/images/not-found-dark.jpg'
 const ErrorPage: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
+
+    const { isAuthorized } = useAuth()
 
     return (
         <div className={`${cls.error} ${darkModeClass}`}>
@@ -40,7 +43,7 @@ const ErrorPage: React.FC = () => {
                 to={HOME_ROUTE}
                 className={`${cls.error__btn}  ${darkModeClass}`}
             >
-                Вернуться к отчетам
+                {isAuthorized ? 'Вернуться к отчетам' : 'Назад к авторизации'}
             </Link>
         </div>
     )

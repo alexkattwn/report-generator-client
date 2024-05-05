@@ -1,4 +1,4 @@
-import { IParametersCD } from '@/types/common'
+import { IParametersCD, IParametersID } from '@/types/common'
 
 export function getCurrentReportFromSessionStorage(): string {
     const data = sessionStorage.getItem('report')
@@ -36,5 +36,20 @@ export function removeParametersCDFromSessionStorage(): void {
 
 export function getParametersCDFromSessionStorage(): IParametersCD | undefined {
     const data = sessionStorage.getItem('parametersCD')
+    return data ? JSON.parse(data) : undefined
+}
+
+export function setParametersIDToSessionStorage(
+    parameters: IParametersID
+): void {
+    sessionStorage.setItem('parametersID', JSON.stringify(parameters))
+}
+
+export function removeParametersIDFromSessionStorage(): void {
+    sessionStorage.removeItem('parametersID')
+}
+
+export function getParametersIDFromSessionStorage(): IParametersID | undefined {
+    const data = sessionStorage.getItem('parametersID')
     return data ? JSON.parse(data) : undefined
 }

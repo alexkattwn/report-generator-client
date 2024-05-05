@@ -1,4 +1,4 @@
-import { IParametersCD, IParametersIDC } from '@/types/common'
+import { IParametersCD, IParametersID, IParametersIDC } from '@/types/common'
 import { dateToString } from '@/utils/common'
 
 export const AUTH_ROUTE = '/auth'
@@ -136,6 +136,27 @@ export const initialStateParametersCD: IParametersCD = {
     all_child_structures: 'true',
     chief_orb: 'М.Ю. Лузин',
     chief_lprk_orb: 'А.А. Воробьев',
+    filter: '',
+    go: '',
+}
+
+export const initialStateParametersID: IParametersID = {
+    on_business_trips: '',
+    by_surveys: '',
+    by_receipts: '',
+    main_tdk: '',
+    additional_tdk: '',
+    odk: '',
+    date_start: '',
+    date_end: dateToString(new Date()),
+    struct: '',
+    age_from: '0',
+    age_to: '100',
+    sex_man: '',
+    sex_woman: '',
+    all_child_structures: 'true',
+    chief_orb: 'А.Л. Березницкий',
+    chief_group_idc: 'Ю.С. Прыткова',
     filter: '',
     go: '',
 }
