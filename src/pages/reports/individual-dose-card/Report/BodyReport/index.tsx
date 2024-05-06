@@ -10,17 +10,15 @@ interface BodyReportIDCProps {
     report: IIDC | undefined
 }
 
-const BodyReportIDC: React.FC<BodyReportIDCProps> = ({ report }) => {
-    return (
-        <>
-            <IRDAccident report={report} />
-            <TotalIRD />
-            <IRDBeforeWork report={report} />
-            <DosimetricRegistration report={report} />
-            <IRDBusinessTrips report={report} />
-            <IRDMainPlaceWork report={report} />
-        </>
-    )
-}
+const BodyReportIDC: React.FC<BodyReportIDCProps> = ({ report }) => (
+    <>
+        <IRDAccident report={report} />
+        <TotalIRD />
+        <IRDBeforeWork report={report} />
+        <DosimetricRegistration report={report} />
+        <IRDBusinessTrips report={report} />
+        <IRDMainPlaceWork report={report} />
+    </>
+)
 
 export default BodyReportIDC

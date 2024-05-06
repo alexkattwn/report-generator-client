@@ -1,6 +1,19 @@
-import { PDFViewer, Document, Page, StyleSheet } from '@react-pdf/renderer'
+import {
+    PDFViewer,
+    Document,
+    Page,
+    StyleSheet,
+    Text,
+} from '@react-pdf/renderer'
 import { AnimatePresence, motion } from 'framer-motion'
 import { RingLoader } from 'react-spinners'
+import { useState } from 'react'
+
+import { getParametersIDFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import HeaderReportID from '@/pages/reports/individual-doses/Report/HeaderReport'
+import FooterReportID from '@/pages/reports/individual-doses/Report/FooterReport'
+import BodyReportID from '@/pages/reports/individual-doses/Report/BodyReport'
+import { IParametersID } from '@/types/common'
 
 import cls from '@/pages/reports/individual-doses/Report/index.module.scss'
 
@@ -18,18 +31,27 @@ const pageStyles = StyleSheet.create({
     pageNumber: {
         position: 'absolute',
         fontSize: 10,
-        bottom: 30,
+        bottom: 20,
         left: 0,
         right: 30,
         textAlign: 'right',
-        color: 'black',
+    },
+    bottomText: {
+        position: 'absolute',
+        bottom: 20,
+        left: 30,
+        textAlign: 'left',
     },
 })
 
-const ReportID = () => {
+const ReportID: React.FC = () => {
+    const [state, _] = useState<IParametersID | undefined>(
+        getParametersIDFromSessionStorage()
+    )
+
     return (
         <AnimatePresence>
-            {true ? (
+            {state ? (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -38,7 +60,25 @@ const ReportID = () => {
                 >
                     <PDFViewer className='pdf'>
                         <Document>
-                            <Page size='A4' style={pageStyles.page}></Page>
+                            <Page
+                                size='A4'
+                                orientation='landscape'
+                                style={pageStyles.page}
+                            >
+                                <HeaderReportID state={state} />
+                                <BodyReportID />
+                                <FooterReportID />
+                                <Text style={pageStyles.bottomText} fixed>
+                                    23.03.2022 - 27.03.2024 {state.struct}
+                                </Text>
+                                <Text
+                                    style={pageStyles.pageNumber}
+                                    render={({ pageNumber, totalPages }) =>
+                                        `${pageNumber} / ${totalPages}`
+                                    }
+                                    fixed
+                                />
+                            </Page>
                         </Document>
                     </PDFViewer>
                 </motion.div>

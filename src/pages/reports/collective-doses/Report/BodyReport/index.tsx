@@ -90,83 +90,65 @@ const styles = StyleSheet.create({
     },
 })
 
-const BodyReportCD: React.FC = () => {
-    return (
-        <View style={styles.tableContainer}>
-            <View style={styles.header}>
-                <View style={styles.headerWhite}>
-                    <Text style={styles.headerStruct}>Структура</Text>
-                    <Text style={styles.headerWhiteFirst}>
-                        Состояло на доз. учете, чел.
-                    </Text>
-                    <Text style={styles.headerWhiteSecond}>Измерено, чел.</Text>
-                </View>
-                <View style={styles.headerBlue}>
-                    <Text style={styles.headerBlueContent}>
-                        E, мЗв колл/макс/сред
-                    </Text>
-                    <Text style={styles.headerBlueContent}>
-                        H(extrim), мЗв колл/макс/сред
-                    </Text>
-                    <Text style={styles.headerBlueContent}>
-                        H(lens), мЗв колл/макс/сред
-                    </Text>
-                    <Text style={styles.headerBlueContent}>
-                        H(skin), мЗв колл/макс/сред
-                    </Text>
-                </View>
+const BodyReportCD: React.FC = () => (
+    <View style={styles.tableContainer}>
+        <View style={styles.header}>
+            <View style={styles.headerWhite}>
+                <Text style={styles.headerStruct}>Структура</Text>
+                <Text style={styles.headerWhiteFirst}>
+                    Состояло на доз. учете, чел.
+                </Text>
+                <Text style={styles.headerWhiteSecond}>Измерено, чел.</Text>
             </View>
-
-            <View style={styles.row}>
-                <View style={styles.rowBlue}>
-                    <Text style={styles.rowBlueStruct}>
-                        Комплекс по переработке твердых радиоактивных отходов
-                        Курской АЭС
-                    </Text>
-                    <Text style={styles.rowBlueContent}>33</Text>
-                    <Text style={styles.rowBlueContent}>2</Text>
-                </View>
-                <View style={styles.rowWhite}>
-                    <Text style={styles.rowWhiteContent}>
-                        1,004/1,002/2,004
-                    </Text>
-                    <Text style={styles.rowWhiteContent}>
-                        1,004/0,503/1,005
-                    </Text>
-                    <Text style={styles.rowWhiteContent}>
-                        1,004/0,503/1,005
-                    </Text>
-                    <Text style={styles.rowWhiteContent}>
-                        1,004/0,503/1,005
-                    </Text>
-                </View>
-            </View>
-
-            <View style={styles.row}>
-                <View style={styles.rowBlue}>
-                    <Text style={styles.rowBlueStruct}>
-                        ФГУП Приборостроительный завод им. К.А.Володина
-                    </Text>
-                    <Text style={styles.rowBlueContent}>1</Text>
-                    <Text style={styles.rowBlueContent}>1</Text>
-                </View>
-                <View style={styles.rowWhite}>
-                    <Text style={styles.rowWhiteContent}>
-                        2,000/2,000/2,000
-                    </Text>
-                    <Text style={styles.rowWhiteContent}>
-                        2,000/2,000/2,000
-                    </Text>
-                    <Text style={styles.rowWhiteContent}>
-                        2,000/2,000/2,000
-                    </Text>
-                    <Text style={styles.rowWhiteContent}>
-                        2,000/2,000/2,000
-                    </Text>
-                </View>
+            <View style={styles.headerBlue}>
+                <Text style={styles.headerBlueContent}>
+                    E, мЗв колл/макс/сред
+                </Text>
+                <Text style={styles.headerBlueContent}>
+                    H(extrim), мЗв колл/макс/сред
+                </Text>
+                <Text style={styles.headerBlueContent}>
+                    H(lens), мЗв колл/макс/сред
+                </Text>
+                <Text style={styles.headerBlueContent}>
+                    H(skin), мЗв колл/макс/сред
+                </Text>
             </View>
         </View>
-    )
-}
+
+        <View style={styles.row}>
+            <View style={styles.rowBlue}>
+                <Text style={styles.rowBlueStruct}>
+                    Комплекс по переработке твердых радиоактивных отходов
+                    Курской АЭС
+                </Text>
+                <Text style={styles.rowBlueContent}>33</Text>
+                <Text style={styles.rowBlueContent}>2</Text>
+            </View>
+            <View style={styles.rowWhite}>
+                <Text style={styles.rowWhiteContent}>1,004/1,002/2,004</Text>
+                <Text style={styles.rowWhiteContent}>1,004/0,503/1,005</Text>
+                <Text style={styles.rowWhiteContent}>1,004/0,503/1,005</Text>
+                <Text style={styles.rowWhiteContent}>1,004/0,503/1,005</Text>
+            </View>
+        </View>
+
+        <View style={styles.row}>
+            <View style={styles.rowBlue}>
+                <Text style={styles.rowBlueStruct}>
+                    ФГУП Приборостроительный завод им. К.А.Володина
+                </Text>
+                <Text style={styles.rowBlueContent}>1</Text>
+                <Text style={styles.rowBlueContent}>1</Text>
+            </View>
+            <View style={styles.rowWhite}>
+                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
+                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
+                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
+                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
+            </View>
+        </View>
+    </View>
+)
 
 export default BodyReportCD

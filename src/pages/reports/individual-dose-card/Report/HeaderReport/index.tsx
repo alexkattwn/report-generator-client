@@ -42,59 +42,57 @@ interface HeaderReportIDCProps {
     report: IIDC | undefined
 }
 
-const HeaderReportIDC: React.FC<HeaderReportIDCProps> = ({ report }) => {
-    return (
-        <>
-            <View style={titleStyles.titleContainer}>
-                <Text style={titleStyles.reportTitle}>
-                    Карта учета индивидуальных доз облучения персонала КП ТРО
-                    Курской АЭС
-                </Text>
-            </View>
-            <View style={headerStyles.block}>
-                <Text style={headerStyles.label}>Фамилия, имя, отчество</Text>
-                <Text style={headerStyles.textTop}>
-                    {report?.headerInfo.fio || '-'}
-                </Text>
-            </View>
-            <View style={headerStyles.block}>
-                <Text style={headerStyles.label}>Дата рождения</Text>
-                <Text style={headerStyles.textTop}>
-                    {report?.headerInfo.birthday || '-'}
-                </Text>
-            </View>
-            <View style={headerStyles.block}>
-                <Text style={headerStyles.label}>
-                    Документ, удостоверяющий личность
-                </Text>
-                <Text style={headerStyles.textTop}>
-                    {report?.document.doc || '-'}
-                </Text>
-            </View>
-            <View style={headerStyles.block}>
-                <Text style={headerStyles.label}>Контактные данные</Text>
-                <Text style={headerStyles.textTop}>
-                    {report?.headerInfo.contacts || '-'}
-                </Text>
-            </View>
-            <View style={headerStyles.block}>
-                <Text style={headerStyles.label}>
-                    Дата поставки на дозиметрический учет в КП ТРО Курской АЭС
-                </Text>
-                <Text style={headerStyles.textBottom}>
-                    {report?.headerInfo.min_datetime || '-'}
-                </Text>
-            </View>
-            <View style={headerStyles.block}>
-                <Text style={headerStyles.label}>
-                    Дата снятия с дозиметрического учета в КП ТРО Курской АЭС
-                </Text>
-                <Text style={headerStyles.textBottom}>
-                    {report?.headerInfo.max_datetime || '-'}
-                </Text>
-            </View>
-        </>
-    )
-}
+const HeaderReportIDC: React.FC<HeaderReportIDCProps> = ({ report }) => (
+    <>
+        <View style={titleStyles.titleContainer}>
+            <Text style={titleStyles.reportTitle}>
+                Карта учета индивидуальных доз облучения персонала КП ТРО
+                Курской АЭС
+            </Text>
+        </View>
+        <View style={headerStyles.block}>
+            <Text style={headerStyles.label}>Фамилия, имя, отчество</Text>
+            <Text style={headerStyles.textTop}>
+                {report?.headerInfo.fio || '-'}
+            </Text>
+        </View>
+        <View style={headerStyles.block}>
+            <Text style={headerStyles.label}>Дата рождения</Text>
+            <Text style={headerStyles.textTop}>
+                {report?.headerInfo.birthday || '-'}
+            </Text>
+        </View>
+        <View style={headerStyles.block}>
+            <Text style={headerStyles.label}>
+                Документ, удостоверяющий личность
+            </Text>
+            <Text style={headerStyles.textTop}>
+                {report?.document.doc || '-'}
+            </Text>
+        </View>
+        <View style={headerStyles.block}>
+            <Text style={headerStyles.label}>Контактные данные</Text>
+            <Text style={headerStyles.textTop}>
+                {report?.headerInfo.contacts || '-'}
+            </Text>
+        </View>
+        <View style={headerStyles.block}>
+            <Text style={headerStyles.label}>
+                Дата поставки на дозиметрический учет в КП ТРО Курской АЭС
+            </Text>
+            <Text style={headerStyles.textBottom}>
+                {report?.headerInfo.min_datetime || '-'}
+            </Text>
+        </View>
+        <View style={headerStyles.block}>
+            <Text style={headerStyles.label}>
+                Дата снятия с дозиметрического учета в КП ТРО Курской АЭС
+            </Text>
+            <Text style={headerStyles.textBottom}>
+                {report?.headerInfo.max_datetime || '-'}
+            </Text>
+        </View>
+    </>
+)
 
 export default HeaderReportIDC

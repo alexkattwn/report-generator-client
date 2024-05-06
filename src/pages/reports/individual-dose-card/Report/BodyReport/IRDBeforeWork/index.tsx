@@ -69,43 +69,41 @@ interface IRDAccidentProps {
     report: IIDC | undefined
 }
 
-const IRDBeforeWork: React.FC<IRDAccidentProps> = ({ report }) => {
-    return (
-        <>
-            <Text style={styles.text}>
-                3. Индивидуальные дозы облучения до начала работы в КП ТРО
-                Курской АЭС
-            </Text>
-            <View style={styles.tableContainer}>
-                <View style={styles.header}>
-                    <Text style={styles.dateStart}>Дата начала</Text>
-                    <Text style={styles.dateEnd}>Дата окончания</Text>
-                    <Text style={styles.place}>Место получения</Text>
-                    <Text style={styles.code}>
-                        {report?.iRDBeforeWork.mv_name || '-'}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.dateStart}>
-                        {formatDateAndTime(
-                            `${report?.iRDBeforeWork.start_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.dateEnd}>
-                        {formatDateAndTime(
-                            `${report?.iRDBeforeWork.end_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.place}>
-                        {report?.iRDBeforeWork.place || '-'}
-                    </Text>
-                    <Text style={styles.code}>
-                        {report?.iRDBeforeWork.value || '-'}
-                    </Text>
-                </View>
+const IRDBeforeWork: React.FC<IRDAccidentProps> = ({ report }) => (
+    <>
+        <Text style={styles.text}>
+            3. Индивидуальные дозы облучения до начала работы в КП ТРО Курской
+            АЭС
+        </Text>
+        <View style={styles.tableContainer}>
+            <View style={styles.header}>
+                <Text style={styles.dateStart}>Дата начала</Text>
+                <Text style={styles.dateEnd}>Дата окончания</Text>
+                <Text style={styles.place}>Место получения</Text>
+                <Text style={styles.code}>
+                    {report?.iRDBeforeWork.mv_name || '-'}
+                </Text>
             </View>
-        </>
-    )
-}
+            <View style={styles.row}>
+                <Text style={styles.dateStart}>
+                    {formatDateAndTime(
+                        `${report?.iRDBeforeWork.start_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.dateEnd}>
+                    {formatDateAndTime(
+                        `${report?.iRDBeforeWork.end_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.place}>
+                    {report?.iRDBeforeWork.place || '-'}
+                </Text>
+                <Text style={styles.code}>
+                    {report?.iRDBeforeWork.value || '-'}
+                </Text>
+            </View>
+        </View>
+    </>
+)
 
 export default IRDBeforeWork

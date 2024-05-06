@@ -71,40 +71,38 @@ interface DosimetricRegistrationProps {
 
 const DosimetricRegistration: React.FC<DosimetricRegistrationProps> = ({
     report,
-}) => {
-    return (
-        <>
-            <Text style={styles.text}>
-                4. Постановки на дозиметрический учет в КП ТРО Курской АЭС
-            </Text>
-            <View style={styles.tableContainer}>
-                <View style={styles.header}>
-                    <Text style={styles.dateStart}>Дата начала</Text>
-                    <Text style={styles.dateEnd}>Дата окончания</Text>
-                    <Text style={styles.division}>Подразделение</Text>
-                    <Text style={styles.post}>Должность</Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.dateStart}>
-                        {formatDateAndTime(
-                            `${report?.dosimetricRegistration.set_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.dateEnd}>
-                        {formatDateAndTime(
-                            `${report?.dosimetricRegistration.dismiss_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.division}>
-                        {report?.dosimetricRegistration.struct || '-'}
-                    </Text>
-                    <Text style={styles.post}>
-                        {report?.dosimetricRegistration.name || '-'}
-                    </Text>
-                </View>
+}) => (
+    <>
+        <Text style={styles.text}>
+            4. Постановки на дозиметрический учет в КП ТРО Курской АЭС
+        </Text>
+        <View style={styles.tableContainer}>
+            <View style={styles.header}>
+                <Text style={styles.dateStart}>Дата начала</Text>
+                <Text style={styles.dateEnd}>Дата окончания</Text>
+                <Text style={styles.division}>Подразделение</Text>
+                <Text style={styles.post}>Должность</Text>
             </View>
-        </>
-    )
-}
+            <View style={styles.row}>
+                <Text style={styles.dateStart}>
+                    {formatDateAndTime(
+                        `${report?.dosimetricRegistration.set_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.dateEnd}>
+                    {formatDateAndTime(
+                        `${report?.dosimetricRegistration.dismiss_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.division}>
+                    {report?.dosimetricRegistration.struct || '-'}
+                </Text>
+                <Text style={styles.post}>
+                    {report?.dosimetricRegistration.name || '-'}
+                </Text>
+            </View>
+        </View>
+    </>
+)
 
 export default DosimetricRegistration

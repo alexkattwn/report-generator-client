@@ -76,45 +76,43 @@ interface IRDMainPlaceWorkProps {
     report: IIDC | undefined
 }
 
-const IRDMainPlaceWork: React.FC<IRDMainPlaceWorkProps> = ({ report }) => {
-    return (
-        <>
-            <Text style={styles.text}>
-                6. Индивидуальные дозы облучения за период работы в КП ТРО
-                Курской АЭС (по основному месту работы)
-            </Text>
-            <View style={styles.tableContainer}>
-                <View style={styles.header}>
-                    <Text style={styles.dateStart}>Дата начала</Text>
-                    <Text style={styles.dateEnd}>Дата окончания</Text>
-                    <Text style={styles.tdk}>Доп. ТДК</Text>
-                    <Text style={styles.model}>Модель контроля</Text>
-                    <Text style={styles.value}>E, мЗв (знач./неопр.)</Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.dateStart}>
-                        {formatDateAndTime(
-                            `${report?.iRDMainPlaceWork.start_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.dateEnd}>
-                        {formatDateAndTime(
-                            `${report?.iRDMainPlaceWork.end_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.tdk}>
-                        {report?.iRDMainPlaceWork.additional || '-'}
-                    </Text>
-                    <Text style={styles.model}>
-                        {report?.iRDMainPlaceWork.model_name || '-'}
-                    </Text>
-                    <Text style={styles.value}>
-                        {report?.iRDMainPlaceWork.value || '-'}
-                    </Text>
-                </View>
+const IRDMainPlaceWork: React.FC<IRDMainPlaceWorkProps> = ({ report }) => (
+    <>
+        <Text style={styles.text}>
+            6. Индивидуальные дозы облучения за период работы в КП ТРО Курской
+            АЭС (по основному месту работы)
+        </Text>
+        <View style={styles.tableContainer}>
+            <View style={styles.header}>
+                <Text style={styles.dateStart}>Дата начала</Text>
+                <Text style={styles.dateEnd}>Дата окончания</Text>
+                <Text style={styles.tdk}>Доп. ТДК</Text>
+                <Text style={styles.model}>Модель контроля</Text>
+                <Text style={styles.value}>E, мЗв (знач./неопр.)</Text>
             </View>
-        </>
-    )
-}
+            <View style={styles.row}>
+                <Text style={styles.dateStart}>
+                    {formatDateAndTime(
+                        `${report?.iRDMainPlaceWork.start_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.dateEnd}>
+                    {formatDateAndTime(
+                        `${report?.iRDMainPlaceWork.end_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.tdk}>
+                    {report?.iRDMainPlaceWork.additional || '-'}
+                </Text>
+                <Text style={styles.model}>
+                    {report?.iRDMainPlaceWork.model_name || '-'}
+                </Text>
+                <Text style={styles.value}>
+                    {report?.iRDMainPlaceWork.value || '-'}
+                </Text>
+            </View>
+        </View>
+    </>
+)
 
 export default IRDMainPlaceWork

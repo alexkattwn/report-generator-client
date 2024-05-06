@@ -76,47 +76,45 @@ interface IRDBusinessTripsProps {
     report: IIDC | undefined
 }
 
-const IRDBusinessTrips: React.FC<IRDBusinessTripsProps> = ({ report }) => {
-    return (
-        <>
-            <Text style={styles.text}>
-                5. Индивидуальные дозы облучения за период работы в КП ТРО
-                Курской АЭС (в командировках во внешние организации)
-            </Text>
-            <View style={styles.tableContainer}>
-                <View style={styles.header}>
-                    <Text style={styles.dateStart}>Дата начала</Text>
-                    <Text style={styles.dateEnd}>Дата окончания</Text>
-                    <Text style={styles.place}>Место получения</Text>
-                    <Text style={styles.work}>Работа</Text>
-                    <Text style={styles.code}>
-                        {report?.iRDBusinessTrips.mv_name || '-'} (знач./неопр.)
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.dateStart}>
-                        {formatDateAndTime(
-                            `${report?.iRDBusinessTrips.start_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.dateEnd}>
-                        {formatDateAndTime(
-                            `${report?.iRDBusinessTrips.end_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.place}>
-                        {report?.iRDBusinessTrips.place || '-'}
-                    </Text>
-                    <Text style={styles.work}>
-                        {report?.iRDBusinessTrips.work || '-'}
-                    </Text>
-                    <Text style={styles.code}>
-                        {report?.iRDBusinessTrips.value || '-'}
-                    </Text>
-                </View>
+const IRDBusinessTrips: React.FC<IRDBusinessTripsProps> = ({ report }) => (
+    <>
+        <Text style={styles.text}>
+            5. Индивидуальные дозы облучения за период работы в КП ТРО Курской
+            АЭС (в командировках во внешние организации)
+        </Text>
+        <View style={styles.tableContainer}>
+            <View style={styles.header}>
+                <Text style={styles.dateStart}>Дата начала</Text>
+                <Text style={styles.dateEnd}>Дата окончания</Text>
+                <Text style={styles.place}>Место получения</Text>
+                <Text style={styles.work}>Работа</Text>
+                <Text style={styles.code}>
+                    {report?.iRDBusinessTrips.mv_name || '-'} (знач./неопр.)
+                </Text>
             </View>
-        </>
-    )
-}
+            <View style={styles.row}>
+                <Text style={styles.dateStart}>
+                    {formatDateAndTime(
+                        `${report?.iRDBusinessTrips.start_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.dateEnd}>
+                    {formatDateAndTime(
+                        `${report?.iRDBusinessTrips.end_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.place}>
+                    {report?.iRDBusinessTrips.place || '-'}
+                </Text>
+                <Text style={styles.work}>
+                    {report?.iRDBusinessTrips.work || '-'}
+                </Text>
+                <Text style={styles.code}>
+                    {report?.iRDBusinessTrips.value || '-'}
+                </Text>
+            </View>
+        </View>
+    </>
+)
 
 export default IRDBusinessTrips

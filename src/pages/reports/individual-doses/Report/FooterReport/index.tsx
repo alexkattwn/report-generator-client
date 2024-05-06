@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
 })
 
-const FooterReportCD: React.FC = () => (
+const FooterReportID: React.FC = () => (
     <View style={styles.block}>
         <View style={styles.row}>
             <Text style={styles.bottom}>Начальник ОРБ</Text>
@@ -49,7 +49,7 @@ const FooterReportCD: React.FC = () => (
                 <Text style={styles.elem}>подпись</Text>
             </View>
             <View style={styles.painting}>
-                <Text style={styles.bottomText}>М.Ю. Лузин</Text>
+                <Text style={styles.bottomText}>А.Л. Березницкий</Text>
                 <Text style={styles.elem}>И.О.Фамилия</Text>
             </View>
         </View>
@@ -60,7 +60,7 @@ const FooterReportCD: React.FC = () => (
                 <Text style={styles.elem}>подпись</Text>
             </View>
             <View style={styles.painting}>
-                <Text style={styles.bottomText}>А.А. Воробьев</Text>
+                <Text style={styles.bottomText}>Ю.С. Прыткова</Text>
                 <Text style={styles.elem}>И.О.Фамилия</Text>
             </View>
         </View>
@@ -68,7 +68,7 @@ const FooterReportCD: React.FC = () => (
             <View style={styles.painting}>
                 <Text style={styles.bottomText}></Text>
                 <Text style={styles.elemLong}>
-                    должность сотрудника ЛПРК ОРБ
+                    должность сотрудника группы ИДК
                 </Text>
             </View>
             <View style={styles.painting}>
@@ -83,4 +83,4 @@ const FooterReportCD: React.FC = () => (
     </View>
 )
 
-export default FooterReportCD
+export default FooterReportID

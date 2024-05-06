@@ -133,209 +133,207 @@ const styles = StyleSheet.create({
     },
 })
 
-const TotalIRD: React.FC = () => {
-    return (
-        <>
-            <Text style={styles.text}>
-                2. Суммарные индивидуальные дозы облучения в условиях нормальной
-                эксплуатации
-            </Text>
-            <View style={styles.tableContainer}>
-                <View style={styles.header}>
-                    <Text style={styles.period}>Период</Text>
-                    <Text style={styles.first}>E, мЗв</Text>
-                    <Text style={styles.second}>H(extrim), мЗв</Text>
-                    <Text style={styles.third}>H(lens), мЗв</Text>
-                    <Text style={styles.fourth}>H(skin), мЗв</Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.year}>2023</Text>
-                    <View style={styles.quarter}>
-                        <View style={styles.valuesFirst}>
-                            <Text style={styles.quarterItem}>1 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>2 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>3 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>4 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>итого</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
+const TotalIRD: React.FC = () => (
+    <>
+        <Text style={styles.text}>
+            2. Суммарные индивидуальные дозы облучения в условиях нормальной
+            эксплуатации
+        </Text>
+        <View style={styles.tableContainer}>
+            <View style={styles.header}>
+                <Text style={styles.period}>Период</Text>
+                <Text style={styles.first}>E, мЗв</Text>
+                <Text style={styles.second}>H(extrim), мЗв</Text>
+                <Text style={styles.third}>H(lens), мЗв</Text>
+                <Text style={styles.fourth}>H(skin), мЗв</Text>
+            </View>
+            <View style={styles.row}>
+                <Text style={styles.year}>2023</Text>
+                <View style={styles.quarter}>
+                    <View style={styles.valuesFirst}>
+                        <Text style={styles.quarterItem}>1 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
                         </View>
                     </View>
-                </View>
-
-                <View style={styles.row}>
-                    <Text style={styles.year}>2024</Text>
-                    <View style={styles.quarter}>
-                        <View style={styles.valuesFirst}>
-                            <Text style={styles.quarterItem}>1 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>2 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>3 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>4 квартал</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>итого</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>2 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
                         </View>
                     </View>
-                </View>
-
-                <View style={styles.row}>
-                    <Text style={styles.year}>2019-2023</Text>
-                    <View style={styles.quarter}>
-                        <View style={styles.valuesFirst}>
-                            <Text style={styles.quarterItem}>
-                                5 последовательных лет
-                            </Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>1,000</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>3 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
                         </View>
                     </View>
-                </View>
-
-                <View style={styles.row}>
-                    <Text style={styles.year}>2020-2024</Text>
-                    <View style={styles.quarter}>
-                        <View style={styles.valuesFirst}>
-                            <Text style={styles.quarterItem}>
-                                5 последовательных лет
-                            </Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>1,000</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>4 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
                         </View>
                     </View>
-                </View>
-
-                <View style={styles.row}>
-                    <Text style={styles.year}>ВСЕГО</Text>
-                    <View style={styles.quarter}>
-                        <View style={styles.valuesFirst}>
-                            <Text style={styles.quarterItem}>
-                                до начала работы в КП ТРО Курской АЭС
-                            </Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>
-                                за период работы в КП ТРО Курской АЭС (в
-                                командировках во внешние организации)
-                            </Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>
-                                за период работы в КП ТРО Курской АЭС (по
-                                основному месту работы)
-                            </Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
-                        </View>
-                        <View style={styles.values}>
-                            <Text style={styles.quarterItem}>ВСЕГО</Text>
-                            <View style={styles.valuesRow}>
-                                <Text style={styles.valueItemFirst}>-</Text>
-                                <Text style={styles.valueItemSecond}>-</Text>
-                                <Text style={styles.valueItemThird}>-</Text>
-                                <Text style={styles.valueItemFourth}>-</Text>
-                            </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>итого</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
                         </View>
                     </View>
                 </View>
             </View>
-        </>
-    )
-}
+
+            <View style={styles.row}>
+                <Text style={styles.year}>2024</Text>
+                <View style={styles.quarter}>
+                    <View style={styles.valuesFirst}>
+                        <Text style={styles.quarterItem}>1 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>2 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>3 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>4 квартал</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>итого</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+
+            <View style={styles.row}>
+                <Text style={styles.year}>2019-2023</Text>
+                <View style={styles.quarter}>
+                    <View style={styles.valuesFirst}>
+                        <Text style={styles.quarterItem}>
+                            5 последовательных лет
+                        </Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>1,000</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+
+            <View style={styles.row}>
+                <Text style={styles.year}>2020-2024</Text>
+                <View style={styles.quarter}>
+                    <View style={styles.valuesFirst}>
+                        <Text style={styles.quarterItem}>
+                            5 последовательных лет
+                        </Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>1,000</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+
+            <View style={styles.row}>
+                <Text style={styles.year}>ВСЕГО</Text>
+                <View style={styles.quarter}>
+                    <View style={styles.valuesFirst}>
+                        <Text style={styles.quarterItem}>
+                            до начала работы в КП ТРО Курской АЭС
+                        </Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>
+                            за период работы в КП ТРО Курской АЭС (в
+                            командировках во внешние организации)
+                        </Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>
+                            за период работы в КП ТРО Курской АЭС (по основному
+                            месту работы)
+                        </Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                    <View style={styles.values}>
+                        <Text style={styles.quarterItem}>ВСЕГО</Text>
+                        <View style={styles.valuesRow}>
+                            <Text style={styles.valueItemFirst}>-</Text>
+                            <Text style={styles.valueItemSecond}>-</Text>
+                            <Text style={styles.valueItemThird}>-</Text>
+                            <Text style={styles.valueItemFourth}>-</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        </View>
+    </>
+)
 
 export default TotalIRD

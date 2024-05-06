@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
-import { IParametersCD } from '@/types/common'
+import { IParametersID } from '@/types/common'
 import { formatDateAndTime, reverseDate } from '@/utils/common'
 
 const styles = StyleSheet.create({
@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
     },
 })
 
-interface HeaderReportCDProps {
-    state: IParametersCD
+interface HeaderReportIDProps {
+    state: IParametersID
 }
 
-const HeaderReportCD: React.FC<HeaderReportCDProps> = ({ state }) => (
+const HeaderReportID: React.FC<HeaderReportIDProps> = ({ state }) => (
     <>
         <View style={styles.block}>
             <Text style={styles.title}>
-                Отчет о коллективных дозах облучения персонала ЗКД
+                Отчет об индивидуальных дозах облучения персонала
             </Text>
             <View style={styles.row}>
                 <Text style={styles.nameRow}>Дата составления отчета</Text>
@@ -70,5 +70,4 @@ const HeaderReportCD: React.FC<HeaderReportCDProps> = ({ state }) => (
         </View>
     </>
 )
-
-export default HeaderReportCD
+export default HeaderReportID

@@ -75,48 +75,45 @@ interface IRDAccidentProps {
     report: IIDC | undefined
 }
 
-const IRDAccident: React.FC<IRDAccidentProps> = ({ report }) => {
-    return (
-        <>
-            <Text style={styles.text}>
-                1. Индивидуальные дозы облучения в условиях аварии
-            </Text>
-            <View style={styles.tableContainer}>
-                <View style={styles.header}>
-                    <Text style={styles.dateStart}>Дата начала</Text>
-                    <Text style={styles.dateEnd}>Дата окончания</Text>
-                    <Text style={styles.place}>Место получения</Text>
-                    <Text style={styles.code}>
-                        {report?.iRDAccident.mv_name || '-'}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.dateStart}>
-                        {formatDateAndTime(
-                            `${report?.iRDAccident.start_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.dateEnd}>
-                        {formatDateAndTime(
-                            `${report?.iRDAccident.end_datetime}`
-                        ) || '-'}
-                    </Text>
-                    <Text style={styles.place}>
-                        {report?.iRDAccident.place || '-'}
-                    </Text>
-                    <Text style={styles.code}>
-                        {report?.iRDAccident.value || '-'}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Text style={styles.sumDoses}>Суммарные дозы</Text>
-                    <Text style={styles.code}>
-                        {report?.iRDAccident.value || '-'}
-                    </Text>
-                </View>
+const IRDAccident: React.FC<IRDAccidentProps> = ({ report }) => (
+    <>
+        <Text style={styles.text}>
+            1. Индивидуальные дозы облучения в условиях аварии
+        </Text>
+        <View style={styles.tableContainer}>
+            <View style={styles.header}>
+                <Text style={styles.dateStart}>Дата начала</Text>
+                <Text style={styles.dateEnd}>Дата окончания</Text>
+                <Text style={styles.place}>Место получения</Text>
+                <Text style={styles.code}>
+                    {report?.iRDAccident.mv_name || '-'}
+                </Text>
             </View>
-        </>
-    )
-}
+            <View style={styles.row}>
+                <Text style={styles.dateStart}>
+                    {formatDateAndTime(
+                        `${report?.iRDAccident.start_datetime}`
+                    ) || '-'}
+                </Text>
+                <Text style={styles.dateEnd}>
+                    {formatDateAndTime(`${report?.iRDAccident.end_datetime}`) ||
+                        '-'}
+                </Text>
+                <Text style={styles.place}>
+                    {report?.iRDAccident.place || '-'}
+                </Text>
+                <Text style={styles.code}>
+                    {report?.iRDAccident.value || '-'}
+                </Text>
+            </View>
+            <View style={styles.row}>
+                <Text style={styles.sumDoses}>Суммарные дозы</Text>
+                <Text style={styles.code}>
+                    {report?.iRDAccident.value || '-'}
+                </Text>
+            </View>
+        </View>
+    </>
+)
 
 export default IRDAccident
