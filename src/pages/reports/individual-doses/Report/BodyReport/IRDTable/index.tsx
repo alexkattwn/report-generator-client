@@ -139,24 +139,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '35%',
     },
-    rowBlueStruct: {
-        width: 184,
-        padding: 6,
-    },
-    rowBlueContent: {
-        width: 64,
-        textAlign: 'center',
-        padding: 8,
-        borderLeftColor: borderColor,
-        borderLeftWidth: 1,
-    },
-    rowWhiteContent: {
-        width: '25%',
-        padding: 10,
-        borderLeftColor: borderColor,
-        borderLeftWidth: 1,
-        textAlign: 'center',
-    },
 })
 
 const IRDTable: React.FC = () => (
