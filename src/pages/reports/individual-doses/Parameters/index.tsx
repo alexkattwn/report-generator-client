@@ -15,6 +15,7 @@ import DatepickerParameter from '@/components/DatepickerParameter'
 import { showSimpleErrorMessage } from '@/utils/notifications'
 import CheckboxParameter from '@/components/CheckboxParameter'
 import InputParameter from '@/components/InputParameter'
+import useIDGraphic from '@/hooks/useIDGraphics'
 import {
     removeParametersIDFromSessionStorage,
     setParametersIDToSessionStorage,
@@ -42,7 +43,7 @@ const ParametersID: React.FC<ParametersIDProps> = ({
 
     const { companyStructures, getCompanyStructures } = useCompanyStructure()
 
-    // const { getGraphics } = useCDGraphic()
+    const { getGraphics } = useIDGraphic()
 
     const isMedia746 = useMediaQuery(746)
 
@@ -103,7 +104,7 @@ const ParametersID: React.FC<ParametersIDProps> = ({
             setParametersIDToSessionStorage(parameters)
             setParameters({ ...parameters, go: '1' })
             setParamsForInfographics({ ...parameters })
-            //getGraphics(parameters)
+            getGraphics(parameters)
             return
         }
 

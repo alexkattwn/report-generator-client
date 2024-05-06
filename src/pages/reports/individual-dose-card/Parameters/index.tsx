@@ -211,8 +211,6 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
                         </div>
                     )}
                 </SelectParameter>
-            </div>
-            <div className={cls.parameters__fields}>
                 <InputParameter
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setParameters({
@@ -271,8 +269,6 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
                     label='Контактные данные'
                     value={parameters.contacts}
                 />
-            </div>
-            <div className={cls.parameters__fields}>
                 <InputParameter
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setParameters({

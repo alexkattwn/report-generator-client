@@ -4,11 +4,12 @@ import { TbReportSearch } from 'react-icons/tb'
 import { useState } from 'react'
 
 import { REPORT_ID_ROUTE } from '@/constants'
-import { dateToString } from '@/utils/common'
+import { dateToString, reverseDate } from '@/utils/common'
 import { IParametersID } from '@/types/common'
 import { useMode } from '@/hooks/useMode'
 import ParametersID from '@/pages/reports/individual-doses/Parameters'
 import FiltersID from '@/pages/reports/individual-doses/Filters'
+import GraphicsID from '@/pages/reports/individual-doses/Graphics'
 
 import cls from '@/pages/reports/individual-doses/index.module.scss'
 
@@ -70,7 +71,7 @@ const IndividualDosesPage: React.FC = () => {
                     <>
                         <div className={cls.page__infographic__head}>
                             <div className={cls.page__infographic__head__block}>
-                                {/* <h3
+                                <h3
                                     className={`${cls.page__infographic__head__block__title} ${darkModeClass}`}
                                 >
                                     {`${reverseDate(
@@ -78,7 +79,7 @@ const IndividualDosesPage: React.FC = () => {
                                     )} - ${reverseDate(
                                         paramsForInfographics.date_end
                                     )}`}
-                                </h3> */}
+                                </h3>
                                 <button
                                     className={`${cls.page__infographic__head__block__btn} ${darkModeClass}`}
                                     onClick={() =>
@@ -95,7 +96,7 @@ const IndividualDosesPage: React.FC = () => {
                                 {paramsForInfographics.struct}
                             </h3>
                         </div>
-                        {/* <GraphicsCD parameters={paramsForInfographics} /> */}
+                        <GraphicsID parameters={paramsForInfographics} />
                     </>
                 )}
             </AnimatePresence>
