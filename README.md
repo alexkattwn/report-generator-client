@@ -13,7 +13,7 @@
 #### 2. Потом перейти в каталог проекта
 
 ```bash
-  cd s-key
+  cd report-generator-client
 ```
 
 #### 3. Установка Node.js (если его нет). Доступно по [ссылке](https://nodejs.org/en/download/).
