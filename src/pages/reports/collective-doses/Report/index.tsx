@@ -13,6 +13,7 @@ import HeaderReportCD from '@/pages/reports/collective-doses/Report/HeaderReport
 import BodyReportCD from '@/pages/reports/collective-doses/Report/BodyReport'
 import FooterReportCD from '@/pages/reports/collective-doses/Report/FooterReport'
 import { getParametersCDFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import { reverseDate } from '@/utils/common'
 import { IParametersCD } from '@/types/common'
 
 import cls from '@/pages/reports/collective-doses/Report/index.module.scss'
@@ -69,7 +70,11 @@ const ReportCD: React.FC = () => {
                                 <BodyReportCD />
                                 <FooterReportCD />
                                 <Text style={pageStyles.bottomText} fixed>
-                                    23.03.2022 - 27.03.2024 {state.struct}
+                                    {`${reverseDate(
+                                        state.date_start
+                                    )} - ${reverseDate(state.date_end)} ${
+                                        state.struct
+                                    }`}
                                 </Text>
                                 <Text
                                     style={pageStyles.pageNumber}

@@ -13,6 +13,7 @@ import { getParametersIDFromSessionStorage } from '@/helpers/sessionStorage.help
 import HeaderReportID from '@/pages/reports/individual-doses/Report/HeaderReport'
 import FooterReportID from '@/pages/reports/individual-doses/Report/FooterReport'
 import BodyReportID from '@/pages/reports/individual-doses/Report/BodyReport'
+import { reverseDate } from '@/utils/common'
 import { IParametersID } from '@/types/common'
 
 import cls from '@/pages/reports/individual-doses/Report/index.module.scss'
@@ -69,7 +70,11 @@ const ReportID: React.FC = () => {
                                 <BodyReportID />
                                 <FooterReportID />
                                 <Text style={pageStyles.bottomText} fixed>
-                                    23.03.2022 - 27.03.2024 {state.struct}
+                                    {`${reverseDate(
+                                        state.date_start
+                                    )} - ${reverseDate(state.date_end)} ${
+                                        state.struct
+                                    }`}
                                 </Text>
                                 <Text
                                     style={pageStyles.pageNumber}
