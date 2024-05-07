@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useMode } from '@/hooks/useMode'
 import { IParametersCD } from '@/types/common'
 import DoughnutChartCD from '@/pages/reports/collective-doses/Graphics/DoughnutChart'
-import BarChartCD from '@/pages/reports/collective-doses/Graphics/BarChart'
+//import BarChartCD from '@/pages/reports/collective-doses/Graphics/BarChart'
 import useCDGraphic from '@/hooks/useCDGraphics'
 
 import cls from '@/pages/reports/collective-doses/Graphics/index.module.scss'
@@ -36,7 +36,7 @@ const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
                     exit={{ opacity: 0 }}
                     className={cls.graphics}
                 >
-                    <BarChartCD graphic={graphics.bar} />
+                    {/* <BarChartCD graphic={graphics.bar} /> */}
                     <DoughnutChartCD graphic={graphics.doughnut} />
                 </motion.div>
             ) : (
@@ -46,7 +46,7 @@ const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
                     exit={{ opacity: 0 }}
                     className={cls.skeleton}
                 >
-                    <li className={cls.skeleton__main}>
+                    {/* <li className={cls.skeleton__main}>
                         <div className={cls.skeleton__main__hor}>
                             <div
                                 className={`${cls.skeleton__main__hor__right} ${
@@ -70,7 +70,7 @@ const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
                         >
                             <div className={cls.skeleton__item__light} />
                         </div>
-                    </li>
+                    </li> */}
                     <li
                         className={`${cls.skeleton__circle} ${
                             mode === 'dark' ? `${cls.dark_mode}` : ''
