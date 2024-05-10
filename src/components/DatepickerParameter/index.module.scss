@@ -17,8 +17,8 @@ $hover-color: #666;
         text-overflow: ellipsis;
         text-align: right;
 
-        @media (max-width: 380px) {
-            width: 120px;
+        @media (max-width: 480px) {
+            width: 132px;
         }
 
         &.dark_mode {

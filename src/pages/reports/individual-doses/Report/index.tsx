@@ -68,7 +68,7 @@ const ReportID: React.FC = () => {
                             >
                                 <HeaderReportID state={state} />
                                 <BodyReportID />
-                                <FooterReportID />
+                                <FooterReportID parameters={state} />
                                 <Text style={pageStyles.bottomText} fixed>
                                     {`${reverseDate(
                                         state.date_start

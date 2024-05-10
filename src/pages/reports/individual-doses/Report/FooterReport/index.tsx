@@ -1,5 +1,7 @@
 import { StyleSheet, View, Text } from '@react-pdf/renderer'
 
+import { IParametersID } from '@/types/common'
+
 const styles = StyleSheet.create({
     block: {
         marginTop: 24,
@@ -40,7 +42,11 @@ const styles = StyleSheet.create({
     },
 })
 
-const FooterReportID: React.FC = () => (
+interface FooterReportIDProps {
+    parameters: IParametersID
+}
+
+const FooterReportID: React.FC<FooterReportIDProps> = ({ parameters }) => (
     <View style={styles.block}>
         <View style={styles.row}>
             <Text style={styles.bottom}>Начальник ОРБ</Text>
@@ -49,7 +55,7 @@ const FooterReportID: React.FC = () => (
                 <Text style={styles.elem}>подпись</Text>
             </View>
             <View style={styles.painting}>
-                <Text style={styles.bottomText}>А.Л. Березницкий</Text>
+                <Text style={styles.bottomText}>{parameters.chief_orb}</Text>
                 <Text style={styles.elem}>И.О.Фамилия</Text>
             </View>
         </View>
@@ -60,7 +66,9 @@ const FooterReportID: React.FC = () => (
                 <Text style={styles.elem}>подпись</Text>
             </View>
             <View style={styles.painting}>
-                <Text style={styles.bottomText}>Ю.С. Прыткова</Text>
+                <Text style={styles.bottomText}>
+                    {parameters.chief_group_idc}
+                </Text>
                 <Text style={styles.elem}>И.О.Фамилия</Text>
             </View>
         </View>

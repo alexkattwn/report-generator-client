@@ -68,7 +68,7 @@ const ReportCD: React.FC = () => {
                             >
                                 <HeaderReportCD state={state} />
                                 <BodyReportCD />
-                                <FooterReportCD />
+                                <FooterReportCD parameters={state} />
                                 <Text style={pageStyles.bottomText} fixed>
                                     {`${reverseDate(
                                         state.date_start
