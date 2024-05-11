@@ -14,16 +14,14 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const { setIsAuthorized, checkToken } = useAuth()
 
     useEffect(() => {
-        const handleCheckToken = async () => {
+        ;(async () => {
             await checkToken()
             setIsAppReady(true)
-        }
-
-        handleCheckToken()
+        })()
     }, [])
 
     useEffect(() => {
-        const handlePersistedLogOut = (event: any) => {
+        const handlePersistedLogOut = (event: StorageEvent) => {
             if (event.key === config.LOGOUT_STORAGE_KEY) {
                 inMemoryJWT.deleteToken()
                 setIsAuthorized(false)
