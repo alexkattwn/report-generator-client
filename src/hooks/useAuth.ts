@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import { AuthClient, ResourceClient } from '@/api/axiosClient'
 import { ICurrentUser, SignInResponse } from '@/types/auth'
-import { showErrorMessage, showSuccessMessage } from '@/utils/notifications'
+import { showErrorMessage } from '@/utils/notifications'
 import inMemoryJWT from '@/services/inMemoryJWT'
 import { errorException } from '@/utils/errors'
 
@@ -27,7 +27,6 @@ const useAuth = create<AuthStore>((set) => ({
             const { token, showname, id } = response.data
             inMemoryJWT.setToken(token)
             set({ isAuthorized: true, currentUser: { showname, id } })
-            showSuccessMessage('Вход выполнен')
         } catch (error) {
             showErrorMessage(error)
         }
