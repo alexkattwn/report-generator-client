@@ -1,10 +1,11 @@
 import {
+    getTokenFromLocalStorage,
     removeTokenFromLocalStorage,
     setTokenToLocalStorage,
 } from '@/helpers/localStorage.helper'
 
 const inMemoryJWTService = () => {
-    let inMemoryJWT: string | null = localStorage.getItem('token')
+    let inMemoryJWT: string | null = getTokenFromLocalStorage()
 
     const getToken = () => inMemoryJWT
 
