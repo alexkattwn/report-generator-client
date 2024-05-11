@@ -1,4 +1,3 @@
-import config from '@/config'
 import {
     removeTokenFromLocalStorage,
     setTokenToLocalStorage,
@@ -17,7 +16,7 @@ const inMemoryJWTService = () => {
     const deleteToken = () => {
         inMemoryJWT = null
         removeTokenFromLocalStorage()
-        localStorage.setItem(config.LOGOUT_STORAGE_KEY, Date.now() as any)
+        setTokenToLocalStorage(Date.now() as any)
     }
 
     return { getToken, setToken, deleteToken }
