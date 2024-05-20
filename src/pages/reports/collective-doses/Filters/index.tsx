@@ -152,9 +152,6 @@ const FilterCD: React.FC<FiltersCDProps> = ({
             </div>
             <button
                 className={`${cls.block__edit} ${darkModeClass}`}
-                data-tooltip-id='tooltip'
-                data-tooltip-content='Редактировать шаблон'
-                data-tooltip-place='left'
                 onClick={() => setShowModal()}
             >
                 <span>Изменить</span>

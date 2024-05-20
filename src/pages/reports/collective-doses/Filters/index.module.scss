@@ -9,6 +9,7 @@
     border-radius: 12px;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 
     border: 2px solid var(--light-blue);
 
@@ -97,6 +98,7 @@
     }
 
     &__edit {
+        margin-left: 20px;
         background: transparent;
         border: 1px solid var(--blue);
         width: fit-content;

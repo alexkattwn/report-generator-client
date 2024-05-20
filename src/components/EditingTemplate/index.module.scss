@@ -9,7 +9,8 @@
     align-items: center;
 
     @media (max-width: 460px) {
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
     }
 
     &__header {
@@ -53,16 +54,17 @@
         }
     }
 
-    // &:hover &__close {
-    //     display: block;
-    // }
-
     &__actions {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 30px;
+        flex-wrap: wrap;
+
+        @media (max-width: 460px) {
+            gap: 10px;
+        }
 
         &__btns {
             background: transparent;
@@ -96,6 +98,11 @@
                 background-color: var(--light-blue);
                 cursor: pointer;
                 color: var(--color-white);
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                opacity: 0.6;
             }
         }
 

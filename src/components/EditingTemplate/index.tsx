@@ -83,7 +83,7 @@ const EditingTemplate: React.FC = () => {
                 </div>
                 <button
                     className={`${cls.window__actions__btns} ${darkModeClass}`}
-                    disabled={!!selectedFile}
+                    disabled={!!!selectedFile}
                 >
                     <span>Сохранить</span>
                     <LiaSaveSolid size={26} />
