@@ -1,10 +1,13 @@
 import { AiOutlineUpload } from 'react-icons/ai'
 import { IoCloseOutline, IoDownloadOutline } from 'react-icons/io5'
 import { LiaSaveSolid } from 'react-icons/lia'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { RingLoader } from 'react-spinners'
 
 import { useMode } from '@/hooks/useMode'
 import useModal from '@/hooks/useModal'
+import useReportTemplate from '@/hooks/useReportTemplates'
+import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
 
 import cls from '@components/EditingTemplate/index.module.scss'
 
@@ -13,9 +16,33 @@ const EditingTemplate: React.FC = () => {
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     const { setShowModal } = useModal()
+    const {
+        createTemplate,
+        getTemplate,
+        isLoading,
+        template,
+        downloadTemplate,
+    } = useReportTemplate()
 
     const [dragEnter, setDragEnter] = useState<boolean>(false)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
+    useEffect(() => {
+        getTemplate(getCurrentReportFromSessionStorage())
+    }, [])
+
+    const saveTemplate = async () => {
+        if (selectedFile) {
+            await createTemplate(
+                getCurrentReportFromSessionStorage(),
+                selectedFile
+            )
+        }
+    }
+
+    const downloadReportTemplate = async () => {
+        await downloadTemplate(template.id_uuid)
+    }
 
     const handleUploadFile = async (
         event: React.ChangeEvent<HTMLInputElement>
@@ -63,6 +90,7 @@ const EditingTemplate: React.FC = () => {
             <div className={cls.window__actions}>
                 <button
                     className={`${cls.window__actions__btns} ${darkModeClass}`}
+                    onClick={downloadReportTemplate}
                 >
                     <span>Скачать</span>
                     <IoDownloadOutline size={26} />
@@ -79,11 +107,13 @@ const EditingTemplate: React.FC = () => {
                         type='file'
                         id='upload-label'
                         className={cls.window__actions__upload__input}
+                        accept='.doc,.docx'
                     />
                 </div>
                 <button
                     className={`${cls.window__actions__btns} ${darkModeClass}`}
                     disabled={!!!selectedFile}
+                    onClick={saveTemplate}
                 >
                     <span>Сохранить</span>
                     <LiaSaveSolid size={26} />
@@ -96,14 +126,19 @@ const EditingTemplate: React.FC = () => {
                 onDragOver={dragEnterHandler}
                 onDrop={dropHandler}
             >
-                {!selectedFile || dragEnter ? (
+                {(!selectedFile || dragEnter) && !isLoading ? (
                     <div
                         className={`${cls.window__upload__zone} ${darkModeClass}`}
                     >
                         <AiOutlineUpload size={58} />
                     </div>
                 ) : (
-                    <span>{selectedFile.name}</span>
+                    <span>{selectedFile?.name}</span>
+                )}
+                {isLoading && (
+                    <div className='loader'>
+                        <RingLoader color='#36d7b7' />
+                    </div>
                 )}
             </div>
         </div>

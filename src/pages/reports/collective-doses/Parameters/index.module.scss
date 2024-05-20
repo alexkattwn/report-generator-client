@@ -55,6 +55,7 @@
         align-items: flex-end;
         gap: 10px;
     }
+
     &__head {
         font-size: 16px;
         font-weight: 300;
@@ -101,6 +102,11 @@
 
             &.dark_mode {
                 color: var(--color-white);
+
+                &:hover {
+                    color: var(--bg-dark);
+                    background-color: var(--color-light-gray);
+                }
             }
 
             &:hover {

@@ -123,6 +123,7 @@
             border: 1px solid var(--color-white);
 
             &:hover {
+                color: var(--bg-dark);
                 background-color: var(--color-light-gray);
             }
         }

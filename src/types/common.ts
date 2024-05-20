@@ -112,3 +112,11 @@ export interface IGuide {
     report_id_uuid: string
     image_dark: string
 }
+
+export interface ITemplate {
+    id_uuid: string
+    report_id_uuid: string
+    date_creation: string
+    type: string
+    title: string
+}
