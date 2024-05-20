@@ -8,6 +8,7 @@ import {
     IParametersID,
     IParametersIDC,
 } from '@/types/common'
+import { isIParametersCD, isIParametersID } from '@/utils/common'
 
 interface FiltersStore {
     isLoading: boolean
@@ -42,6 +43,9 @@ const useFilters = create<FiltersStore>((set) => ({
     createFilter: async (nameReport, name, parameters) => {
         try {
             set({ isLoading: true })
+            if (isIParametersCD(parameters) || isIParametersID(parameters)) {
+                delete parameters.go
+            }
             const { data } = await ResourceClient.post<IFilter[]>('/filters', {
                 name_report: nameReport,
                 name,

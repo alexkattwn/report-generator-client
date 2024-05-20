@@ -1,3 +1,5 @@
+import { IParametersCD, IParametersID } from '@/types/common'
+
 export const getWindowWidth = () => {
     const { innerWidth: windowWidth } =
         typeof window !== 'undefined' ? window : { innerWidth: 0 }
@@ -67,4 +69,54 @@ export const dateToString = (date: Date): string => {
 export function reverseDate(dateString: string): string {
     const [year, month, day] = dateString.split('-')
     return `${day}.${month}.${year}`
+}
+
+export function isIParametersCD(obj: any): obj is IParametersCD {
+    const keys: (keyof IParametersCD)[] = [
+        'on_business_trips',
+        'by_surveys',
+        'by_receipts',
+        'main_tdk',
+        'additional_tdk',
+        'odk',
+        'date_start',
+        'date_end',
+        'struct',
+        'age_from',
+        'age_to',
+        'sex_man',
+        'sex_woman',
+        'all_child_structures',
+        'chief_orb',
+        'chief_lprk_orb',
+        'filter',
+        'go',
+    ]
+
+    return keys.every((key) => key in obj && typeof obj[key] === 'string')
+}
+
+export function isIParametersID(obj: any): obj is IParametersID {
+    const keys: (keyof IParametersID)[] = [
+        'on_business_trips',
+        'by_surveys',
+        'by_receipts',
+        'main_tdk',
+        'additional_tdk',
+        'odk',
+        'date_start',
+        'date_end',
+        'struct',
+        'age_from',
+        'age_to',
+        'sex_man',
+        'sex_woman',
+        'all_child_structures',
+        'chief_orb',
+        'chief_group_idc',
+        'filter',
+        'go',
+    ]
+
+    return keys.every((key) => key in obj && typeof obj[key] === 'string')
 }
