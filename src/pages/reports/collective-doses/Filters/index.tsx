@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { SetURLSearchParams } from 'react-router-dom'
+import { CiEdit } from 'react-icons/ci'
 
 import ButtonAddField from '@/components/ButtonAddField'
 import SelectParameter from '@/components/SelectParameter'
@@ -13,6 +14,9 @@ import { showSimpleErrorMessage } from '@/utils/notifications'
 import useFilters from '@/hooks/useFilters'
 import { IFilter, IParametersCD } from '@/types/common'
 import { delayValue, initialStateParametersCD } from '@/constants'
+import ModalWindow from '@/components/ModalWindow'
+import useModal from '@/hooks/useModal'
+import EditingTemplate from '@/components/EditingTemplate'
 
 import cls from '@/pages/reports/collective-doses/Filters/index.module.scss'
 
@@ -32,6 +36,7 @@ const FilterCD: React.FC<FiltersCDProps> = ({
 
     const { selectedReport } = useSidebar()
     const { filters, getFilters, createFilter, removeFilter } = useFilters()
+    const { setShowModal } = useModal()
 
     const debouncedFilter = useDebounce<string>(parameters.filter, delayValue)
 
@@ -145,6 +150,19 @@ const FilterCD: React.FC<FiltersCDProps> = ({
                     create={createNewFilter}
                 />
             </div>
+            <button
+                className={`${cls.block__edit} ${darkModeClass}`}
+                data-tooltip-id='tooltip'
+                data-tooltip-content='Редактировать шаблон'
+                data-tooltip-place='left'
+                onClick={() => setShowModal()}
+            >
+                <span>Изменить</span>
+                <CiEdit size={32} />
+            </button>
+            <ModalWindow>
+                <EditingTemplate />
+            </ModalWindow>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { IoCloseOutline } from 'react-icons/io5'
 
 import { useMode } from '@/hooks/useMode'
 import useModal from '@/hooks/useModal'
@@ -16,10 +15,6 @@ const ModalWindow: React.FC<ModalWindowProps> = ({ children }) => {
 
     const { showModal, setShowModal } = useModal()
 
-    const handleCloseModal = () => {
-        setShowModal()
-    }
-
     return (
         <AnimatePresence>
             {showModal && (
@@ -35,12 +30,6 @@ const ModalWindow: React.FC<ModalWindowProps> = ({ children }) => {
                         onClick={(e) => e.stopPropagation()}
                     >
                         {children}
-                        <button
-                            className={`${cls.modal__content__close} ${darkModeClass}`}
-                            onClick={handleCloseModal}
-                        >
-                            <IoCloseOutline size={56} />
-                        </button>
                     </div>
                 </motion.div>
             )}
