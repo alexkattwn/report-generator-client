@@ -2,6 +2,7 @@ import { SetURLSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { RiDeleteBin5Line } from 'react-icons/ri'
+import { CiEdit } from 'react-icons/ci'
 
 import { IFilter, IParametersID } from '@/types/common'
 import { showSimpleErrorMessage } from '@/utils/notifications'
@@ -13,6 +14,9 @@ import useSidebar from '@/hooks/useSidebar'
 import { useMode } from '@/hooks/useMode'
 import ButtonAddField from '@/components/ButtonAddField'
 import SelectParameter from '@/components/SelectParameter'
+import ModalWindow from '@/components/ModalWindow'
+import EditingTemplate from '@/components/EditingTemplate'
+import useModal from '@/hooks/useModal'
 
 import cls from '@/pages/reports/individual-doses/Filters/index.module.scss'
 
@@ -32,6 +36,7 @@ const FiltersID: React.FC<FiltersIDProps> = ({
 
     const { selectedReport } = useSidebar()
     const { filters, getFilters, createFilter, removeFilter } = useFilters()
+    const { setShowModal } = useModal()
 
     const debouncedFilter = useDebounce<string>(parameters.filter, delayValue)
 
@@ -145,6 +150,16 @@ const FiltersID: React.FC<FiltersIDProps> = ({
                     create={createNewFilter}
                 />
             </div>
+            <button
+                className={`${cls.block__edit} ${darkModeClass}`}
+                onClick={() => setShowModal()}
+            >
+                <span>Изменить</span>
+                <CiEdit size={32} />
+            </button>
+            <ModalWindow>
+                <EditingTemplate />
+            </ModalWindow>
         </div>
     )
 }
