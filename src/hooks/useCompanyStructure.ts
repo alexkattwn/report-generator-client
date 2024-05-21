@@ -7,7 +7,7 @@ import { ICompanyStructure } from '@/types/common'
 interface CompanyStructureStore {
     isLoading: boolean
     companyStructures: ICompanyStructure[]
-    getCompanyStructures: (value?: string) => void
+    getCompanyStructures: (value?: string) => Promise<void>
 }
 
 const useCompanyStructure = create<CompanyStructureStore>((set) => ({

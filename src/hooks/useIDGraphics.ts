@@ -31,7 +31,7 @@ interface IGraphicID {
 interface IDGraphicStore {
     isLoading: boolean
     graphics: IGraphicID
-    getGraphics: (parameters: IParametersID) => void
+    getGraphics: (parameters: IParametersID) => Promise<void>
 }
 
 const useIDGraphic = create<IDGraphicStore>((set) => ({

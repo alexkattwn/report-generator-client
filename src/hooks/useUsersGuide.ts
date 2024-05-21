@@ -7,7 +7,7 @@ import { IGuide } from '@/types/common'
 interface UsersGuideStore {
     isLoading: boolean
     guide: IGuide[]
-    getGuide: (idReport: string) => void
+    getGuide: (idReport: string) => Promise<void>
 }
 
 const useUsersGuide = create<UsersGuideStore>((set) => ({

@@ -7,7 +7,7 @@ import { IPost } from '@/types/common'
 interface PostsStore {
     isLoading: boolean
     posts: IPost[]
-    getPosts: (value?: string) => void
+    getPosts: (value?: string) => Promise<void>
 }
 
 const usePosts = create<PostsStore>((set) => ({

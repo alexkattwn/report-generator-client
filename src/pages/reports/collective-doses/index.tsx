@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
 
@@ -10,6 +10,8 @@ import { useMode } from '@/hooks/useMode'
 import FiltersCD from '@/pages/reports/collective-doses/Filters'
 import ParametersCD from '@/pages/reports/collective-doses/Parameters'
 import GraphicsCD from '@/pages/reports/collective-doses/Graphics'
+import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import useReportTemplate from '@/hooks/useReportTemplates'
 
 import cls from '@/pages/reports/collective-doses/index.module.scss'
 
@@ -44,6 +46,12 @@ const CollectiveDosesPage: React.FC = () => {
 
     const [paramsForInfographics, setParamsForInfographics] =
         useState<IParametersCD>(params)
+
+    const { getTemplate } = useReportTemplate()
+
+    useEffect(() => {
+        getTemplate(getCurrentReportFromSessionStorage())
+    }, [])
 
     return (
         <motion.div

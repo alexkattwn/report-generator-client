@@ -21,7 +21,7 @@ const GraphicsCD: React.FC<GraphicsCDProps> = ({ parameters }) => {
 
     useEffect(() => {
         ;(async () => {
-            getGraphics(parameters)
+            await getGraphics(parameters)
             setIsReady(true)
         })()
     }, [])

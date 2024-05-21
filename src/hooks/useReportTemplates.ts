@@ -8,9 +8,9 @@ import { ITemplate } from '@/types/common'
 interface ReportTemplateStore {
     isLoading: boolean
     template: ITemplate
-    getTemplate: (reportName: string) => void
-    createTemplate: (reportName: string, template: File) => void
-    downloadTemplate: (id: string) => void
+    getTemplate: (reportName: string) => Promise<void>
+    createTemplate: (reportName: string, template: File) => Promise<void>
+    downloadTemplate: (id: string) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({

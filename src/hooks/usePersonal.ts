@@ -15,7 +15,7 @@ interface PersonalStore {
         parameters: IParametersIDC,
         currentPage: number,
         fio?: string
-    ) => void
+    ) => Promise<void>
 }
 
 const usePersonal = create<PersonalStore>((set) => ({

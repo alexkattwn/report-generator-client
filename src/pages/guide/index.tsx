@@ -23,7 +23,9 @@ const GuidePage: React.FC = () => {
     })
 
     useEffect(() => {
-        getGuide('5ed757ec-cd92-4e59-9450-03086500178f')
+        ;(async () => {
+            await getGuide('5ed757ec-cd92-4e59-9450-03086500178f')
+        })()
     }, [])
 
     useEffect(() => {

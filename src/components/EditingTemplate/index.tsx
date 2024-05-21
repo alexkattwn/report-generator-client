@@ -1,8 +1,9 @@
 import { AiOutlineUpload } from 'react-icons/ai'
 import { IoCloseOutline, IoDownloadOutline } from 'react-icons/io5'
 import { LiaSaveSolid } from 'react-icons/lia'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { RingLoader } from 'react-spinners'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { useMode } from '@/hooks/useMode'
 import useModal from '@/hooks/useModal'
@@ -16,20 +17,11 @@ const EditingTemplate: React.FC = () => {
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     const { setShowModal } = useModal()
-    const {
-        createTemplate,
-        getTemplate,
-        isLoading,
-        template,
-        downloadTemplate,
-    } = useReportTemplate()
+    const { createTemplate, isLoading, template, downloadTemplate } =
+        useReportTemplate()
 
     const [dragEnter, setDragEnter] = useState<boolean>(false)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
-
-    useEffect(() => {
-        getTemplate(getCurrentReportFromSessionStorage())
-    }, [])
 
     const saveTemplate = async () => {
         if (selectedFile) {
@@ -37,6 +29,7 @@ const EditingTemplate: React.FC = () => {
                 getCurrentReportFromSessionStorage(),
                 selectedFile
             )
+            setSelectedFile(null)
         }
     }
 
@@ -126,20 +119,33 @@ const EditingTemplate: React.FC = () => {
                 onDragOver={dragEnterHandler}
                 onDrop={dropHandler}
             >
-                {(!selectedFile || dragEnter) && !isLoading ? (
-                    <div
-                        className={`${cls.window__upload__zone} ${darkModeClass}`}
-                    >
-                        <AiOutlineUpload size={58} />
-                    </div>
-                ) : (
-                    <span>{selectedFile?.name}</span>
-                )}
-                {isLoading && (
-                    <div className='loader'>
-                        <RingLoader color='#36d7b7' />
-                    </div>
-                )}
+                <AnimatePresence>
+                    {!isLoading ? (
+                        <>
+                            {!selectedFile || dragEnter ? (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className={`${cls.window__upload__zone} ${darkModeClass}`}
+                                >
+                                    <AiOutlineUpload size={58} />
+                                </motion.div>
+                            ) : (
+                                <span>{selectedFile?.name}</span>
+                            )}
+                        </>
+                    ) : (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className='loader'
+                        >
+                            <RingLoader color='#36d7b7' />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TbReportSearch } from 'react-icons/tb'
 
 import { useMode } from '@/hooks/useMode'
@@ -11,6 +11,8 @@ import GraphicsIDC from '@/pages/reports/individual-dose-card/Graphics'
 import { IParametersIDC } from '@/types/common'
 import useReportIDC from '@/hooks/useReportIDC'
 import { REPORT_IDC_ROUTE } from '@/constants'
+import useReportTemplate from '@/hooks/useReportTemplates'
+import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
 
 import cls from '@/pages/reports/individual-dose-card/index.module.scss'
 
@@ -39,6 +41,12 @@ const IndividualDoseCardReportPage: React.FC = () => {
 
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
+
+    const { getTemplate } = useReportTemplate()
+
+    useEffect(() => {
+        getTemplate(getCurrentReportFromSessionStorage())
+    }, [])
 
     return (
         <motion.div

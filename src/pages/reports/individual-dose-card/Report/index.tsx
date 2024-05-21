@@ -69,7 +69,9 @@ const ReportIDC: React.FC = () => {
     const { report, getReport, isLoading } = useReportIDC()
 
     useEffect(() => {
-        getReport(getPersonFromSessionStorage())
+        ;(async () => {
+            await getReport(getPersonFromSessionStorage())
+        })()
     }, [])
 
     return (

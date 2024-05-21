@@ -31,7 +31,7 @@ interface IGraphicCD {
 interface CDGraphicStore {
     isLoading: boolean
     graphics: IGraphicCD
-    getGraphics: (parameters: IParametersCD) => void
+    getGraphics: (parameters: IParametersCD) => Promise<void>
 }
 
 const useCDGraphic = create<CDGraphicStore>((set) => ({

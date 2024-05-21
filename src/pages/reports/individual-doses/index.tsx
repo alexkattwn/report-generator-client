@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { REPORT_ID_ROUTE } from '@/constants'
 import { dateToString, reverseDate } from '@/utils/common'
@@ -10,6 +10,8 @@ import { useMode } from '@/hooks/useMode'
 import ParametersID from '@/pages/reports/individual-doses/Parameters'
 import FiltersID from '@/pages/reports/individual-doses/Filters'
 import GraphicsID from '@/pages/reports/individual-doses/Graphics'
+import useReportTemplate from '@/hooks/useReportTemplates'
+import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
 
 import cls from '@/pages/reports/individual-doses/index.module.scss'
 
@@ -44,6 +46,12 @@ const IndividualDosesPage: React.FC = () => {
 
     const [paramsForInfographics, setParamsForInfographics] =
         useState<IParametersID>(params)
+
+    const { getTemplate } = useReportTemplate()
+
+    useEffect(() => {
+        getTemplate(getCurrentReportFromSessionStorage())
+    }, [])
 
     return (
         <motion.div

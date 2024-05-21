@@ -10,8 +10,8 @@ interface AuthStore {
     isAuthorized: boolean
     setIsAuthorized: (state: boolean) => void
     currentUser: ICurrentUser | undefined
-    signIn: (login: string, identifier: string) => void
-    checkToken: () => void
+    signIn: (login: string, identifier: string) => Promise<void>
+    checkToken: () => Promise<void>
 }
 
 const useAuth = create<AuthStore>((set) => ({

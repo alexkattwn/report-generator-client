@@ -46,7 +46,7 @@ interface IGraphicIDC {
 interface IDCGraphicStore {
     isLoading: boolean
     graphics: IGraphicIDC
-    getGraphics: (idPersonal: string) => void
+    getGraphics: (idPersonal: string) => Promise<void>
 }
 
 const useIDCGraphic = create<IDCGraphicStore>((set) => ({

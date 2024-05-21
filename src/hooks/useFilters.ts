@@ -13,13 +13,13 @@ import { isIParametersCD, isIParametersID } from '@/utils/common'
 interface FiltersStore {
     isLoading: boolean
     filters: IFilter[]
-    getFilters: (nameReport: string, value?: string) => void
+    getFilters: (nameReport: string, value?: string) => Promise<void>
     createFilter: (
         nameReport: string,
         name: string,
         parameters: IParametersIDC | IParametersCD | IParametersID
-    ) => void
-    removeFilter: (nameReport: string, idFilter: string) => void
+    ) => Promise<void>
+    removeFilter: (nameReport: string, idFilter: string) => Promise<void>
 }
 
 const useFilters = create<FiltersStore>((set) => ({
