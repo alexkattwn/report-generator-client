@@ -105,6 +105,7 @@ const FiltersIDC: React.FC<FiltersIDCProps> = ({
                     selected={parameters.filter}
                     onClear={clearFilter}
                     onChange={filterSearch}
+                    className='eleventh-step'
                 >
                     {filters?.length > 0 ? (
                         <AnimatePresence>
@@ -152,7 +153,7 @@ const FiltersIDC: React.FC<FiltersIDCProps> = ({
                 />
             </div>
             <button
-                className={`${cls.block__edit} ${darkModeClass}`}
+                className={`${cls.block__edit} ${darkModeClass} twelfth-step`}
                 onClick={() => setShowModal()}
             >
                 <span>Изменить</span>

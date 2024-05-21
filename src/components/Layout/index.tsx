@@ -3,21 +3,22 @@ import { AnimatePresence } from 'framer-motion'
 
 import Header from '@components/Header'
 import PageLoader from '@components/PageLoader'
+import InteractiveGuide from '@components/InteractiveGuide'
 
-const Layout: React.FC = () => {
-    return (
-        <>
-            <PageLoader />
+const Layout: React.FC = () => (
+    <>
+        <InteractiveGuide />
 
-            <Header />
+        <PageLoader />
 
-            <AnimatePresence>
-                <Outlet />
-            </AnimatePresence>
+        <Header />
 
-            <div className='overlay' />
-        </>
-    )
-}
+        <AnimatePresence>
+            <Outlet />
+        </AnimatePresence>
+
+        <div className='overlay' />
+    </>
+)
 
 export default Layout

@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
                     <>
                         <div className={cls.sidebar__header}>
                             <h2
-                                className={`${cls.sidebar__header__text} ${darkModeClass}`}
+                                className={`${cls.sidebar__header__text} ${darkModeClass} first-step`}
                             >
                                 Отчеты
                             </h2>
@@ -57,6 +57,7 @@ const Sidebar: React.FC = () => {
                                     data-tooltip-content='Свернуть'
                                     data-tooltip-place='right'
                                     size={36}
+                                    className='second-step'
                                 />
                             </motion.button>
                         </div>

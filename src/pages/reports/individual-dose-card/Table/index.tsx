@@ -106,7 +106,7 @@ const TableIDC: React.FC<TableIDCProps> = ({
                 <>
                     {personal?.length ? (
                         <table
-                            className={`${cls.main__table} ${darkModeClass}`}
+                            className={`${cls.main__table} ${darkModeClass} seventh-step`}
                         >
                             <thead>
                                 <tr>

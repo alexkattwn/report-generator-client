@@ -19,7 +19,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     return (
-        <div className={cls.main}>
+        <div className={`${cls.main} sixth-step`}>
             <input
                 className={`${cls.main__input} ${darkModeClass}`}
                 type='text'

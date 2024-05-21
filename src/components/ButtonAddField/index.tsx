@@ -110,7 +110,7 @@ const ButtonAddField: React.FC<ButtonAddFieldProps> = ({
             )}
             <button
                 onClick={toggleField}
-                className={`${cls.block__btn} ${darkModeClass}`}
+                className={`${cls.block__btn} ${darkModeClass} tenth-step`}
             >
                 <IoAddOutline
                     data-tooltip-id='tooltip'

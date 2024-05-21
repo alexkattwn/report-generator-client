@@ -5,15 +5,12 @@ import Sidebar from '@/components/Sidebar'
 
 import cls from '@components/ReportsLayout/index.module.scss'
 
-const ReportsLayout: React.FC = () => {
-    return (
-        <div className={cls.layout}>
-            <Sidebar />
-            <AnimatePresence>
-                <Outlet />
-            </AnimatePresence>
-        </div>
-    )
-}
-
+const ReportsLayout: React.FC = () => (
+    <div className={cls.layout}>
+        <Sidebar />
+        <AnimatePresence>
+            <Outlet />
+        </AnimatePresence>
+    </div>
+)
 export default ReportsLayout

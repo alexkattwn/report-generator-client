@@ -12,6 +12,7 @@ interface SelectParameterProps {
     onClear: () => void
     children: React.ReactNode
     onChange: (value: string) => void
+    className?: string
 }
 
 const SelectParameter: React.FC<SelectParameterProps> = ({
@@ -20,6 +21,7 @@ const SelectParameter: React.FC<SelectParameterProps> = ({
     onClear,
     children,
     onChange,
+    className,
 }) => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
@@ -49,7 +51,7 @@ const SelectParameter: React.FC<SelectParameterProps> = ({
     }
 
     return (
-        <div className={cls.block} ref={ref}>
+        <div className={`${cls.block} ${className}`} ref={ref}>
             {label && (
                 <label
                     className={`${cls.block__label} ${darkModeClass}`}

@@ -90,7 +90,7 @@ const IndividualDoseCardReportPage: React.FC = () => {
                                 {`Отчет по сотруднику: ${report?.personInfo?.surname} ${report?.personInfo?.name} ${report?.personInfo?.patronymic}`}
                             </h3>
                             <button
-                                className={`${cls.page__infographic__head__btn} ${darkModeClass}`}
+                                className={`${cls.page__infographic__head__btn} ${darkModeClass} ninth-step`}
                                 onClick={() =>
                                     window.open(REPORT_IDC_ROUTE, '_blank')
                                 }

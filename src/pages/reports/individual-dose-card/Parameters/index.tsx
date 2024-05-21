@@ -94,7 +94,7 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
     }, [debouncedStruct])
 
     return (
-        <div className={`${cls.parameters} ${darkModeClass}`}>
+        <div className={`${cls.parameters} ${darkModeClass} third-step`}>
             <h2 className={`${cls.parameters__head} ${darkModeClass}`}>
                 Параметры
             </h2>
@@ -303,14 +303,14 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
             </div>
             <div className={`${cls.parameters__actions} ${darkModeClass}`}>
                 <button
-                    className={`${cls.parameters__actions__search} ${darkModeClass}`}
+                    className={`${cls.parameters__actions__search} ${darkModeClass} fourth-step`}
                     onClick={handleSearch}
                 >
                     <span>Искать</span>
                     <HiOutlineSearch size={28} />
                 </button>
                 <button
-                    className={`${cls.parameters__actions__clear} ${darkModeClass}`}
+                    className={`${cls.parameters__actions__clear} ${darkModeClass} fifth-step`}
                     onClick={handleClear}
                 >
                     <span>Очистить</span>

@@ -76,7 +76,7 @@ interface IAreaChartIDCProps {
 }
 
 const AreaChartIDC: React.FC<IAreaChartIDCProps> = ({ graphic }) => (
-    <div className={cls.area}>
+    <div className={`${cls.area} eighth-step`}>
         <Line options={options} data={graphic.info} />
     </div>
 )

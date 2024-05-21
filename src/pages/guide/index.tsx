@@ -2,10 +2,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MdOutlineKeyboardDoubleArrowUp } from 'react-icons/md'
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useMode } from '@/hooks/useMode'
 import useUsersGuide from '@/hooks/useUsersGuide'
 import GuideElement from '@/pages/guide/GuideElement'
+import useJoyride from '@/hooks/useJoyride'
+import useSidebar from '@/hooks/useSidebar'
+import { INDIVIDUAL_DOSE_CARD_REPORT_ROUTE } from '@/constants'
 
 import cls from '@/pages/guide/index.module.scss'
 
@@ -13,7 +17,13 @@ const GuidePage: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
+    const [_, setSearchParams] = useSearchParams()
+
+    const navigate = useNavigate()
+
     const { getGuide, isLoading, guide } = useUsersGuide()
+    const { setRun } = useJoyride()
+    const { setIsOpen } = useSidebar()
 
     const [isVisibleButton, setIsVisibleButton] = useState<boolean>(false)
     const buttonRef = useRef<HTMLButtonElement>(null)
@@ -37,6 +47,16 @@ const GuidePage: React.FC = () => {
             .getElementById('guide')
             ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
 
+    const startJoyride = () => {
+        navigate(INDIVIDUAL_DOSE_CARD_REPORT_ROUTE)
+        setIsOpen(true)
+        setRun(true)
+        setSearchParams(
+            { id_personal: '1817c646-7e2b-4ddb-bf01-dc1e5fd9f98d' },
+            { replace: true }
+        )
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -50,6 +70,7 @@ const GuidePage: React.FC = () => {
                     <h3>Руководство пользователя</h3>
                 </div>
                 <div className={`${cls.page__main__content} ${darkModeClass}`}>
+                    <button onClick={startJoyride}>начать</button>
                     {!isLoading && (
                         <>
                             {guide?.map((element) => (
