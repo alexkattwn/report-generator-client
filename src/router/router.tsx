@@ -12,6 +12,7 @@ import {
     REPORT_ID_ROUTE,
     USERS_GUIDE_ROUTE,
     NOT_FOUND_ROUTE,
+    HISTORY_TEMPLATES_ROUTE,
 } from '@/constants'
 import AuthPage from '@/pages/auth'
 import Layout from '@/components/Layout'
@@ -27,6 +28,7 @@ import ReportCD from '@/pages/reports/collective-doses/Report'
 import ReportID from '@/pages/reports/individual-doses/Report'
 import GuidePage from '@/pages/guide'
 import ErrorPage from '@/pages/error'
+import HistoryTemplatesPage from '@/pages/history'
 
 const router = createBrowserRouter([
     {
@@ -72,6 +74,10 @@ const router = createBrowserRouter([
                     {
                         path: USERS_GUIDE_ROUTE,
                         element: <GuidePage />,
+                    },
+                    {
+                        path: HISTORY_TEMPLATES_ROUTE,
+                        element: <HistoryTemplatesPage />,
                     },
                 ],
             },

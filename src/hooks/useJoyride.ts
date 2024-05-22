@@ -7,11 +7,7 @@ interface JoyrideStore {
 
 const useJoyride = create<JoyrideStore>((set) => ({
     run: false,
-    setRun: (state) => {
-        if (state) {
-            set({ run: state })
-        }
-    },
+    setRun: (state) => set({ run: state }),
 }))
 
 export default useJoyride

@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { MdOutlineKeyboardDoubleArrowUp } from 'react-icons/md'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { RiGuideLine } from 'react-icons/ri'
 
 import { useMode } from '@/hooks/useMode'
 import useUsersGuide from '@/hooks/useUsersGuide'
@@ -70,7 +71,13 @@ const GuidePage: React.FC = () => {
                     <h3>Руководство пользователя</h3>
                 </div>
                 <div className={`${cls.page__main__content} ${darkModeClass}`}>
-                    <button onClick={startJoyride}>начать</button>
+                    <button
+                        onClick={startJoyride}
+                        className={`${cls.page__main__content__interactive} ${darkModeClass}`}
+                    >
+                        <span>Интерактивное руководство</span>
+                        <RiGuideLine size={36} />
+                    </button>
                     {!isLoading && (
                         <>
                             {guide?.map((element) => (

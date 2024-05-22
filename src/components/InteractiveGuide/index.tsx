@@ -1,4 +1,8 @@
 import Joyride, { CallBackProps, STATUS } from 'react-joyride'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+import { INDIVIDUAL_DOSE_CARD_REPORT_ROUTE } from '@/constants'
 
 import useJoyride from '@/hooks/useJoyride'
 
@@ -117,9 +121,11 @@ const steps = [
         target: '.twelfth-step',
         content: (
             <div>
-                Или при надобности выбрать
+                При надобности можно
                 <br />
-                из уже сохраненных фильтров.
+                изменить шаблон для
+                <br />
+                генерации отчета.
             </div>
         ),
     },
@@ -140,6 +146,8 @@ const options = {
 const InteractiveGuide: React.FC = () => {
     const { run, setRun } = useJoyride()
 
+    const location = useLocation()
+
     const handleJoyrideCallback = (data: CallBackProps) => {
         const { status } = data
 
@@ -147,6 +155,12 @@ const InteractiveGuide: React.FC = () => {
             setRun(false)
         }
     }
+
+    useEffect(() => {
+        if (INDIVIDUAL_DOSE_CARD_REPORT_ROUTE !== location.pathname) {
+            setRun(false)
+        }
+    }, [location.pathname, setRun])
 
     return (
         <Joyride
