@@ -1,9 +1,11 @@
 import Joyride, { CallBackProps, STATUS } from 'react-joyride'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
-import { INDIVIDUAL_DOSE_CARD_REPORT_ROUTE } from '@/constants'
-
+import {
+    INDIVIDUAL_DOSE_CARD_REPORT_ROUTE,
+    USERS_GUIDE_ROUTE,
+} from '@/constants'
 import useJoyride from '@/hooks/useJoyride'
 
 const steps = [
@@ -147,12 +149,14 @@ const InteractiveGuide: React.FC = () => {
     const { run, setRun } = useJoyride()
 
     const location = useLocation()
+    const navigate = useNavigate()
 
     const handleJoyrideCallback = (data: CallBackProps) => {
         const { status } = data
 
         if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
             setRun(false)
+            navigate(USERS_GUIDE_ROUTE, { replace: true })
         }
     }
 

@@ -18,7 +18,6 @@ const ListTemplates: React.FC = () => {
     const { view } = useViewHistory()
 
     const [page, setPage] = useState<number>(1)
-    //const [searchValue, setSearchValue] = useState<string>('')
 
     const { allTemplates, getAllTemplates, isLoadinAll, totalPages } =
         useReportTemplate()
@@ -58,6 +57,7 @@ const ListTemplates: React.FC = () => {
                                 Дата загрузки
                             </span>
                             <span className={cls.list__size}>Размер</span>
+                            <span className={cls.list__select}>Выбрать</span>
                         </div>
                         <AnimatePresence>
                             {allTemplates.map((temp, index) => (
@@ -65,6 +65,7 @@ const ListTemplates: React.FC = () => {
                                     key={temp.id_uuid}
                                     temp={temp}
                                     index={index}
+                                    setPage={setPage}
                                 />
                             ))}
                         </AnimatePresence>
@@ -109,6 +110,7 @@ const ListTemplates: React.FC = () => {
                                     key={temp.id_uuid}
                                     temp={temp}
                                     index={index}
+                                    setPage={setPage}
                                 />
                             ))}
                         </AnimatePresence>

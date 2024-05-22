@@ -32,7 +32,7 @@
         max-width: 1200px;
         padding: 30px;
         border-radius: 8px;
-        height: 800px;
+        height: 700px;
         background-color: var(--bg-guide);
         box-shadow: 2px 2px 4px var(--color-light-gray);
 
@@ -53,6 +53,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap;
 
             &__text {
                 font-size: 18px;

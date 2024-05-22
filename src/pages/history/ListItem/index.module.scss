@@ -24,19 +24,46 @@
     }
 
     &__date {
-        grid-column-start: 5;
+        grid-column-start: 4;
         justify-self: center;
     }
 
     &__size {
+        grid-column-start: 5;
+        justify-self: center;
+    }
+
+    &__select {
         grid-column-start: 6;
         justify-self: center;
+
+        height: fit-content;
+        width: fit-content;
+        border: none;
+        background: transparent;
+        color: var(--blue);
+
+        transition: 0.3s;
+
+        &.dark_mode {
+            color: var(--color-white);
+
+            &:hover {
+                cursor: pointer;
+                color: var(--color-hover-icon);
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: var(--color-hover-icon);
+        }
     }
 
     &__btns {
         display: flex;
         gap: 15px;
-        grid-column-start: 4;
+        grid-column-start: 3;
         justify-self: center;
     }
 

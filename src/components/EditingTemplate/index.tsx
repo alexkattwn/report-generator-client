@@ -84,7 +84,10 @@ const EditingTemplate: React.FC = () => {
             <h4 className={`${cls.window__header} ${darkModeClass}`}>
                 Редактирование шаблона
             </h4>
-            <button onClick={goToHistory}>
+            <button
+                className={`${cls.window__history} ${darkModeClass}`}
+                onClick={goToHistory}
+            >
                 <span>История шаблонов</span>
                 <MdOutlineHistory size={32} />
             </button>

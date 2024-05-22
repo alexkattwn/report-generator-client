@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 import { CiFileOn } from 'react-icons/ci'
-import { MdOutlineCloudDownload, MdOutlineDelete } from 'react-icons/md'
+import {
+    MdOutlineCheckBoxOutlineBlank,
+    MdOutlineCloudDownload,
+    MdOutlineDelete,
+    MdOutlineCheckBox,
+} from 'react-icons/md'
 
 import { ITemplate } from '@/types/common'
 import { useMode } from '@/hooks/useMode'
@@ -12,19 +17,41 @@ import useSidebar from '@/hooks/useSidebar'
 
 import cls from '@/pages/history/ListItem/index.module.scss'
 
+const variants = {
+    open: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            y: { stiffness: 1000, velocity: -100 },
+        },
+    },
+    closed: {
+        y: 50,
+        opacity: 0,
+        transition: {
+            y: { stiffness: 1000 },
+        },
+    },
+}
+
 interface ListItemProps {
     temp: ITemplate
     index: number
+    setPage: (page: number) => void
 }
 
-const ListItem: React.FC<ListItemProps> = ({ temp, index }) => {
+const ListItem: React.FC<ListItemProps> = ({ temp, index, setPage }) => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     const { view } = useViewHistory()
 
-    const { downloadTemplate, removeTemplate, getAllTemplates } =
-        useReportTemplate()
+    const {
+        downloadTemplate,
+        removeTemplate,
+        getAllTemplates,
+        selectTemplate,
+    } = useReportTemplate()
     const { selectedReport } = useSidebar()
 
     const downloadClickHandler = async (
@@ -40,22 +67,25 @@ const ListItem: React.FC<ListItemProps> = ({ temp, index }) => {
         e.stopPropagation()
         await removeTemplate(temp.id_uuid)
         await getAllTemplates(selectedReport, 1)
+        setPage(1)
+    }
+
+    const selectClickHandler = async (
+        e: React.MouseEvent<HTMLButtonElement>
+    ) => {
+        e.stopPropagation()
+        await selectTemplate(temp.id_uuid)
+        await getAllTemplates(selectedReport, 1)
     }
 
     if (view === 'list') {
         return (
             <motion.li
-                initial={{
-                    opacity: 0,
-                    x: index % 2 === 0 ? -100 : 100,
-                }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                    duration: 0.2,
-                    delay: index * 0.1,
-                }}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                variants={variants}
+                whileHover={{ scale: 1.025 }}
                 key={index}
                 className={`${cls.template} ${darkModeClass}`}
             >
@@ -86,6 +116,16 @@ const ListItem: React.FC<ListItemProps> = ({ temp, index }) => {
                 <div className={cls.template__size}>
                     {formatSize(temp.size)}
                 </div>
+                <button
+                    onClick={(e) => selectClickHandler(e)}
+                    className={`${cls.template__select} ${darkModeClass}`}
+                >
+                    {temp.is_selected ? (
+                        <MdOutlineCheckBox size={32} />
+                    ) : (
+                        <MdOutlineCheckBoxOutlineBlank size={32} />
+                    )}
+                </button>
             </motion.li>
         )
     }

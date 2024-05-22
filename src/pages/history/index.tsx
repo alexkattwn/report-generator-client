@@ -1,9 +1,15 @@
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 import { useMode } from '@/hooks/useMode'
 import ListTemplates from '@/pages/history/ListTemplates'
 import ChangingView from '@/pages/history/ChangingView'
 import useSidebar from '@/hooks/useSidebar'
+import { delayValue } from '@/constants'
+import useDebounce from '@/hooks/useDebounce'
+import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import useReportTemplate from '@/hooks/useReportTemplates'
+import SearchField from '@/pages/history/SearchField'
 
 import cls from '@/pages/history/index.module.scss'
 
@@ -12,6 +18,25 @@ const HistoryTemplatesPage: React.FC = () => {
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
     const { selectedReport } = useSidebar()
+
+    const [searchValue, setSearchValue] = useState<string>('')
+    const debouncedValue = useDebounce<string>(searchValue, delayValue)
+
+    const { getAllTemplates } = useReportTemplate()
+
+    const handleClear = () => setSearchValue('')
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setSearchValue(e.target.value)
+
+    useEffect(() => {
+        ;(async () =>
+            await getAllTemplates(
+                getCurrentReportFromSessionStorage(),
+                1,
+                debouncedValue
+            ))()
+    }, [debouncedValue])
 
     return (
         <motion.div
@@ -29,6 +54,11 @@ const HistoryTemplatesPage: React.FC = () => {
                         <ChangingView />
                     </div>
                 </div>
+                <SearchField
+                    handleChange={handleChange}
+                    handleClear={handleClear}
+                    searchValue={searchValue}
+                />
                 <ListTemplates />
             </div>
         </motion.div>

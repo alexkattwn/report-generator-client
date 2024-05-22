@@ -120,6 +120,7 @@ export interface ITemplate {
     type: string
     title: string
     size: number
+    is_selected: boolean
 }
 
 export interface ITemplates {

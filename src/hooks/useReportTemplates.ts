@@ -20,6 +20,7 @@ interface ReportTemplateStore {
         name?: string
     ) => Promise<void>
     removeTemplate: (id: string) => Promise<void>
+    selectTemplate: (id: string) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({
@@ -107,6 +108,14 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
         try {
             await ResourceClient.delete(`/report-templates?id=${id}`)
             showSuccessMessage('Шаблон успешно удален!')
+        } catch (error) {
+            showErrorMessage(error)
+        }
+    },
+    selectTemplate: async (id: string) => {
+        try {
+            await ResourceClient.patch(`/report-templates/select?id=${id}`)
+            showSuccessMessage('Шаблон успешно выбран!')
         } catch (error) {
             showErrorMessage(error)
         }
