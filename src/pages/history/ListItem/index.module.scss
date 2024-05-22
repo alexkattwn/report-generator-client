@@ -1,0 +1,137 @@
+.template {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(4, 1fr);
+    align-items: center;
+    border-radius: 6px;
+    min-width: 900px;
+    box-shadow: 2px 2px 4px var(--color-light-gray);
+
+    &.dark_mode {
+        box-shadow: 2px 2px 4px var(--color-hover-icon);
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--light-blue-translucent);
+    }
+
+    &__name {
+        grid-column-start: 2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__date {
+        grid-column-start: 5;
+        justify-self: center;
+    }
+
+    &__size {
+        grid-column-start: 6;
+        justify-self: center;
+    }
+
+    &__btns {
+        display: flex;
+        gap: 15px;
+        grid-column-start: 4;
+        justify-self: center;
+    }
+
+    &__btn {
+        height: fit-content;
+        width: fit-content;
+        border: none;
+        background: transparent;
+
+        display: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__delete,
+    &__download {
+        transition: 0.3s;
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+    &:hover &__delete,
+    &:hover &__download {
+        display: block;
+    }
+}
+
+.template_plate {
+    padding: 8px;
+    border-radius: 8px;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+
+    box-shadow: 2px 2px 4px var(--color-light-gray);
+
+    &.dark_mode {
+        box-shadow: 2px 2px 4px var(--color-hover-icon);
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--light-blue-translucent);
+    }
+
+    &__logo {
+        height: 100px;
+        width: 100px;
+    }
+
+    &__name {
+        width: 140px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    &__btns {
+        display: flex;
+        gap: 15px;
+    }
+
+    &__btn {
+        height: fit-content;
+        width: fit-content;
+        border: none;
+        background: transparent;
+
+        display: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__delete,
+    &__download {
+        transition: 0.3s;
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+    &:hover &__delete,
+    &:hover &__download {
+        display: block;
+    }
+}

@@ -19,6 +19,7 @@ interface ReportTemplateStore {
         currentPage: number,
         name?: string
     ) => Promise<void>
+    removeTemplate: (id: string) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({
@@ -100,6 +101,14 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
             showErrorMessage(error)
         } finally {
             set({ isLoadinAll: false })
+        }
+    },
+    removeTemplate: async (id) => {
+        try {
+            await ResourceClient.delete(`/report-templates?id=${id}`)
+            showSuccessMessage('Шаблон успешно удален!')
+        } catch (error) {
+            showErrorMessage(error)
         }
     },
 }))

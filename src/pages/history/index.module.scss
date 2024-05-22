@@ -7,7 +7,6 @@
 
     overflow-y: scroll;
     overflow-x: hidden;
-    position: relative;
 
     padding: 30px;
 
@@ -32,9 +31,8 @@
         width: 100%;
         max-width: 1200px;
         padding: 30px;
-        height: auto;
         border-radius: 8px;
-
+        height: 800px;
         background-color: var(--bg-guide);
         box-shadow: 2px 2px 4px var(--color-light-gray);
 
@@ -48,6 +46,30 @@
             color: var(--color-white);
             background-color: var(--bg-dark-guide);
             box-shadow: 2px 2px 4px var(--color-hover-icon);
+        }
+
+        &__head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+
+            &__text {
+                font-size: 18px;
+                font-weight: 500;
+                box-shadow: 2px 2px 4px var(--color-light-gray);
+                padding: 15px;
+                border-radius: 8px;
+
+                &.dark_mode {
+                    box-shadow: 2px 2px 4px var(--color-hover-icon);
+                }
+            }
+
+            &__actions {
+                display: flex;
+                gap: 20px;
+            }
         }
     }
 }
