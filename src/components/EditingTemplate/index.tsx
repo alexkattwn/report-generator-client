@@ -4,17 +4,22 @@ import { LiaSaveSolid } from 'react-icons/lia'
 import { useState } from 'react'
 import { RingLoader } from 'react-spinners'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+import { MdOutlineHistory } from 'react-icons/md'
 
 import { useMode } from '@/hooks/useMode'
 import useModal from '@/hooks/useModal'
 import useReportTemplate from '@/hooks/useReportTemplates'
 import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import { HISTORY_TEMPLATES_ROUTE } from '@/constants'
 
 import cls from '@components/EditingTemplate/index.module.scss'
 
 const EditingTemplate: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
+
+    const navigate = useNavigate()
 
     const { setShowModal } = useModal()
     const { createTemplate, isLoading, template, downloadTemplate } =
@@ -69,11 +74,20 @@ const EditingTemplate: React.FC = () => {
 
     const handleCloseWindow = () => setShowModal()
 
+    const goToHistory = () => {
+        navigate(HISTORY_TEMPLATES_ROUTE)
+        setShowModal()
+    }
+
     return (
         <div className={cls.window}>
             <h4 className={`${cls.window__header} ${darkModeClass}`}>
                 Редактирование шаблона
             </h4>
+            <button onClick={goToHistory}>
+                <span>История шаблонов</span>
+                <MdOutlineHistory size={32} />
+            </button>
             <button
                 className={`${cls.window__close} ${darkModeClass}`}
                 onClick={handleCloseWindow}

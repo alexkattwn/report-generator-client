@@ -119,4 +119,10 @@ export interface ITemplate {
     date_creation: string
     type: string
     title: string
+    size: number
+}
+
+export interface ITemplates {
+    data: ITemplate[]
+    count: number
 }

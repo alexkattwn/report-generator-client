@@ -3,19 +3,30 @@ import { AxiosResponse } from 'axios'
 
 import { ResourceClient } from '@/api/axiosClient'
 import { showErrorMessage, showSuccessMessage } from '@/utils/notifications'
-import { ITemplate } from '@/types/common'
+import { ITemplate, ITemplates } from '@/types/common'
 
 interface ReportTemplateStore {
     isLoading: boolean
+    isLoadinAll: boolean
     template: ITemplate
+    totalPages: number
+    allTemplates: ITemplate[]
     getTemplate: (reportName: string) => Promise<void>
     createTemplate: (reportName: string, template: File) => Promise<void>
     downloadTemplate: (id: string) => Promise<void>
+    getAllTemplates: (
+        reportName: string,
+        currentPage: number,
+        name?: string
+    ) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({
     isLoading: false,
+    isLoadinAll: false,
     template: {} as ITemplate,
+    totalPages: 0,
+    allTemplates: [],
     getTemplate: async (reportName) => {
         try {
             set({ isLoading: true })
@@ -70,6 +81,25 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
             link.click()
         } catch (error) {
             showErrorMessage(error)
+        }
+    },
+    getAllTemplates: async (reportName, currentPage, name) => {
+        try {
+            set({ isLoadinAll: true })
+
+            let url = `/report-templates/all?report_name=${reportName}&page=${currentPage}`
+
+            if (name) {
+                url = `${url}&name=${name}`
+            }
+
+            const { data } = await ResourceClient.get<ITemplates>(url)
+
+            set({ allTemplates: data.data, totalPages: data.count })
+        } catch (error) {
+            showErrorMessage(error)
+        } finally {
+            set({ isLoadinAll: false })
         }
     },
 }))

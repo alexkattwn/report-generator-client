@@ -53,6 +53,7 @@
             &.dark_mode {
                 color: var(--color-white);
                 background-color: var(--bg-dark-guide);
+                box-shadow: 2px 2px 4px var(--color-hover-icon);
             }
         }
 
@@ -70,6 +71,7 @@
             &.dark_mode {
                 color: var(--color-white);
                 background-color: var(--bg-dark-guide);
+                box-shadow: 2px 2px 4px var(--color-hover-icon);
             }
 
             &__interactive {
