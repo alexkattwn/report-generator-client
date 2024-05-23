@@ -147,6 +147,8 @@ const ListItem: React.FC<ListItemProps> = ({ temp, index, setPage }) => {
                 >
                     {`${temp.title}.${temp.type}`}
                 </div>
+                <span>{formatDateAndTime(temp.date_creation)}</span>
+                <span>{formatSize(temp.size)}</span>
                 <div className={cls.template_plate__btns}>
                     <button
                         onClick={(e) => downloadClickHandler(e)}

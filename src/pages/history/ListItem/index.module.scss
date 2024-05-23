@@ -99,7 +99,7 @@
     padding: 8px;
     border-radius: 8px;
     width: 150px;
-    height: 150px;
+    height: 226px;
     cursor: pointer;
     display: flex;
     gap: 5px;
@@ -128,6 +128,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
         text-align: center;
+    }
+
+    & > span {
+        text-align: center;
+        width: 100%;
     }
 
     &__btns {

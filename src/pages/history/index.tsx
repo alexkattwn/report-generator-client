@@ -17,12 +17,14 @@ const HistoryTemplatesPage: React.FC = () => {
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
+    const [dragEnter, setDragEnter] = useState<boolean>(false)
+
     const { selectedReport } = useSidebar()
 
     const [searchValue, setSearchValue] = useState<string>('')
     const debouncedValue = useDebounce<string>(searchValue, delayValue)
 
-    const { getAllTemplates } = useReportTemplate()
+    const { getAllTemplates, createTemplate } = useReportTemplate()
 
     const handleClear = () => setSearchValue('')
 
@@ -38,6 +40,31 @@ const HistoryTemplatesPage: React.FC = () => {
             ))()
     }, [debouncedValue])
 
+    const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setDragEnter(true)
+    }
+
+    const dragLeaveHandler = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setDragEnter(false)
+    }
+
+    const dropHandler = async (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+        event.stopPropagation()
+
+        const files = [...event.dataTransfer.files]
+
+        if (files[0]) {
+            await createTemplate(getCurrentReportFromSessionStorage(), files[0])
+        }
+
+        setDragEnter(false)
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -45,7 +72,12 @@ const HistoryTemplatesPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
-            <div className={`${cls.page__main} ${darkModeClass}`}>
+            <div
+                className={`${cls.page__main} ${darkModeClass}`}
+                onDragEnter={dragEnterHandler}
+                onDragLeave={dragLeaveHandler}
+                onDragOver={dragEnterHandler}
+            >
                 <div className={cls.page__main__head}>
                     <h2
                         className={`${cls.page__main__head__text} ${darkModeClass}`}
@@ -59,7 +91,19 @@ const HistoryTemplatesPage: React.FC = () => {
                     handleClear={handleClear}
                     searchValue={searchValue}
                 />
-                <ListTemplates />
+                {!dragEnter ? (
+                    <ListTemplates />
+                ) : (
+                    <div
+                        className={`${cls.drop_area} ${darkModeClass}`}
+                        onDragEnter={dragEnterHandler}
+                        onDragLeave={dragLeaveHandler}
+                        onDragOver={dragEnterHandler}
+                        onDrop={dropHandler}
+                    >
+                        Перетащите файлы сюда
+                    </div>
+                )}
             </div>
         </motion.div>
     )

@@ -107,6 +107,11 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
     removeTemplate: async (id) => {
         try {
             await ResourceClient.delete(`/report-templates?id=${id}`)
+            set((state) => ({
+                allTemplates: [
+                    ...state.allTemplates.filter((el) => el.id_uuid !== id),
+                ],
+            }))
             showSuccessMessage('Шаблон успешно удален!')
         } catch (error) {
             showErrorMessage(error)
