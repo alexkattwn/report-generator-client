@@ -11,6 +11,7 @@ import {
     showSuccessMessage,
 } from '@/utils/notifications'
 import { ITemplate, ITemplates } from '@/types/common'
+import { ICD, IIDC } from '@/types/reports'
 
 interface ReportTemplateStore {
     isLoading: boolean
@@ -28,7 +29,7 @@ interface ReportTemplateStore {
     ) => Promise<void>
     removeTemplate: (id: string) => Promise<void>
     selectTemplate: (id: string) => Promise<void>
-    downloadDocxReport: (id: string) => Promise<void>
+    downloadDocxReport: (id: string, report: ICD | IIDC) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({
@@ -133,29 +134,16 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
             showErrorMessage(error)
         }
     },
-    downloadDocxReport: async (id) => {
+    downloadDocxReport: async (id, report) => {
         try {
-            const { data: template } = await ResourceClient.get<ITemplate>(
-                `/report-templates/${id}`
-            )
-
-            if (!template) {
-                showSimpleErrorMessage('Нет шаблона для генерации отчета!')
-                return
-            }
-
             const { data: docxTemplateBlob }: AxiosResponse<Blob> =
                 await ResourceClient.get(`/report-templates/download/${id}`, {
                     responseType: 'blob',
                 })
 
-            const data = {
-                struct: 'Прочие организации',
-                date_creation: '30/09/2012',
-                date_start: '12/09/2012',
-                date_end: '19/09/2012',
-                registered: '30',
-                measured: '1',
+            if (!docxTemplateBlob) {
+                showSimpleErrorMessage('Нет шаблона для генерации отчета!')
+                return
             }
 
             const arrayBuffer = await docxTemplateBlob.arrayBuffer()
@@ -165,7 +153,7 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
                 linebreaks: true,
             })
 
-            doc.render(data)
+            doc.render(report)
 
             const blob = doc.getZip().generate({
                 type: 'blob',
@@ -173,7 +161,7 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
                     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             })
 
-            return saveAs(blob, `${template.title}.docx`)
+            return saveAs(blob, 'Отчет по коллективным дозам.docx')
         } catch (error) {
             showErrorMessage(error)
         }

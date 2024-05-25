@@ -83,3 +83,18 @@ export interface IIDC {
         e_sertificate: string
     }
 }
+
+export interface ICD {
+    struct: string
+    date_creation: string
+    date_start: string
+    date_end: string
+    registered: string
+    measured: string
+    chief_orb: string
+    chief_lprk_orb: string
+    e_value: string
+    he_value: string
+    hl_value: string
+    hs_value: string
+}

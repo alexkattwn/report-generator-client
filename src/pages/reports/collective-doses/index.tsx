@@ -13,6 +13,7 @@ import ParametersCD from '@/pages/reports/collective-doses/Parameters'
 import GraphicsCD from '@/pages/reports/collective-doses/Graphics'
 import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
 import useReportTemplate from '@/hooks/useReportTemplates'
+import useReportCD from '@/hooks/useReportCD'
 
 import cls from '@/pages/reports/collective-doses/index.module.scss'
 
@@ -49,13 +50,20 @@ const CollectiveDosesPage: React.FC = () => {
         useState<IParametersCD>(params)
 
     const { getTemplate, template, downloadDocxReport } = useReportTemplate()
+    const { report, isLoading, getReport } = useReportCD()
 
     useEffect(() => {
-        getTemplate(getCurrentReportFromSessionStorage())
+        ;(async () => {
+            await getTemplate(getCurrentReportFromSessionStorage())
+            await getReport(parameters)
+        })()
     }, [])
 
-    const downloadReport = async () =>
-        await downloadDocxReport(template.id_uuid)
+    const downloadReport = async () => {
+        if (report && template.id_uuid && !isLoading) {
+            await downloadDocxReport(template.id_uuid, report)
+        }
+    }
 
     return (
         <motion.div

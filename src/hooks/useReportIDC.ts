@@ -6,13 +6,13 @@ import { IIDC } from '@/types/reports'
 
 interface ReportIDCStore {
     isLoading: boolean
-    report: IIDC | undefined
+    report: IIDC
     getReport: (idPersonal: string) => Promise<void>
 }
 
 const useReportIDC = create<ReportIDCStore>((set) => ({
     isLoading: false,
-    report: undefined,
+    report: {} as IIDC,
     getReport: async (idPersonal) => {
         try {
             set({ isLoading: true })

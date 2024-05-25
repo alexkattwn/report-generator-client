@@ -20,6 +20,7 @@ import {
     removeParametersCDFromSessionStorage,
     setParametersCDToSessionStorage,
 } from '@/helpers/sessionStorage.helper'
+import useReportCD from '@/hooks/useReportCD'
 
 import cls from '@/pages/reports/collective-doses/Parameters/index.module.scss'
 
@@ -44,6 +45,7 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
     const { companyStructures, getCompanyStructures } = useCompanyStructure()
 
     const { getGraphics } = useCDGraphic()
+    const { getReport } = useReportCD()
 
     const isMedia746 = useMediaQuery(746)
 
@@ -92,7 +94,7 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
         setSearchParams({ ...newParams }, { replace: true })
     }
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         changeParameters()
         if (parameters.date_start > parameters.date_end) {
             return showSimpleErrorMessage(
@@ -105,6 +107,7 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
             setParameters({ ...parameters, go: '1' })
             setParamsForInfographics({ ...parameters })
             getGraphics(parameters)
+            await getReport(parameters)
             return
         }
 
