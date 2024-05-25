@@ -74,8 +74,10 @@ const ListItem: React.FC<ListItemProps> = ({ temp, index, setPage }) => {
         e: React.MouseEvent<HTMLButtonElement>
     ) => {
         e.stopPropagation()
-        await selectTemplate(temp.id_uuid)
-        await getAllTemplates(selectedReport, 1)
+        if (!temp.is_selected) {
+            await selectTemplate(temp.id_uuid)
+            await getAllTemplates(selectedReport, 1)
+        }
     }
 
     if (view === 'list') {
@@ -151,13 +153,13 @@ const ListItem: React.FC<ListItemProps> = ({ temp, index, setPage }) => {
                 <span>{formatSize(temp.size)}</span>
                 <div className={cls.template_plate__btns}>
                     <button
-                        onClick={(e) => downloadClickHandler(e)}
+                        onClick={downloadClickHandler}
                         className={`${cls.template_plate__btn} ${cls.template_plate__download} ${darkModeClass}`}
                     >
                         <MdOutlineCloudDownload size={36} />
                     </button>
                     <button
-                        onClick={(e) => deleteClickHandler(e)}
+                        onClick={deleteClickHandler}
                         className={`${cls.template_plate__btn} ${cls.template_plate__delete}  ${darkModeClass}`}
                     >
                         <MdOutlineDelete size={36} />

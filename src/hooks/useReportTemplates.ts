@@ -1,8 +1,15 @@
 import { create } from 'zustand'
 import { AxiosResponse } from 'axios'
+import { saveAs } from 'file-saver'
+import PizZip from 'pizzip'
+import Docxtemplater from 'docxtemplater'
 
 import { ResourceClient } from '@/api/axiosClient'
-import { showErrorMessage, showSuccessMessage } from '@/utils/notifications'
+import {
+    showErrorMessage,
+    showSimpleErrorMessage,
+    showSuccessMessage,
+} from '@/utils/notifications'
 import { ITemplate, ITemplates } from '@/types/common'
 
 interface ReportTemplateStore {
@@ -21,6 +28,7 @@ interface ReportTemplateStore {
     ) => Promise<void>
     removeTemplate: (id: string) => Promise<void>
     selectTemplate: (id: string) => Promise<void>
+    downloadDocxReport: (id: string) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({
@@ -117,10 +125,55 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
             showErrorMessage(error)
         }
     },
-    selectTemplate: async (id: string) => {
+    selectTemplate: async (id) => {
         try {
             await ResourceClient.patch(`/report-templates/select?id=${id}`)
             showSuccessMessage('Шаблон успешно выбран!')
+        } catch (error) {
+            showErrorMessage(error)
+        }
+    },
+    downloadDocxReport: async (id) => {
+        try {
+            const { data: template } = await ResourceClient.get<ITemplate>(
+                `/report-templates/${id}`
+            )
+
+            if (!template) {
+                showSimpleErrorMessage('Нет шаблона для генерации отчета!')
+                return
+            }
+
+            const { data: docxTemplateBlob }: AxiosResponse<Blob> =
+                await ResourceClient.get(`/report-templates/download/${id}`, {
+                    responseType: 'blob',
+                })
+
+            const data = {
+                struct: 'Прочие организации',
+                date_creation: '30/09/2012',
+                date_start: '12/09/2012',
+                date_end: '19/09/2012',
+                registered: '30',
+                measured: '1',
+            }
+
+            const arrayBuffer = await docxTemplateBlob.arrayBuffer()
+            const zip = new PizZip(arrayBuffer)
+            const doc = new Docxtemplater(zip, {
+                paragraphLoop: true,
+                linebreaks: true,
+            })
+
+            doc.render(data)
+
+            const blob = doc.getZip().generate({
+                type: 'blob',
+                mimeType:
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            })
+
+            return saveAs(blob, `${template.title}.docx`)
         } catch (error) {
             showErrorMessage(error)
         }

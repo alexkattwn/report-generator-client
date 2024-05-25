@@ -101,6 +101,7 @@ const EditingTemplate: React.FC = () => {
                 <button
                     className={`${cls.window__actions__btns} ${darkModeClass}`}
                     onClick={downloadReportTemplate}
+                    disabled={!!!template}
                 >
                     <span>Скачать</span>
                     <IoDownloadOutline size={26} />
@@ -117,7 +118,7 @@ const EditingTemplate: React.FC = () => {
                         type='file'
                         id='upload-label'
                         className={cls.window__actions__upload__input}
-                        accept='.doc,.docx'
+                        accept='.docx'
                     />
                 </div>
                 <button

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
+import { BsDownload } from 'react-icons/bs'
 
 import { REPORT_CD_ROUTE } from '@/constants'
 import { IParametersCD } from '@/types/common'
@@ -47,11 +48,14 @@ const CollectiveDosesPage: React.FC = () => {
     const [paramsForInfographics, setParamsForInfographics] =
         useState<IParametersCD>(params)
 
-    const { getTemplate } = useReportTemplate()
+    const { getTemplate, template, downloadDocxReport } = useReportTemplate()
 
     useEffect(() => {
         getTemplate(getCurrentReportFromSessionStorage())
     }, [])
+
+    const downloadReport = async () =>
+        await downloadDocxReport(template.id_uuid)
 
     return (
         <motion.div
@@ -96,6 +100,13 @@ const CollectiveDosesPage: React.FC = () => {
                                 >
                                     <span>Посмотреть отчет</span>
                                     <TbReportSearch size={26} />
+                                </button>
+                                <button
+                                    className={`${cls.page__infographic__head__block__btn} ${darkModeClass}`}
+                                    onClick={downloadReport}
+                                >
+                                    <span>Скачать отчет</span>
+                                    <BsDownload size={26} />
                                 </button>
                             </div>
                             <h3
