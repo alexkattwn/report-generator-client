@@ -20,6 +20,7 @@ import {
     removeParametersIDFromSessionStorage,
     setParametersIDToSessionStorage,
 } from '@/helpers/sessionStorage.helper'
+import { removeEmptyFields } from '@/utils/common'
 
 import cls from '@/pages/reports/individual-doses/Parameters/index.module.scss'
 
@@ -107,6 +108,10 @@ const ParametersID: React.FC<ParametersIDProps> = ({
             getGraphics(parameters)
             return
         }
+
+        setParameters({ ...parameters, go: '' })
+        const newParams = removeEmptyFields(parameters)
+        setSearchParams({ ...newParams }, { replace: true })
 
         return showSimpleErrorMessage(
             'Обязательно нужно заполнить: дату начала, дату окончания и выбрать структуру'

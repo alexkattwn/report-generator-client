@@ -21,6 +21,7 @@ import {
     setParametersCDToSessionStorage,
 } from '@/helpers/sessionStorage.helper'
 import useReportCD from '@/hooks/useReportCD'
+import { removeEmptyFields } from '@/utils/common'
 
 import cls from '@/pages/reports/collective-doses/Parameters/index.module.scss'
 
@@ -110,6 +111,10 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
             await getReport(parameters)
             return
         }
+
+        setParameters({ ...parameters, go: '' })
+        const newParams = removeEmptyFields(parameters)
+        setSearchParams({ ...newParams }, { replace: true })
 
         return showSimpleErrorMessage(
             'Обязательно нужно заполнить: дату начала, дату окончания и выбрать структуру'

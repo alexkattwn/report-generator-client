@@ -55,7 +55,9 @@ const CollectiveDosesPage: React.FC = () => {
     useEffect(() => {
         ;(async () => {
             await getTemplate(getCurrentReportFromSessionStorage())
-            await getReport(parameters)
+            if (parameters.go) {
+                await getReport(parameters)
+            }
         })()
     }, [])
 

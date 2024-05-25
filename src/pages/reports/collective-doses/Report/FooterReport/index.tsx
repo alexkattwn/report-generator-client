@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from '@react-pdf/renderer'
 
-import { IParametersCD } from '@/types/common'
+import { ICD } from '@/types/reports'
 
 const styles = StyleSheet.create({
     block: {
@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
 })
 
 interface FooterReportCDProps {
-    parameters: IParametersCD
+    report: ICD
 }
 
-const FooterReportCD: React.FC<FooterReportCDProps> = ({ parameters }) => (
+const FooterReportCD: React.FC<FooterReportCDProps> = ({ report }) => (
     <View style={styles.block}>
         <View style={styles.row}>
             <Text style={styles.bottom}>Начальник ОРБ</Text>
@@ -55,20 +55,18 @@ const FooterReportCD: React.FC<FooterReportCDProps> = ({ parameters }) => (
                 <Text style={styles.elem}>подпись</Text>
             </View>
             <View style={styles.painting}>
-                <Text style={styles.bottomText}>{parameters.chief_orb}</Text>
+                <Text style={styles.bottomText}>{report.chief_orb}</Text>
                 <Text style={styles.elem}>И.О.Фамилия</Text>
             </View>
         </View>
         <View style={styles.row}>
-            <Text style={styles.bottom}>Руководитель группы ИДК</Text>
+            <Text style={styles.bottom}>Начальник ЛПРК ОРБ</Text>
             <View style={styles.painting}>
                 <Text style={styles.bottomText}></Text>
                 <Text style={styles.elem}>подпись</Text>
             </View>
             <View style={styles.painting}>
-                <Text style={styles.bottomText}>
-                    {parameters.chief_lprk_orb}
-                </Text>
+                <Text style={styles.bottomText}>{report.chief_lprk_orb}</Text>
                 <Text style={styles.elem}>И.О.Фамилия</Text>
             </View>
         </View>

@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer'
 
+import { ICD } from '@/types/reports'
+
 const borderColor = 'gray'
 const backgroundColor = '#bff0fd'
 
@@ -90,7 +92,11 @@ const styles = StyleSheet.create({
     },
 })
 
-const BodyReportCD: React.FC = () => (
+interface BodyReportCDProps {
+    report: ICD
+}
+
+const BodyReportCD: React.FC<BodyReportCDProps> = ({ report }) => (
     <View style={styles.tableContainer}>
         <View style={styles.header}>
             <View style={styles.headerWhite}>
@@ -118,34 +124,15 @@ const BodyReportCD: React.FC = () => (
 
         <View style={styles.row}>
             <View style={styles.rowBlue}>
-                <Text style={styles.rowBlueStruct}>
-                    Комплекс по переработке твердых радиоактивных отходов
-                    Курской АЭС
-                </Text>
-                <Text style={styles.rowBlueContent}>33</Text>
-                <Text style={styles.rowBlueContent}>2</Text>
+                <Text style={styles.rowBlueStruct}>{report.struct}</Text>
+                <Text style={styles.rowBlueContent}>{report.registered}</Text>
+                <Text style={styles.rowBlueContent}>{report.measured}</Text>
             </View>
             <View style={styles.rowWhite}>
-                <Text style={styles.rowWhiteContent}>1,004/1,002/2,004</Text>
-                <Text style={styles.rowWhiteContent}>1,004/0,503/1,005</Text>
-                <Text style={styles.rowWhiteContent}>1,004/0,503/1,005</Text>
-                <Text style={styles.rowWhiteContent}>1,004/0,503/1,005</Text>
-            </View>
-        </View>
-
-        <View style={styles.row}>
-            <View style={styles.rowBlue}>
-                <Text style={styles.rowBlueStruct}>
-                    ФГУП Приборостроительный завод им. К.А.Володина
-                </Text>
-                <Text style={styles.rowBlueContent}>1</Text>
-                <Text style={styles.rowBlueContent}>1</Text>
-            </View>
-            <View style={styles.rowWhite}>
-                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
-                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
-                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
-                <Text style={styles.rowWhiteContent}>2,000/2,000/2,000</Text>
+                <Text style={styles.rowWhiteContent}>{report.e_value}</Text>
+                <Text style={styles.rowWhiteContent}>{report.he_value}</Text>
+                <Text style={styles.rowWhiteContent}>{report.hl_value}</Text>
+                <Text style={styles.rowWhiteContent}>{report.hs_value}</Text>
             </View>
         </View>
     </View>

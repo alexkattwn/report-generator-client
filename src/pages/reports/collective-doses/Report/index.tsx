@@ -7,16 +7,16 @@ import {
 } from '@react-pdf/renderer'
 import { AnimatePresence, motion } from 'framer-motion'
 import { RingLoader } from 'react-spinners'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import HeaderReportCD from '@/pages/reports/collective-doses/Report/HeaderReport'
 import BodyReportCD from '@/pages/reports/collective-doses/Report/BodyReport'
 import FooterReportCD from '@/pages/reports/collective-doses/Report/FooterReport'
 import { getParametersCDFromSessionStorage } from '@/helpers/sessionStorage.helper'
-import { reverseDate } from '@/utils/common'
 import { IParametersCD } from '@/types/common'
 
 import cls from '@/pages/reports/collective-doses/Report/index.module.scss'
+import useReportCD from '@/hooks/useReportCD'
 
 const pageStyles = StyleSheet.create({
     page: {
@@ -50,9 +50,20 @@ const ReportCD: React.FC = () => {
         getParametersCDFromSessionStorage()
     )
 
+    const { getReport, report, isLoading } = useReportCD()
+
+    useEffect(() => {
+        ;(async () => {
+            if (state) {
+                await getReport(state)
+                console.log(report)
+            }
+        })()
+    }, [])
+
     return (
         <AnimatePresence>
-            {state ? (
+            {state && report && !isLoading ? (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -66,15 +77,11 @@ const ReportCD: React.FC = () => {
                                 orientation='landscape'
                                 style={pageStyles.page}
                             >
-                                <HeaderReportCD state={state} />
-                                <BodyReportCD />
-                                <FooterReportCD parameters={state} />
+                                <HeaderReportCD report={report} />
+                                <BodyReportCD report={report} />
+                                <FooterReportCD report={report} />
                                 <Text style={pageStyles.bottomText} fixed>
-                                    {`${reverseDate(
-                                        state.date_start
-                                    )} - ${reverseDate(state.date_end)} ${
-                                        state.struct
-                                    }`}
+                                    {`${report.date_start} - ${report.date_end} ${report.struct}`}
                                 </Text>
                                 <Text
                                     style={pageStyles.pageNumber}
