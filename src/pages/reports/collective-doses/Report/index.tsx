@@ -56,7 +56,6 @@ const ReportCD: React.FC = () => {
         ;(async () => {
             if (state) {
                 await getReport(state)
-                console.log(report)
             }
         })()
     }, [])

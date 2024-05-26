@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { TbReportSearch } from 'react-icons/tb'
+import { Helmet } from 'react-helmet'
+import { BsDownload } from 'react-icons/bs'
 
 import { useMode } from '@/hooks/useMode'
 import ParametersIDC from '@/pages/reports/individual-dose-card/Parameters'
@@ -13,6 +15,7 @@ import useReportIDC from '@/hooks/useReportIDC'
 import { REPORT_IDC_ROUTE } from '@/constants'
 import useReportTemplate from '@/hooks/useReportTemplates'
 import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import { convertingIDCForReport } from '@/utils/convertingObjects'
 
 import cls from '@/pages/reports/individual-dose-card/index.module.scss'
 
@@ -37,16 +40,27 @@ const IndividualDoseCardReportPage: React.FC = () => {
 
     const [parameters, setParameters] = useState<IParametersIDC>(params)
 
-    const { report } = useReportIDC()
-
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
-    const { getTemplate } = useReportTemplate()
+    const { getTemplate, template, downloadDocxReport } = useReportTemplate()
+    const { report, isLoading, getReport } = useReportIDC()
 
     useEffect(() => {
-        getTemplate(getCurrentReportFromSessionStorage())
+        ;(async () => {
+            await getTemplate(getCurrentReportFromSessionStorage())
+            if (parameters.id_personal) {
+                await getReport(parameters.id_personal)
+            }
+        })()
     }, [])
+
+    const downloadReport = async () => {
+        if (report && template.id_uuid && !isLoading) {
+            const convertedReport = convertingIDCForReport(report, parameters)
+            await downloadDocxReport(template.id_uuid, convertedReport)
+        }
+    }
 
     return (
         <motion.div
@@ -55,6 +69,15 @@ const IndividualDoseCardReportPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
+            <Helmet>
+                <title>
+                    {`NuclearIDM${
+                        getCurrentReportFromSessionStorage()
+                            ? ' | ' + getCurrentReportFromSessionStorage()
+                            : ''
+                    }`}
+                </title>
+            </Helmet>
             <h2 className={`${cls.page__title} ${darkModeClass}`}>
                 Карта учета индивидуальных доз
             </h2>
@@ -97,6 +120,13 @@ const IndividualDoseCardReportPage: React.FC = () => {
                             >
                                 <span>Посмотреть отчет</span>
                                 <TbReportSearch size={26} />
+                            </button>
+                            <button
+                                className={`${cls.page__infographic__head__btn} ${darkModeClass}`}
+                                onClick={downloadReport}
+                            >
+                                <span>Скачать отчет</span>
+                                <BsDownload size={26} />
                             </button>
                         </div>
                         <GraphicsIDC parameters={parameters} />

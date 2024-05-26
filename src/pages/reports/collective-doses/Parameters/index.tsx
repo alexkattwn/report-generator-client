@@ -107,7 +107,7 @@ const ParametersCD: React.FC<ParametersCDProps> = ({
             setParametersCDToSessionStorage(parameters)
             setParameters({ ...parameters, go: '1' })
             setParamsForInfographics({ ...parameters })
-            getGraphics(parameters)
+            await getGraphics(parameters)
             await getReport(parameters)
             return
         }

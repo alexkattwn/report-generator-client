@@ -14,6 +14,7 @@ import { IParametersIDC } from '@/types/common'
 import { delayValue, initialStateParametersIDC } from '@/constants'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import useDebounce from '@/hooks/useDebounce'
+import useReportIDC from '@/hooks/useReportIDC'
 
 import cls from '@/pages/reports/individual-dose-card/Parameters/index.module.scss'
 
@@ -36,19 +37,23 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
     const debouncedStruct = useDebounce<string>(parameters.struct, delayValue)
 
     useEffect(() => {
-        getPosts()
-        getCompanyStructures()
+        ;(async () => {
+            await getPosts()
+            await getCompanyStructures()
+        })()
     }, [])
 
     const { mode } = useMode()
     const darkModeClass = mode === 'dark' ? `${cls.dark_mode}` : ''
 
+    const { getReport } = useReportIDC()
+
     const isMedia746 = useMediaQuery(746)
 
-    const handleClear = () => {
+    const handleClear = async () => {
         setParameters(initialStateParametersIDC)
         setSearchParams({}, { replace: true })
-        getPersonal(initialStateParametersIDC, 1)
+        await getPersonal(initialStateParametersIDC, 1)
     }
 
     const changeParameters = () => {
@@ -74,9 +79,10 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
         setSearchParams({ ...newParams }, { replace: true })
     }
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         changeParameters()
-        getPersonal(parameters, 1)
+        await getPersonal(parameters, 1)
+        await getReport(parameters.id_personal)
     }
 
     const postSearch = (value: string) =>

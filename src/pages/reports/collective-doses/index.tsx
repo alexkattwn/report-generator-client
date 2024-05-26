@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
 import { BsDownload } from 'react-icons/bs'
+import { Helmet } from 'react-helmet'
 
 import { REPORT_CD_ROUTE } from '@/constants'
 import { IParametersCD } from '@/types/common'
@@ -74,6 +75,11 @@ const CollectiveDosesPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
+            <Helmet>
+                <title>
+                    NuclearIDM | {getCurrentReportFromSessionStorage()}
+                </title>
+            </Helmet>
             <h2 className={`${cls.page__title} ${darkModeClass}`}>
                 Коллективные дозы
             </h2>

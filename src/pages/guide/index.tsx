@@ -4,6 +4,7 @@ import { MdOutlineKeyboardDoubleArrowUp } from 'react-icons/md'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { RiGuideLine } from 'react-icons/ri'
+import { Helmet } from 'react-helmet'
 
 import { useMode } from '@/hooks/useMode'
 import useUsersGuide from '@/hooks/useUsersGuide'
@@ -65,6 +66,9 @@ const GuidePage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
+            <Helmet>
+                <title>NuclearIDM | Руководство пользователя</title>
+            </Helmet>
             <div className={cls.page__main} id='guide'>
                 <div ref={ref} />
                 <div className={`${cls.page__main__header} ${darkModeClass}`}>

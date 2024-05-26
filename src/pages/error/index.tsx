@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Helmet } from 'react-helmet'
 
 import { HOME_ROUTE } from '@/constants'
 import { useMode } from '@/hooks/useMode'
@@ -18,6 +19,9 @@ const ErrorPage: React.FC = () => {
 
     return (
         <div className={`${cls.error} ${darkModeClass}`}>
+            <Helmet>
+                <title>NuclearIDM | Страница не найдена</title>
+            </Helmet>
             <AnimatePresence>
                 {mode === 'dark' ? (
                     <motion.img

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet'
 
 import useAuth from '@/hooks/useAuth'
 import Input from '@/components/Input'
@@ -30,6 +31,9 @@ const AuthPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.auth}
         >
+            <Helmet>
+                <title>NuclearIDM | Авторизация</title>
+            </Helmet>
             <div className={cls.auth__container}>
                 <form
                     onSubmit={handleSignIn}

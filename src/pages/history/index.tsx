@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 
 import { useMode } from '@/hooks/useMode'
 import ListTemplates from '@/pages/history/ListTemplates'
@@ -72,6 +73,9 @@ const HistoryTemplatesPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
+            <Helmet>
+                <title>NuclearIDM | История шаблонов</title>
+            </Helmet>
             <div
                 className={`${cls.page__main} ${darkModeClass}`}
                 onDragEnter={dragEnterHandler}

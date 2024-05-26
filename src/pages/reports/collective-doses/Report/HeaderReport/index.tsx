@@ -59,11 +59,11 @@ const HeaderReportCD: React.FC<HeaderReportCDProps> = ({ report }) => (
             </View>
             <View style={styles.row}>
                 <Text style={styles.nameRow}>Состояло на доз. учете, чел.</Text>
-                <Text style={styles.contentRow}>1</Text>
+                <Text style={styles.contentRow}>{report.registered}</Text>
             </View>
             <View style={styles.row}>
                 <Text style={styles.nameRow}>Измерено, чел</Text>
-                <Text style={styles.contentRow}>1</Text>
+                <Text style={styles.contentRow}>{report.measured}</Text>
             </View>
         </View>
     </>

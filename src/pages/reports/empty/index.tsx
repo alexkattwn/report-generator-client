@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SiDocusaurus } from 'react-icons/si'
+import { Helmet } from 'react-helmet'
 
 import { useMode } from '@/hooks/useMode'
 
@@ -16,6 +17,9 @@ const EmptyReportPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={`${cls.page} ${darkModeClass}`}
         >
+            <Helmet>
+                <title>NuclearIDM | Отчеты</title>
+            </Helmet>
             <SiDocusaurus size={142} />
         </motion.div>
     )

@@ -11,7 +11,8 @@ import {
     showSuccessMessage,
 } from '@/utils/notifications'
 import { ITemplate, ITemplates } from '@/types/common'
-import { ICD, IIDC } from '@/types/reports'
+import { ICD, IIDCReport } from '@/types/reports'
+import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
 
 interface ReportTemplateStore {
     isLoading: boolean
@@ -29,7 +30,7 @@ interface ReportTemplateStore {
     ) => Promise<void>
     removeTemplate: (id: string) => Promise<void>
     selectTemplate: (id: string) => Promise<void>
-    downloadDocxReport: (id: string, report: ICD | IIDC) => Promise<void>
+    downloadDocxReport: (id: string, report: ICD | IIDCReport) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({
@@ -161,7 +162,7 @@ const useReportTemplate = create<ReportTemplateStore>((set) => ({
                     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             })
 
-            return saveAs(blob, 'Отчет по коллективным дозам.docx')
+            return saveAs(blob, `${getCurrentReportFromSessionStorage()}.docx`)
         } catch (error) {
             showErrorMessage(error)
         }

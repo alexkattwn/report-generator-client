@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 
 import { REPORT_ID_ROUTE } from '@/constants'
 import { dateToString, reverseDate } from '@/utils/common'
@@ -60,6 +61,11 @@ const IndividualDosesPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className={cls.page}
         >
+            <Helmet>
+                <title>
+                    NuclearIDM | {getCurrentReportFromSessionStorage()}
+                </title>
+            </Helmet>
             <h2 className={`${cls.page__title} ${darkModeClass}`}>
                 Индивидуальные дозы
             </h2>
