@@ -131,3 +131,64 @@ export interface IIDCReport {
     chief: string
     chief_group: string
 }
+
+export interface IPersonIDReport {
+    id_uuid: string
+    surname: string
+    name: string
+    patronymic: string
+    sex: string
+    birthday: string
+    photo: string
+    name_post: string
+    code_post: string
+    personnel_number: string
+    pass_sfz: string
+    on_tda: string
+    dose_e: string
+    dose_hk: string
+    dose_hs: string
+    dose_hh: string
+    age: string
+    struct_code: string
+}
+
+export interface IID {
+    struct: string
+    date_creation: string
+    date_start: string
+    date_end: string
+    registered: string
+    measured: string
+    chief_orb: string
+    chief_group_idc: string
+    personalDoses: IPersonIDReport[]
+}
+
+export interface IIDItems {
+    i: string
+    fio: string
+    sex: string
+    age: string
+    code: string
+    post: string
+    tab: string
+    asidc: string
+    value_e: string
+    value_hk: string
+    value_hs: string
+    value_hh: string
+    fam: string
+}
+
+export interface IIDReport {
+    date_creation: string
+    date_start: string
+    date_end: string
+    struct: string
+    registered: string
+    measured: string
+    chief_orb: string
+    chief_group_idc: string
+    items: IIDItems[]
+}

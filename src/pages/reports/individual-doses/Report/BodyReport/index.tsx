@@ -1,10 +1,15 @@
 import SummaryDataTable from '@/pages/reports/individual-doses/Report/BodyReport/SummaryDataTable'
 import IRDTable from '@/pages/reports/individual-doses/Report/BodyReport/IRDTable'
+import { IID } from '@/types/reports'
 
-const BodyReportID: React.FC = () => (
+interface BodyReportIDProps {
+    report: IID
+}
+
+const BodyReportID: React.FC<BodyReportIDProps> = ({ report }) => (
     <>
         <SummaryDataTable />
-        <IRDTable />
+        <IRDTable report={report} />
     </>
 )
 

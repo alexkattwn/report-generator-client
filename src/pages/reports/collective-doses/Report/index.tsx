@@ -8,15 +8,19 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { RingLoader } from 'react-spinners'
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 import HeaderReportCD from '@/pages/reports/collective-doses/Report/HeaderReport'
 import BodyReportCD from '@/pages/reports/collective-doses/Report/BodyReport'
 import FooterReportCD from '@/pages/reports/collective-doses/Report/FooterReport'
-import { getParametersCDFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import {
+    getCurrentReportFromSessionStorage,
+    getParametersCDFromSessionStorage,
+} from '@/helpers/sessionStorage.helper'
 import { IParametersCD } from '@/types/common'
+import useReportCD from '@/hooks/useReportCD'
 
 import cls from '@/pages/reports/collective-doses/Report/index.module.scss'
-import useReportCD from '@/hooks/useReportCD'
 
 const pageStyles = StyleSheet.create({
     page: {
@@ -61,49 +65,54 @@ const ReportCD: React.FC = () => {
     }, [])
 
     return (
-        <AnimatePresence>
-            {state && report && !isLoading ? (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={cls.page}
-                >
-                    <PDFViewer className='pdf'>
-                        <Document>
-                            <Page
-                                size='A4'
-                                orientation='landscape'
-                                style={pageStyles.page}
-                            >
-                                <HeaderReportCD report={report} />
-                                <BodyReportCD report={report} />
-                                <FooterReportCD report={report} />
-                                <Text style={pageStyles.bottomText} fixed>
-                                    {`${report.date_start} - ${report.date_end} ${report.struct}`}
-                                </Text>
-                                <Text
-                                    style={pageStyles.pageNumber}
-                                    render={({ pageNumber, totalPages }) =>
-                                        `${pageNumber} / ${totalPages}`
-                                    }
-                                    fixed
-                                />
-                            </Page>
-                        </Document>
-                    </PDFViewer>
-                </motion.div>
-            ) : (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className='loader'
-                >
-                    <RingLoader color='#36d7b7' />
-                </motion.div>
-            )}
-        </AnimatePresence>
+        <>
+            <Helmet>
+                <title>{getCurrentReportFromSessionStorage()}</title>
+            </Helmet>
+            <AnimatePresence>
+                {state && report && !isLoading ? (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className={cls.page}
+                    >
+                        <PDFViewer className='pdf'>
+                            <Document>
+                                <Page
+                                    size='A4'
+                                    orientation='landscape'
+                                    style={pageStyles.page}
+                                >
+                                    <HeaderReportCD report={report} />
+                                    <BodyReportCD report={report} />
+                                    <FooterReportCD report={report} />
+                                    <Text style={pageStyles.bottomText} fixed>
+                                        {`${report.date_start} - ${report.date_end} ${report.struct}`}
+                                    </Text>
+                                    <Text
+                                        style={pageStyles.pageNumber}
+                                        render={({ pageNumber, totalPages }) =>
+                                            `${pageNumber} / ${totalPages}`
+                                        }
+                                        fixed
+                                    />
+                                </Page>
+                            </Document>
+                        </PDFViewer>
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className='loader'
+                    >
+                        <RingLoader color='#36d7b7' />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     )
 }
 

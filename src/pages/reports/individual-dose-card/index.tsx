@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { TbReportSearch } from 'react-icons/tb'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { BsDownload } from 'react-icons/bs'
 
 import { useMode } from '@/hooks/useMode'

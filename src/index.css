@@ -3,28 +3,28 @@
     font-style: normal;
     font-weight: 400;
     src: local('Inter'),
-        url('./assets/fonts/Inter-Regular.otf') format(truetype);
+        url('@/assets/fonts/Inter-Regular.otf') format(truetype);
 }
 
 @font-face {
     font-family: 'Inter';
     font-style: bold;
     font-weight: 700;
-    src: local('Inter'), url('./assets/fonts/Inter-Bold.otf') format(truetype);
+    src: local('Inter'), url('@/assets/fonts/Inter-Bold.otf') format(truetype);
 }
 
 @font-face {
     font-family: 'Inter';
     font-style: italic;
     font-weight: 400;
-    src: local('Inter'), url('./assets/fonts/Inter-Italic.otf') format(truetype);
+    src: local('Inter'), url('@/assets/fonts/Inter-Italic.otf') format(truetype);
 }
 
 @font-face {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
-    src: local('Inter'), url('./assets/fonts/Inter-Light.otf') format(truetype);
+    src: local('Inter'), url('@/assets/fonts/Inter-Light.otf') format(truetype);
 }
 
 :root {

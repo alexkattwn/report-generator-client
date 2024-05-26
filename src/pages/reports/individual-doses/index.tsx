@@ -2,7 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
 import { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
+import { BsDownload } from 'react-icons/bs'
 
 import { REPORT_ID_ROUTE } from '@/constants'
 import { dateToString, reverseDate } from '@/utils/common'
@@ -13,6 +14,8 @@ import FiltersID from '@/pages/reports/individual-doses/Filters'
 import GraphicsID from '@/pages/reports/individual-doses/Graphics'
 import useReportTemplate from '@/hooks/useReportTemplates'
 import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import useReportID from '@/hooks/useReportID'
+import { convertingIDForReport } from '@/utils/convertingObjects'
 
 import cls from '@/pages/reports/individual-doses/index.module.scss'
 
@@ -48,11 +51,24 @@ const IndividualDosesPage: React.FC = () => {
     const [paramsForInfographics, setParamsForInfographics] =
         useState<IParametersID>(params)
 
-    const { getTemplate } = useReportTemplate()
+    const { getTemplate, template, downloadDocxReport } = useReportTemplate()
+    const { report, isLoading, getReport } = useReportID()
 
     useEffect(() => {
-        getTemplate(getCurrentReportFromSessionStorage())
+        ;(async () => {
+            await getTemplate(getCurrentReportFromSessionStorage())
+            if (parameters.go) {
+                await getReport(parameters)
+            }
+        })()
     }, [])
+
+    const downloadReport = async () => {
+        if (report && template.id_uuid && !isLoading) {
+            const convertedReport = convertingIDForReport(report)
+            await downloadDocxReport(template.id_uuid, convertedReport)
+        }
+    }
 
     return (
         <motion.div
@@ -102,6 +118,13 @@ const IndividualDosesPage: React.FC = () => {
                                 >
                                     <span>Посмотреть отчет</span>
                                     <TbReportSearch size={26} />
+                                </button>
+                                <button
+                                    className={`${cls.page__infographic__head__block__btn} ${darkModeClass}`}
+                                    onClick={downloadReport}
+                                >
+                                    <span>Скачать отчет</span>
+                                    <BsDownload size={26} />
                                 </button>
                             </div>
                             <h3

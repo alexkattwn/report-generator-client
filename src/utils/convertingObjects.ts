@@ -1,5 +1,5 @@
 import { IParametersIDC } from '@/types/common'
-import { IIDC, IIDCReport } from '@/types/reports'
+import { IID, IIDC, IIDCReport, IIDItems, IIDReport } from '@/types/reports'
 import { formatDate, formatDateAndTime } from '@/utils/common'
 
 export const convertingIDCForReport = (
@@ -44,5 +44,44 @@ export const convertingIDCForReport = (
         date_creation: formatDate(`${new Date()}`),
         chief: params.post_approver || '-',
         chief_group: params.post_responsible_person || '-',
+    }
+}
+
+export const convertingIDForReport = (report: IID): IIDReport => {
+    const count = report.personalDoses.length
+
+    let items: IIDItems[] = []
+
+    for (let i = 0; i < count; i++) {
+        const elem = report.personalDoses[i]
+        const obj: IIDItems = {
+            i: `${i + 1}`,
+            fio: `${elem.surname} ${elem.name[0]}.${elem.patronymic[0]}.`,
+            sex: elem.sex || '-',
+            age: elem.age || '-',
+            code: elem.struct_code || '-',
+            post: elem.code_post || '-',
+            tab: elem.personnel_number || '-',
+            asidc: '-',
+            value_e: elem.dose_e || '-',
+            value_hk: elem.dose_hk || '-',
+            value_hs: elem.dose_hs || '-',
+            value_hh: elem.dose_hh || '-',
+            fam: '-',
+        }
+
+        items.push(obj)
+    }
+
+    return {
+        date_creation: report.date_creation,
+        date_start: report.date_start,
+        date_end: report.date_end,
+        struct: report.struct,
+        registered: report.registered,
+        measured: report.measured,
+        chief_orb: report.chief_orb,
+        chief_group_idc: report.chief_group_idc,
+        items,
     }
 }

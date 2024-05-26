@@ -2,17 +2,17 @@ import { create } from 'zustand'
 
 import { ResourceClient } from '@/api/axiosClient'
 import { showErrorMessage } from '@/utils/notifications'
-import { ICD } from '@/types/reports'
-import { IParametersCD } from '@/types/common'
+import { IID } from '@/types/reports'
+import { IParametersID } from '@/types/common'
 import useCompanyStructure from '@/hooks/useCompanyStructure'
 
-interface ReportCDStore {
+interface ReportIDStore {
     isLoading: boolean
-    report: ICD | undefined
-    getReport: (parameters: IParametersCD) => Promise<void>
+    report: IID | undefined
+    getReport: (parameters: IParametersID) => Promise<void>
 }
 
-const useReportCD = create<ReportCDStore>((set) => ({
+const useReportID = create<ReportIDStore>((set) => ({
     isLoading: false,
     report: undefined,
     getReport: async (parameters) => {
@@ -25,8 +25,8 @@ const useReportCD = create<ReportCDStore>((set) => ({
                     (p) => p.name === parameters.struct
                 )?.id_uuid
 
-            const { data } = await ResourceClient.post<ICD>(
-                '/reports/collective-doses',
+            const { data } = await ResourceClient.post<IID>(
+                '/reports/individual-doses',
                 { ...parameters, id_struct: idStruct }
             )
 
@@ -39,4 +39,4 @@ const useReportCD = create<ReportCDStore>((set) => ({
     },
 }))
 
-export default useReportCD
+export default useReportID

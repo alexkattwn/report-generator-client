@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 import { useMode } from '@/hooks/useMode'
 import ListTemplates from '@/pages/history/ListTemplates'

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { TbReportSearch } from 'react-icons/tb'
 import { BsDownload } from 'react-icons/bs'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 import { REPORT_CD_ROUTE } from '@/constants'
 import { IParametersCD } from '@/types/common'

@@ -11,7 +11,7 @@ import {
     showSuccessMessage,
 } from '@/utils/notifications'
 import { ITemplate, ITemplates } from '@/types/common'
-import { ICD, IIDCReport } from '@/types/reports'
+import { ICD, IIDCReport, IIDReport } from '@/types/reports'
 import { getCurrentReportFromSessionStorage } from '@/helpers/sessionStorage.helper'
 
 interface ReportTemplateStore {
@@ -30,7 +30,10 @@ interface ReportTemplateStore {
     ) => Promise<void>
     removeTemplate: (id: string) => Promise<void>
     selectTemplate: (id: string) => Promise<void>
-    downloadDocxReport: (id: string, report: ICD | IIDCReport) => Promise<void>
+    downloadDocxReport: (
+        id: string,
+        report: ICD | IIDCReport | IIDReport
+    ) => Promise<void>
 }
 
 const useReportTemplate = create<ReportTemplateStore>((set) => ({

@@ -4,7 +4,7 @@ import { MdOutlineKeyboardDoubleArrowUp } from 'react-icons/md'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { RiGuideLine } from 'react-icons/ri'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 import { useMode } from '@/hooks/useMode'
 import useUsersGuide from '@/hooks/useUsersGuide'

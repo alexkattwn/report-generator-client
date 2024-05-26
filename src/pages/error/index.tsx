@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 import { HOME_ROUTE } from '@/constants'
 import { useMode } from '@/hooks/useMode'

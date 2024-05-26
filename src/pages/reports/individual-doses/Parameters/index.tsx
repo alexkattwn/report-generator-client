@@ -21,6 +21,7 @@ import {
     setParametersIDToSessionStorage,
 } from '@/helpers/sessionStorage.helper'
 import { removeEmptyFields } from '@/utils/common'
+import useReportID from '@/hooks/useReportID'
 
 import cls from '@/pages/reports/individual-doses/Parameters/index.module.scss'
 
@@ -45,6 +46,7 @@ const ParametersID: React.FC<ParametersIDProps> = ({
     const { companyStructures, getCompanyStructures } = useCompanyStructure()
 
     const { getGraphics } = useIDGraphic()
+    const { getReport } = useReportID()
 
     const isMedia746 = useMediaQuery(746)
 
@@ -93,7 +95,7 @@ const ParametersID: React.FC<ParametersIDProps> = ({
         setSearchParams({ ...newParams }, { replace: true })
     }
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         changeParameters()
         if (parameters.date_start > parameters.date_end) {
             return showSimpleErrorMessage(
@@ -105,7 +107,8 @@ const ParametersID: React.FC<ParametersIDProps> = ({
             setParametersIDToSessionStorage(parameters)
             setParameters({ ...parameters, go: '1' })
             setParamsForInfographics({ ...parameters })
-            getGraphics(parameters)
+            await getGraphics(parameters)
+            await getReport(parameters)
             return
         }
 

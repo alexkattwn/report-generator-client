@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 import { IParametersID } from '@/types/common'
 import { formatDateAndTime, reverseDate } from '@/utils/common'
+import { IID } from '@/types/reports'
 
 const styles = StyleSheet.create({
     title: {
@@ -33,9 +34,10 @@ const styles = StyleSheet.create({
 
 interface HeaderReportIDProps {
     state: IParametersID
+    report: IID
 }
 
-const HeaderReportID: React.FC<HeaderReportIDProps> = ({ state }) => (
+const HeaderReportID: React.FC<HeaderReportIDProps> = ({ state, report }) => (
     <>
         <View style={styles.block}>
             <Text style={styles.title}>
@@ -61,11 +63,13 @@ const HeaderReportID: React.FC<HeaderReportIDProps> = ({ state }) => (
             </View>
             <View style={styles.row}>
                 <Text style={styles.nameRow}>Состояло на доз. учете, чел.</Text>
-                <Text style={styles.contentRow}>1</Text>
+                <Text style={styles.contentRow}>
+                    {report.registered || '-'}
+                </Text>
             </View>
             <View style={styles.row}>
                 <Text style={styles.nameRow}>Измерено, чел</Text>
-                <Text style={styles.contentRow}>1</Text>
+                <Text style={styles.contentRow}>{report.measured || '-'}</Text>
             </View>
         </View>
     </>

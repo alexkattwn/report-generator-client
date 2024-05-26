@@ -9,11 +9,15 @@ import {
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { RingLoader } from 'react-spinners'
+import { Helmet } from 'react-helmet-async'
 
 import HeaderReportIDC from '@/pages/reports/individual-dose-card/Report/HeaderReport'
 import BodyReportIDC from '@/pages/reports/individual-dose-card/Report/BodyReport'
 import FooterReportIDC from '@/pages/reports/individual-dose-card/Report/FooterReport'
-import { getPersonFromSessionStorage } from '@/helpers/sessionStorage.helper'
+import {
+    getCurrentReportFromSessionStorage,
+    getPersonFromSessionStorage,
+} from '@/helpers/sessionStorage.helper'
 
 import InterRegular from '@/assets/fonts/Inter-Regular.otf'
 import InterBold from '@/assets/fonts/Inter-Bold.otf'
@@ -75,42 +79,47 @@ const ReportIDC: React.FC = () => {
     }, [])
 
     return (
-        <AnimatePresence>
-            {!isLoading ? (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={cls.page}
-                >
-                    <PDFViewer className='pdf'>
-                        <Document>
-                            <Page size='A4' style={pageStyles.page}>
-                                <HeaderReportIDC report={report} />
-                                <BodyReportIDC report={report} />
-                                <FooterReportIDC />
-                                <Text
-                                    style={pageStyles.pageNumber}
-                                    render={({ pageNumber, totalPages }) =>
-                                        `${pageNumber} / ${totalPages}`
-                                    }
-                                    fixed
-                                />
-                            </Page>
-                        </Document>
-                    </PDFViewer>
-                </motion.div>
-            ) : (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className='loader'
-                >
-                    <RingLoader color='#36d7b7' />
-                </motion.div>
-            )}
-        </AnimatePresence>
+        <>
+            <Helmet>
+                <title>{getCurrentReportFromSessionStorage()}</title>
+            </Helmet>
+            <AnimatePresence>
+                {report && !isLoading ? (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className={cls.page}
+                    >
+                        <PDFViewer className='pdf'>
+                            <Document>
+                                <Page size='A4' style={pageStyles.page}>
+                                    <HeaderReportIDC report={report} />
+                                    <BodyReportIDC report={report} />
+                                    <FooterReportIDC />
+                                    <Text
+                                        style={pageStyles.pageNumber}
+                                        render={({ pageNumber, totalPages }) =>
+                                            `${pageNumber} / ${totalPages}`
+                                        }
+                                        fixed
+                                    />
+                                </Page>
+                            </Document>
+                        </PDFViewer>
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className='loader'
+                    >
+                        <RingLoader color='#36d7b7' />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     )
 }
 
