@@ -82,7 +82,9 @@ const ParametersIDC: React.FC<ParametersIDCProps> = ({
     const handleSearch = async () => {
         changeParameters()
         await getPersonal(parameters, 1)
-        await getReport(parameters.id_personal)
+        if (parameters.id_personal) {
+            await getReport(parameters.id_personal)
+        }
     }
 
     const postSearch = (value: string) =>
